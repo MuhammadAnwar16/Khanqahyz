@@ -7,19 +7,19 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-silver"
+      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border"
     >
       <div className="max-w-6xl mx-auto text-center">
-        {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-heading text-electric mb-8 border-b-2 border-electric inline-block pb-2">
+        {/* Section Heading */}
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border inline-block pb-2">
           {language === "urdu" ? "خانقاہ کا تعارف" : "About the Khanqah"}
         </h2>
 
-        {/* Divider line */}
-        <div className="w-16 h-1 bg-electric mx-auto mb-10 rounded-full"></div>
+        {/* Optional Soft Divider */}
+        <div className="w-16 h-1 bg-subtext mx-auto mb-10 rounded-full opacity-30"></div>
 
         {/* Paragraphs */}
-        <div className="mt-4 text-lg md:text-xl leading-relaxed space-y-6 text-justify max-w-4xl mx-auto text-charcoal">
+        <div className="mt-4 text-base sm:text-lg md:text-xl leading-relaxed space-y-6 text-subtext text-justify max-w-4xl mx-auto">
           {language === "urdu" ? (
             <>
               <p>

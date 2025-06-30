@@ -8,25 +8,25 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-silver relative"
+      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border relative"
     >
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-heading text-electric mb-6 border-b-2 border-electric inline-block pb-2">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-border inline-block pb-2">
           {language === "urdu" ? "رابطہ کریں" : "Contact Us"}
         </h2>
 
-        {/* Intro */}
-        <p className="text-lg text-charcoal mb-12">
+        {/* Intro Text */}
+        <p className="text-lg text-subtext mb-12">
           {language === "urdu"
             ? "زیارت یا روحانی رہنمائی کے لیے رابطہ کریں۔"
             : "Reach out for ziyarat or spiritual guidance."}
         </p>
 
-        {/* Content Grid */}
+        {/* Contact Grid */}
         <div className="grid md:grid-cols-2 gap-10 text-left">
-          {/* Contact Details */}
-          <div className="space-y-5 text-lg text-charcoal">
+          {/* Details */}
+          <div className="space-y-5 text-lg text-subtext leading-relaxed">
             <p>
               📞 <strong>{language === "urdu" ? "فون:" : "Phone:"}</strong>{" "}
               +92 300 1234567
@@ -37,7 +37,7 @@ const ContactSection = () => {
                 href="https://wa.me/923001234567"
                 target="_blank"
                 rel="noreferrer"
-                className="text-electric hover:underline"
+                className="text-black hover:underline hover:text-subtext transition"
               >
                 +92 300 1234567
               </a>
@@ -60,8 +60,8 @@ const ContactSection = () => {
             </p>
           </div>
 
-          {/* Embedded Map */}
-          <div className="rounded-xl shadow-xl border border-silver overflow-hidden bg-mist">
+          {/* Map Embed */}
+          <div className="rounded-xl shadow-soft border border-border overflow-hidden bg-mist">
             <iframe
               title="Khanqah Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3374.0539300182913!2d70.88149371075285!3d32.25663117377645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39264b34e519578f%3A0xe839d1ce64b684b9!2sKhanqah%20Yaseen%20Zai%20(Topi%20Sahiban)!5e0!3m2!1sen!2s!4v1750505265181!5m2!1sen!2s"
@@ -76,17 +76,17 @@ const ContactSection = () => {
         </div>
       </div>
 
-      {/* Floating WhatsApp Button */}
+      {/* Floating WhatsApp Chat Button */}
       <a
         href="https://wa.me/923001234567"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-28 right-6 z-50 md:bottom-24 md:right-8"
+        className="fixed bottom-28 right-6 md:bottom-24 md:right-8 z-50"
       >
         <img
           src={whatsappIcon}
           alt="Chat on WhatsApp"
-          className="w-14 h-14 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 animate-pulse border-2 border-white"
+          className="w-14 h-14 rounded-full shadow-soft hover:scale-110 transition-transform duration-300 border-2 border-white"
         />
       </a>
     </section>

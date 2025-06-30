@@ -55,28 +55,36 @@ const EventsSection = () => {
   return (
     <section
       id="events"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#E0E0E0]"
+      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto text-center">
-        {/* Section Heading */}
-        <h2 className="text-4xl md:text-5xl font-heading text-electric mb-12 border-b-2 border-electric inline-block pb-2">
+    
+
+      <div className="relative z-10 max-w-7xl mx-auto text-center">
+        {/* Heading */}
+        <h2 className="text-4xl md:text-5xl font-heading font-bold text-black mb-6 border-b-2 border-border inline-block pb-2">
           {language === "urdu" ? "روحانی تقریبات" : "Spiritual Events"}
         </h2>
 
-        {/* Event Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <p className="text-sm uppercase tracking-wider text-subtext mb-14">
+          {language === "urdu"
+            ? "ذکر، محبت، اور روحانی یکجہتی"
+            : "Zikr, Love, and Spiritual Unity"}
+        </p>
+
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
           {events.map((event) => (
             <div
               key={event.id}
-              className="bg-[#F5F5F5] text-black rounded-2xl p-6 shadow-md border border-[#E0E0E0] hover:shadow-lg hover:border-[#1A73E8] transition duration-300 text-left"
+              className="bg-mist rounded-2xl p-6 shadow-soft border border-border hover:shadow-lg hover:bg-hover transition-all duration-300"
             >
-              <h3 className="text-xl font-heading font-semibold text-electric mb-2">
+              <h3 className="text-xl md:text-2xl font-heading text-black mb-2">
                 {language === "urdu" ? event.title.urdu : event.title.english}
               </h3>
-              <p className="text-sm text-[#4A4A4A] mb-2 font-medium">
+              <p className="text-sm text-subtext font-medium mb-2">
                 {language === "urdu" ? event.date.urdu : event.date.english}
               </p>
-              <p className="text-base text-[#2C2C2C] leading-relaxed">
+              <p className="text-base text-black leading-relaxed">
                 {language === "urdu"
                   ? event.description.urdu
                   : event.description.english}

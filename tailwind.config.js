@@ -4,25 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Elite White-Based Theme Colors
+        // Elite White-Based Theme
         white: '#FFFFFF',               // Primary background
-        black: '#000000',               // Primary text
-        electric: '#1A73E8',            // Accent 1 (buttons, icons)
-        mist: '#F5F5F5',                // Accent 2 (light sections)
-        charcoal: '#4A4A4A',            // Secondary text
-        silver: '#E0E0E0',              // Hover/focus
+        mist: '#F5F5F5',                // Card BG / Light sections
+        border: '#D1D1D1',              // Borders / lines
+        black: '#000000',               // Main text (jet black)
+        subtext: '#6B6B6B',             // Muted / soft charcoal
+        hover: '#EDEDED',               // Hover & feedback bg
+        shadow: 'rgba(0,0,0,0.08)',     // Soft ambient shadow
 
-        // Optional legacy support or section-specific
-        midnight: '#1A1A1A',
-        gold: '#D4AF37',
-        ivory: '#F5F3EF',
-        sandstone: '#D8C5AD',
-        olive: '#5A5A43',
+        
       },
       fontFamily: {
         urdu: ['"Noto Nastaliq Urdu"', '"Scheherazade New"', 'serif'],
         heading: ['"Playfair Display"', 'serif'],
         body: ['Inter', 'Lato', 'sans-serif'],
+      },
+      boxShadow: {
+        soft: '0 4px 12px rgba(0,0,0,0.08)', // Custom soft depth shadow
       },
     },
   },
