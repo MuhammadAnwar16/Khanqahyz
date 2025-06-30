@@ -9,7 +9,7 @@ const publications = [
   },
   {
     title: "Lecture on Sufism",
-    file: "/publications/sufism-lecture.pdf",
+    file: "./publications/khanqahbook.pdf",
     description: "An English discourse on Sufi teachings",
   },
 ];
@@ -43,11 +43,19 @@ const Publications = () => {
 
               <div className="flex flex-wrap justify-center gap-4 mt-4">
                 <button
-                  onClick={() => setPreviewFile(pub.file)}
-                  className="px-5 py-2 text-sm font-semibold border border-[#D1D1D1] text-[#000000] rounded-full hover:bg-[#EDEDED] transition"
-                >
-                  {language === "urdu" ? "پیش نظارہ" : "Preview"}
-                </button>
+  onClick={() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      window.open(pub.file, "_blank");
+    } else {
+      setPreviewFile(pub.file);
+    }
+  }}
+  className="px-5 py-2 text-sm font-semibold border border-[#D1D1D1] text-[#000000] rounded-full hover:bg-[#EDEDED] transition"
+>
+  {language === "urdu" ? "پیش نظارہ" : "Preview"}
+</button>
+
 
                 <a
                   href={pub.file}

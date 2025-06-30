@@ -19,7 +19,7 @@ const AboutSection = () => {
         <div className="w-16 h-1 bg-subtext mx-auto mb-10 rounded-full opacity-30"></div>
 
         {/* Paragraphs */}
-        <div className="mt-4 text-base sm:text-lg md:text-xl leading-relaxed space-y-6 text-subtext text-justify max-w-4xl mx-auto">
+        <div className="mt-4 font-urdu text-base sm:text-lg md:text-xl leading-relaxed space-y-6 text-subtext text-justify max-w-4xl mx-auto">
           {language === "urdu" ? (
             <>
               <p>

@@ -29,7 +29,7 @@ const HeroSection = () => {
             : "Welcome to Khanqah Yaseen Zai"}
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl font-nastaliq text-white/90 leading-relaxed max-w-2xl mx-auto mb-8">
+        <p className="text-base font-urdu sm:text-lg md:text-xl font-nastaliq text-white/90 leading-relaxed max-w-2xl mx-auto mb-8">
           {language === "urdu"
             ? "ایک روحانی مرکز جہاں دلوں کو سکون، ذکرِ الٰہی، اور روحانی تربیت میسر آتی ہے۔"
             : "A spiritual sanctuary for remembrance, peace, and divine connection."}

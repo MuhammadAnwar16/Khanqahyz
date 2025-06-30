@@ -13,11 +13,13 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 
 import FamilyTree from './pages/FamilyTree'; 
 import Publications from './pages/Publications';
+import CurrentNasheenSection from './components/CurrentNasheenSection';
 
 const HomePage = () => (
   <>
     <HeroSection />
     <AboutSection />
+    <CurrentNasheenSection/>
     <EventsSection />
     <GallerySection />
   </>

@@ -55,7 +55,7 @@ const EventsSection = () => {
   return (
     <section
       id="events"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border relative overflow-hidden"
+      className="bg-white text-black py-24 px-6 md:px-24 font-body relative overflow-hidden"
     >
     
 
@@ -65,7 +65,7 @@ const EventsSection = () => {
           {language === "urdu" ? "روحانی تقریبات" : "Spiritual Events"}
         </h2>
 
-        <p className="text-sm uppercase tracking-wider text-subtext mb-14">
+        <p className="text-sm font-urdu uppercase tracking-wider text-subtext mb-14">
           {language === "urdu"
             ? "ذکر، محبت، اور روحانی یکجہتی"
             : "Zikr, Love, and Spiritual Unity"}

@@ -12,12 +12,12 @@ const ContactSection = () => {
     >
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-border inline-block pb-2">
+        <h2 className="text-4xl  md:text-5xl font-heading font-bold mb-6 border-b-2 border-border inline-block pb-2">
           {language === "urdu" ? "رابطہ کریں" : "Contact Us"}
         </h2>
 
         {/* Intro Text */}
-        <p className="text-lg text-subtext mb-12">
+        <p className="text-lg font-urdu text-subtext mb-12">
           {language === "urdu"
             ? "زیارت یا روحانی رہنمائی کے لیے رابطہ کریں۔"
             : "Reach out for ziyarat or spiritual guidance."}
@@ -26,7 +26,7 @@ const ContactSection = () => {
         {/* Contact Grid */}
         <div className="grid md:grid-cols-2 gap-10 text-left">
           {/* Details */}
-          <div className="space-y-5 text-lg text-subtext leading-relaxed">
+          <div className="space-y-5 font-urdu text-left text-lg text-subtext leading-relaxed">
             <p>
               📞 <strong>{language === "urdu" ? "فون:" : "Phone:"}</strong>{" "}
               +92 300 1234567
