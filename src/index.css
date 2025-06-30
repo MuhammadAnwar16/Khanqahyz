@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.gold-smoke {
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4),
+              0 0 30px rgba(212, 175, 55, 0.15);
+}
+/* Urdu */
+.urdu {
+  font-family: "Noto Nastaliq Urdu", "Scheherazade", serif;
+}
+
+/* English headings */
+.font-heading {
+  font-family: "Playfair Display", serif;
+}
+
+/* Body text */
+.font-body {
+  font-family: "Inter", "Lato", sans-serif;
+}
