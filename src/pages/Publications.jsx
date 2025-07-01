@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-const publications = [
-  {
-    title: "رسالہ تصوف",
-    file: "/publications/risala-tasawwuf.pdf",
-    description: "تصوف پر ایک علمی و روحانی رسالہ",
-  },
-  {
-    title: "Lecture on Sufism",
-    file: "./publications/khanqahbook.pdf",
-    description: "An English discourse on Sufi teachings",
-  },
-];
-
 const Publications = () => {
   const { language } = useLanguage();
   const [previewFile, setPreviewFile] = useState(null);
+
+  const publications = [
+    {
+      title: language === "urdu" ? "رسالہ تصوف" : "Risala-e-Tasawwuf",
+      file: "/publications/risala-tasawwuf.pdf",
+      description:
+        language === "urdu"
+          ? "تصوف پر ایک علمی و روحانی رسالہ"
+          : "A scholarly and spiritual treatise on Sufism",
+    },
+    {
+      title:
+        language === "urdu"
+          ? "شجرہ سادات یاسین زئی"
+          : "Shajra-e-Sadaat Yaseen Zai",
+      file: "./publications/khanqahbook.pdf",
+      description:
+        language === "urdu"
+          ? "سادات یاسین زئی کے نسب، تاریخ اور روحانی وراثت پر مبنی کتاب"
+          : "A detailed book on the lineage and spiritual heritage of Yaseen Zai Syeds",
+    },
+  ];
 
   return (
     <section
@@ -43,19 +52,18 @@ const Publications = () => {
 
               <div className="flex flex-wrap justify-center gap-4 mt-4">
                 <button
-  onClick={() => {
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      window.open(pub.file, "_blank");
-    } else {
-      setPreviewFile(pub.file);
-    }
-  }}
-  className="px-5 py-2 text-sm font-semibold border border-[#D1D1D1] text-[#000000] rounded-full hover:bg-[#EDEDED] transition"
->
-  {language === "urdu" ? "پیش نظارہ" : "Preview"}
-</button>
-
+                  onClick={() => {
+                    const isMobile = window.innerWidth < 768;
+                    if (isMobile) {
+                      window.open(pub.file, "_blank");
+                    } else {
+                      setPreviewFile(pub.file);
+                    }
+                  }}
+                  className="px-5 py-2 text-sm font-semibold border border-[#D1D1D1] text-[#000000] rounded-full hover:bg-[#EDEDED] transition"
+                >
+                  {language === "urdu" ? "پیش نظارہ" : "Preview"}
+                </button>
 
                 <a
                   href={pub.file}
