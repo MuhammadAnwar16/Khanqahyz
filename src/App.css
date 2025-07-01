@@ -54,3 +54,8 @@
 .font-body {
   font-family: "Inter", "Lato", sans-serif;
 }
+/* Add this in your global CSS */
+.urdu-paragraph p {
+  line-height: 2.6rem !important;
+  margin-bottom: 1.5rem; /* Adds spacing between paragraphs */
+}

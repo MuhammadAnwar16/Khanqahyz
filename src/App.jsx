@@ -18,7 +18,6 @@ import CurrentNasheenSection from './components/CurrentNasheenSection';
 const HomePage = () => (
   <>
     <HeroSection />
-    <AboutSection />
     <CurrentNasheenSection/>
     <EventsSection />
     <GallerySection />
