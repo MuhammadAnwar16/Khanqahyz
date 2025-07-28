@@ -27,7 +27,7 @@ const Navbar = () => {
 }, [menuOpen]);
 
   const links = [
-    { path: '/', label: { en: 'Home', ur: 'صفحہ اول' } },
+    { path: '/', label: { en: 'Home', ur: 'سرورق' } },
     { path: '/about', label: { en: 'About', ur: 'تعارف' } },
     { path: '/shajra', label: { en: 'Lineage', ur: 'شجرہ' } },
     { path: '/publications', label: { en: 'Publications', ur: 'اشاعت' } },
