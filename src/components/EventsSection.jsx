@@ -4,6 +4,8 @@ import { useLanguage } from "../context/LanguageContext";
 const EventsSection = () => {
   const { language } = useLanguage();
 
+  const isUrdu = language === "urdu";
+
   const events = [
     {
       id: 1,
@@ -57,37 +59,39 @@ const EventsSection = () => {
       id="events"
       className="bg-white text-black py-24 px-6 md:px-24 font-body relative overflow-hidden"
     >
-    
-
       <div className="relative z-10 max-w-7xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-heading font-bold text-black mb-6 border-b-2 border-border inline-block pb-2">
-          {language === "urdu" ? "روحانی تقریبات" : "Spiritual Events"}
+          {isUrdu ? "روحانی تقریبات" : "Spiritual Events"}
         </h2>
 
         <p className="text-sm font-urdu uppercase tracking-wider text-subtext mb-14">
-          {language === "urdu"
+          {isUrdu
             ? "ذکر، محبت، اور روحانی یکجہتی"
             : "Zikr, Love, and Spiritual Unity"}
         </p>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <div
+          className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-10 ${
+            isUrdu ? "text-right" : "text-left"
+          }`}
+        >
           {events.map((event) => (
             <div
               key={event.id}
-              className="bg-mist rounded-2xl p-6 shadow-soft border border-border hover:shadow-lg hover:bg-hover transition-all duration-300"
+              className={`bg-mist rounded-2xl p-6 shadow-lg border border-border transition-all duration-300 hover:shadow-xl hover:bg-hover/20 relative ${
+                isUrdu ? "pr-5 pl-3 border-r-[6px]" : "pl-5 pr-3 border-l-[6px]"
+              } border-accent1`}
             >
-              <h3 className="text-xl md:text-2xl font-heading text-black mb-2">
-                {language === "urdu" ? event.title.urdu : event.title.english}
+              <h3 className="text-xl md:text-2xl font-heading text-black font-bold mb-3 leading-snug">
+                {isUrdu ? event.title.urdu : event.title.english}
               </h3>
               <p className="text-sm text-subtext font-medium mb-2">
-                {language === "urdu" ? event.date.urdu : event.date.english}
+                {isUrdu ? event.date.urdu : event.date.english}
               </p>
               <p className="text-base text-black leading-relaxed">
-                {language === "urdu"
-                  ? event.description.urdu
-                  : event.description.english}
+                {isUrdu ? event.description.urdu : event.description.english}
               </p>
             </div>
           ))}

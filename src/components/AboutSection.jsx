@@ -91,67 +91,84 @@ const AboutSection = () => {
             <AboutDescription />
           </AccordionItem>
 
-          {/* Training Affairs Section */}
           <AccordionItem
-            title="Training Affairs"
-            urduTitle="تربیتی امور"
-            language={language}
-          >
-            <SubHeading
-              title="Quran Memorization Class"
-              urduTitle="حفظِ قرآن کلاس"
-              language={language}
-            >
-              {language === "urdu"
-                ? "یہ کلاس قرآن کریم کے حفظ کے لیے مختص ہے۔"
-                : "This class is dedicated to the memorization of the Holy Quran."}
-            </SubHeading>
-            <SubHeading
-              title="Monthly Zikr Gathering"
-              urduTitle="ماہانہ اجتماعِ ذکر"
-              language={language}
-            >
-              {language === "urdu"
-                ? "ہر ماہ خانقاہ میں خصوصی ذکر کی محفل منعقد ہوتی ہے۔"
-                : "A special monthly Zikr gathering is held at the Khanqah."}
-            </SubHeading>
-            <SubHeading
-              title="Weekly Khatm-e-Khawajgan"
-              urduTitle="ہفتہ وار ختمِ خواجگان"
-              language={language}
-            >
-              {language === "urdu"
-                ? "ہفتہ وار ختم خواجگان کی روحانی مجلس منعقد کی جاتی ہے۔"
-                : "A spiritual Khatm-e-Khawajgan is held weekly."}
-            </SubHeading>
-            <SubHeading
-              title="Daily Zikr Session"
-              urduTitle="روزانہ مجلسِ ذکر"
-              language={language}
-            >
-              {language === "urdu"
-                ? "روزانہ ذکر کی مجالس منعقد کی جاتی ہیں۔"
-                : "Daily zikr sessions are held regularly."}
-            </SubHeading>
-            <SubHeading
-              title="Study of Sufism"
-              urduTitle="مطالعۂ تصوف"
-              language={language}
-            >
-              {language === "urdu"
-                ? "تصوف کے موضوع پر مطالعہ و گفتگو کی جاتی ہے۔"
-                : "Studies and discussions are held on the topic of Sufism."}
-            </SubHeading>
-            <SubHeading
-              title="Spiritual Gatherings"
-              urduTitle="اجتماعات"
-              language={language}
-            >
-              {language === "urdu"
-                ? "مختلف مواقع پر روحانی اجتماعات منعقد کیے جاتے ہیں۔"
-                : "Spiritual gatherings are arranged on various occasions."}
-            </SubHeading>
-          </AccordionItem>
+  title="Training Affairs"
+  urduTitle="تربیتی امور"
+  language={language}
+>
+  <SubHeading
+    title="Daily Zikr / Muraqbah"
+    urduTitle="روزانہ مجلسِ ذکر / مراقبہ"
+    language={language}
+  >
+    {language === "urdu"
+      ? "روزانہ کی بنیاد پر ذکر اور مراقبہ کی روحانی مجالس کا انعقاد ہوتا ہے۔"
+      : "Daily sessions of Zikr and Muraqbah (meditation) are held."}
+  </SubHeading>
+
+  <SubHeading
+    title="Weekly Zikr / Muraqbah Session"
+    urduTitle="ہفتہ وار مجلسِ ذکر / مراقبہ"
+    language={language}
+  >
+    {language === "urdu"
+      ? "ہر ہفتے خصوصی روحانی ذکر و مراقبہ کی مجلس منعقد کی جاتی ہے۔"
+      : "A dedicated weekly session of spiritual Zikr and Muraqbah is arranged."}
+  </SubHeading>
+
+  <SubHeading
+    title="Weekly Khatm-e-Khawajgan"
+    urduTitle="ہفتہ وار ختمِ خواجگان"
+    language={language}
+  >
+    {language === "urdu"
+      ? "ہفتہ وار ختم خواجگان کی روحانی مجلس منعقد کی جاتی ہے۔"
+      : "A spiritual gathering of Khatm-e-Khawajgan is held weekly."}
+  </SubHeading>
+
+  <SubHeading
+    title="Monthly Zikr Gathering"
+    urduTitle="ماہانہ اجتماعِ ذکر"
+    language={language}
+  >
+    {language === "urdu"
+      ? "ہر ماہ ایک خصوصی اجتماع ذکر خانقاہ میں منعقد کیا جاتا ہے۔"
+      : "A special monthly Zikr gathering is held at the Khanqah."}
+  </SubHeading>
+
+  <SubHeading
+    title="Daily Study of Sufism"
+    urduTitle="روزانہ درس / مطالعہ تصوف"
+    language={language}
+  >
+    {language === "urdu"
+      ? `روزانہ تصوف پر مطالعہ اور درس دیا جاتا ہے۔ اب تک زیر درس کتب:
+1. مجمع البحرین
+2. امداد السلوک
+3. عمدۃ السلوک
+4. اشارات حضرت شاہ عبد القادر رائے پوری نور اللہ مرقدہ
+5. حالات حضرت سید احمد سعید مجددی نور اللہ مرقدہ
+6. ہمعات`
+      : `Daily study sessions are conducted on Sufism. Books covered so far:
+1. Majma' al-Bahrain
+2. Imdad al-Sulook
+3. Umdat al-Sulook
+4. Teachings of Hazrat Shah Abdul Qadir Raipuri (RA)
+5. Life of Hazrat Syed Ahmad Saeed Mujaddidi (RA)
+6. Hama'at`}
+  </SubHeading>
+
+  <SubHeading
+    title="Quran Memorization Class"
+    urduTitle="حفظِ قرآن کلاس"
+    language={language}
+  >
+    {language === "urdu"
+      ? "یہ کلاس قرآن مجید کے حفظ کے لیے مختص ہے۔"
+      : "This class is dedicated to the memorization of the Holy Quran."}
+  </SubHeading>
+</AccordionItem>
+
 
           {/* Sadat Foundation Section */}
           <AccordionItem
@@ -164,22 +181,108 @@ const AboutSection = () => {
               : "The foundation aims to provide educational, welfare, and religious services."}
           </AccordionItem>
 
-          {/* Books & Publications */}
           <AccordionItem
-            title="Books & Publications"
-            urduTitle="کتب و رسائل"
-            language={language}
-          >
-            <SubHeading
-              title="Publication Series"
-              urduTitle="اشاعتی سلسلہ"
-              language={language}
-            >
-              {language === "urdu"
-                ? "خانقاہ سے وابستہ کتب و رسائل کی اشاعت کا سلسلہ جاری ہے۔"
-                : "A publication series of books and newsletters associated with the Khanqah is ongoing."}
-            </SubHeading>
-          </AccordionItem>
+  title="Books & Publications Series"
+  urduTitle="کتب و رسائل اشاعتی سلسلہ"
+  language={language}
+>
+  {language === "urdu" ? (
+    <>
+      <p className="mb-4">
+        خانقاہ سے وابستہ کتب و رسائل کی اشاعت کا سلسلہ جاری ہے:
+      </p>
+      <ul className="list-disc list-inside space-y-2 leading-relaxed rtl text-right urdu">
+        <li>
+          خانقاہ یاسین زئی اور سادات یاسین زئی کا تعارف (مصنف: مولانا ڈاکٹر
+          صاحبزادہ سید رشید احمد مدظلہ، مسند نشین خانقاہ یاسین زئی)
+        </li>
+        <li>
+          شجرہ نسب سادات یاسین زئی (مرتب: مولانا ڈاکٹر صاحبزادہ سید رشید احمد
+          مدظلہ)
+        </li>
+        <li>مجلہ الحلیم</li>
+        <li>
+          مجمع البحرین (تصنیف لطیف: حضرت مولانا صاحبزادہ سید عبد الحلیم شاہ
+          صاحب نور اللہ مرقدہ)۔۔۔زیر اشاعت
+        </li>
+        <li>
+          معمولات، وظائف، اور اوراد و اعمال قرآنی اکابرین خانقاہ یاسین زئی ۔۔۔
+          زیر اشاعت
+        </li>
+        <li>
+          فارسی شعری کلام (حضرت مولانا صاحبزادہ سید محمود شاہ نور اللہ مرقدہ)
+          ۔۔۔ زیراشاعت
+        </li>
+        <li>
+          حالاتِ زندگی، سفرنامہ حج و عمرہ (از حضرت مولانا صاحبزادہ سید محمود
+          شاہ نور اللہ مرقدہ)۔۔۔ زیراشاعت
+        </li>
+        <li>عبقات کا خلاصہ۔۔۔ زیر طبع</li>
+        <li>الطاف القدس کا خلاصہ۔۔۔ زیر طبع</li>
+        <li>مقاییس اللغات القرآن۔۔۔ زیر طبع</li>
+        <li>سلاسلِ تصوف۔۔۔ زیر طبع</li>
+      </ul>
+
+      {/* Urdu Button Link */}
+      <div className="mt-6 text-right">
+        <a
+          href="/publications"
+          className="inline-block px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
+        >
+          مزید مطالعہ کریں
+        </a>
+      </div>
+    </>
+  ) : (
+    <>
+      <p className="mb-4">
+        The publication series of Khanqah includes the following works:
+      </p>
+      <ul className="list-disc list-inside space-y-2 leading-relaxed ltr text-left">
+        <li>
+          Introduction to Khanqah Yaseen Zai and Sadat Yaseen Zai
+          (Author: Dr. Sahibzada Syed Rasheed Ahmad, Sajjada Nashin)
+        </li>
+        <li>
+          Genealogical Tree of Sadat Yaseen Zai (Compiled by: Dr. Sahibzada
+          Syed Rasheed Ahmad)
+        </li>
+        <li>Magazine: Al-Haleem</li>
+        <li>
+          Majma‘ al-Bahrayn by Hazrat Sahibzada Syed Abdul Haleem Shah
+          (RA) — Upcoming
+        </li>
+        <li>
+          Daily Wirds, Supplications, and Quranic Practices of Khanqah Elders
+          — Upcoming
+        </li>
+        <li>
+          Persian Poetry of Hazrat Sahibzada Syed Mahmood Shah (RA) —
+          Upcoming
+        </li>
+        <li>
+          Life Story & Hajj/Umrah Travelogue of Hazrat Sahibzada Syed Mahmood
+          Shah (RA) — Upcoming
+        </li>
+        <li>Summary of ‘Ubaqat’ — In Press</li>
+        <li>Summary of ‘Al-Taf al-Quds’ — In Press</li>
+        <li>Muqayyis al-Lughat al-Qur’an — In Press</li>
+        <li>Lineages of Tasawwuf — In Press</li>
+      </ul>
+
+      {/* English Button Link */}
+      <div className="mt-6 text-left">
+        <a
+          href="/publications"
+          className="inline-block px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
+        >
+          Explore Full Publications
+        </a>
+      </div>
+    </>
+  )}
+</AccordionItem>
+
         </div>
       </div>
     </section>
