@@ -35,17 +35,42 @@ const AccordionItem = ({ title, urduTitle, children, language, defaultOpen = fal
   );
 };
 
-const SubHeading = ({ title, urduTitle, language, children }) => {
+const SubHeading = ({ title, urduTitle, children, language }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="mb-2">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="text-left text-lg md:text-xl font-medium hover:font-bold transition duration-300"
-      >
-        {language === "urdu" ? urduTitle : title}
-      </button>
-      {isOpen && <div className="mt-2 ml-4 text-base text-black/70">{children}</div>}
+    <div
+      onClick={() => setIsOpen(!isOpen)}
+      className={`
+        cursor-pointer transition-all duration-300 ease-in-outp-6 my-5
+        ${language === "urdu" ? "text-right" : "text-left"}
+        border-[#D1D1D1]
+      `}
+    >
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <h4
+          className={`text-lg font-semibold transition-colors duration-200
+            ${language === "urdu" ? "font-serifUrdu text-[#000000]" : "text-[#000000]"}
+          `}
+        >
+          {language === "urdu" ? urduTitle : title}
+        </h4>
+        <span className="text-[#6B6B6B] text-sm">
+          {isOpen ? "▲" : "▼"}
+        </span>
+      </div>
+
+      {/* Content */}
+      {isOpen && (
+        <p
+          className={`mt-3 text-base leading-relaxed transition-all duration-300
+            ${language === "urdu" ? "font-urdu text-[#6B6B6B]" : "text-[#6B6B6B]"}
+          `}
+        >
+          {children}
+        </p>
+      )}
     </div>
   );
 };
@@ -91,11 +116,12 @@ const AboutSection = () => {
             <AboutDescription />
           </AccordionItem>
 
-          <AccordionItem
+        <AccordionItem
   title="Training Affairs"
   urduTitle="تربیتی امور"
   language={language}
 >
+  {/* Subheading Wrapper */}
   <SubHeading
     title="Daily Zikr / Muraqbah"
     urduTitle="روزانہ مجلسِ ذکر / مراقبہ"
