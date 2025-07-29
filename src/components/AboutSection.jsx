@@ -1,5 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+
+const AccordionItem = ({ title, urduTitle, children, language, defaultOpen = false }) => {
+  const isUrdu = language === 'urdu';
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className={`mb-4 ${isUrdu ? 'text-right' : 'text-left'}`}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`
+          w-full font-semibold text-xl md:text-2xl
+          border border-border bg-black/5 hover:bg-hover/10
+          px-6 py-4 rounded-md transition-all duration-300
+          ${isUrdu ? 'text-right' : 'text-left'}
+        `}
+        dir={isUrdu ? 'rtl' : 'ltr'}
+      >
+        {isUrdu ? urduTitle : title}
+      </button>
+
+      {isOpen && (
+        <div
+          className={`
+            mt-4 px-6 text-black/80 transition-all duration-300 leading-relaxed
+            ${isUrdu ? 'text-right' : 'text-left'}
+          `}
+          dir={isUrdu ? 'rtl' : 'ltr'}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const SubHeading = ({ title, urduTitle, language, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="mb-2">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="text-left text-lg md:text-xl font-medium hover:font-bold transition duration-300"
+      >
+        {language === "urdu" ? urduTitle : title}
+      </button>
+      {isOpen && <div className="mt-2 ml-4 text-base text-black/70">{children}</div>}
+    </div>
+  );
+};
 
 const AboutSection = () => {
   const { language } = useLanguage();
@@ -7,7 +56,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border"
+      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border "
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center">
@@ -21,7 +70,7 @@ const AboutSection = () => {
           <div className="w-16 h-1 bg-subtext mb-10 rounded-full opacity-30" />
         </div>
 
-        {/* Content */}
+        {/* Full Content Section */}
         <div
           className={`text-base sm:text-lg md:text-xl text-black/80 max-w-5xl mx-auto urdu-paragraph ${
             language === "urdu"
@@ -30,6 +79,119 @@ const AboutSection = () => {
           }`}
           dir={language === "urdu" ? "rtl" : "ltr"}
         >
+          {/* Main Accordion - Original Description */}
+          <AccordionItem
+            title="Khanqah Introduction"
+            urduTitle="خانقاہ کا مختصر تعارف"
+            language={language}
+            defaultOpen={true} 
+          >
+            {/* Original Provided Description */}
+            {/* Don't remove or move this part – stays untouched */}
+            <AboutDescription />
+          </AccordionItem>
+
+          {/* Training Affairs Section */}
+          <AccordionItem
+            title="Training Affairs"
+            urduTitle="تربیتی امور"
+            language={language}
+          >
+            <SubHeading
+              title="Quran Memorization Class"
+              urduTitle="حفظِ قرآن کلاس"
+              language={language}
+            >
+              {language === "urdu"
+                ? "یہ کلاس قرآن کریم کے حفظ کے لیے مختص ہے۔"
+                : "This class is dedicated to the memorization of the Holy Quran."}
+            </SubHeading>
+            <SubHeading
+              title="Monthly Zikr Gathering"
+              urduTitle="ماہانہ اجتماعِ ذکر"
+              language={language}
+            >
+              {language === "urdu"
+                ? "ہر ماہ خانقاہ میں خصوصی ذکر کی محفل منعقد ہوتی ہے۔"
+                : "A special monthly Zikr gathering is held at the Khanqah."}
+            </SubHeading>
+            <SubHeading
+              title="Weekly Khatm-e-Khawajgan"
+              urduTitle="ہفتہ وار ختمِ خواجگان"
+              language={language}
+            >
+              {language === "urdu"
+                ? "ہفتہ وار ختم خواجگان کی روحانی مجلس منعقد کی جاتی ہے۔"
+                : "A spiritual Khatm-e-Khawajgan is held weekly."}
+            </SubHeading>
+            <SubHeading
+              title="Daily Zikr Session"
+              urduTitle="روزانہ مجلسِ ذکر"
+              language={language}
+            >
+              {language === "urdu"
+                ? "روزانہ ذکر کی مجالس منعقد کی جاتی ہیں۔"
+                : "Daily zikr sessions are held regularly."}
+            </SubHeading>
+            <SubHeading
+              title="Study of Sufism"
+              urduTitle="مطالعۂ تصوف"
+              language={language}
+            >
+              {language === "urdu"
+                ? "تصوف کے موضوع پر مطالعہ و گفتگو کی جاتی ہے۔"
+                : "Studies and discussions are held on the topic of Sufism."}
+            </SubHeading>
+            <SubHeading
+              title="Spiritual Gatherings"
+              urduTitle="اجتماعات"
+              language={language}
+            >
+              {language === "urdu"
+                ? "مختلف مواقع پر روحانی اجتماعات منعقد کیے جاتے ہیں۔"
+                : "Spiritual gatherings are arranged on various occasions."}
+            </SubHeading>
+          </AccordionItem>
+
+          {/* Sadat Foundation Section */}
+          <AccordionItem
+            title="Establishment of Sadat Foundation"
+            urduTitle="سادات فاؤنڈیشن کا قیام"
+            language={language}
+          >
+            {language === "urdu"
+              ? "سادات فاؤنڈیشن کے قیام کا مقصد تعلیمی، فلاحی و دینی خدمات فراہم کرنا ہے۔"
+              : "The foundation aims to provide educational, welfare, and religious services."}
+          </AccordionItem>
+
+          {/* Books & Publications */}
+          <AccordionItem
+            title="Books & Publications"
+            urduTitle="کتب و رسائل"
+            language={language}
+          >
+            <SubHeading
+              title="Publication Series"
+              urduTitle="اشاعتی سلسلہ"
+              language={language}
+            >
+              {language === "urdu"
+                ? "خانقاہ سے وابستہ کتب و رسائل کی اشاعت کا سلسلہ جاری ہے۔"
+                : "A publication series of books and newsletters associated with the Khanqah is ongoing."}
+            </SubHeading>
+          </AccordionItem>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Separated for readability
+const AboutDescription = () => {
+  const { language } = useLanguage();
+  // Paste your ENTIRE original <div> content here that renders the full about description
+  return (
+    <>
           {language === "urdu" ? (
             <>
               <>
@@ -242,9 +404,7 @@ const AboutSection = () => {
               </p>
             </>
           )}
-        </div>
-      </div>
-    </section>
+    </>
   );
 };
 
