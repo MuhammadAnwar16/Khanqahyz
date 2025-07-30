@@ -31,7 +31,7 @@ const Navbar = () => {
       label: { en: 'Lineage', ur: 'شجرہ' },
       submenu: [
         { path: '/shajra', label: { en: 'Shajrah-e-Nasab', ur: 'شجرہ نسب' } },
-        { path: '/shajrah-e-tasawuf', label: { en: 'Shajrah-e-Tasawuf', ur: 'شجرہ تصوف' } },
+        { path: '/ShajrahTasawuf', label: { en: 'Shajrah-e-Tasawuf', ur: 'شجرہ تصوف' } },
       ],
     },
     { path: '/publications', label: { en: 'Publications', ur: 'مطبوعات' } },

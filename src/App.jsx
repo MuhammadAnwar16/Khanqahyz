@@ -14,6 +14,7 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import FamilyTree from './pages/FamilyTree'; 
 import Publications from './pages/Publications';
 import CurrentNasheenSection from './components/CurrentNasheenSection';
+import ShajrahRoadmap from './pages/ShajrahTasawuf';
 
 const HomePage = () => (
   <>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutSection />} />
         <Route path="/shajra" element={<FamilyTree />} />
+        <Route path="/shajrahTasawuf" element={<ShajrahRoadmap />} />
         <Route path="/publications" element={<Publications />} />
         <Route path="/contact" element={<ContactSection />} />
       </Routes>
