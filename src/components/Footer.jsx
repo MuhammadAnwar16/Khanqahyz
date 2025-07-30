@@ -1,5 +1,11 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  PhoneIcon,
+  ChatBubbleLeftRightIcon,
+  MapPinIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/outline";
 
 const quotes = [
   {
@@ -50,27 +56,27 @@ const Footer = () => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-24 font-body border-t border-border">
+    <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-24 font-body border-t border-gray-800">
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-center md:text-left">
 
         {/* Identity */}
         <div>
-          <h2 className="text-2xl font-heading mb-3">{
-            language === "urdu" ? "خانقاہ یاسین زئی" : "Khanqah Yaseen Zai"
-          }</h2>
-          <p className="text-sm italic text-subtext">
+          <h2 className="text-2xl font-heading mb-3 text-white">
+            {language === "urdu" ? "خانقاہ یاسین زئی" : "Khanqah Yaseen Zai"}
+          </h2>
+          <p className="text-sm italic text-gray-400 leading-relaxed">
             {language === "urdu"
               ? "ذکرِ الٰہی سے دلوں کو سکون ملتا ہے۔"
               : "Truly, in the remembrance of Allah do hearts find rest."}
           </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Links */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">{
-            language === "urdu" ? "روابط" : "Quick Links"
-          }</h3>
-          <ul className="space-y-2 text-sm text-subtext">
+          <h3 className="text-lg font-semibold mb-3 text-white">
+            {language === "urdu" ? "روابط" : "Quick Links"}
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-400">
             {[
               { href: "#about", ur: "تعارف", en: "About" },
               { href: "#events", ur: "تقریبات", en: "Events" },
@@ -88,53 +94,83 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">{
-            language === "urdu" ? "رابطہ" : "Contact"
-          }</h3>
-          <ul className="text-sm space-y-2 text-subtext">
-            <li>📞 <span className="font-medium text-white">+92 300 1234567</span></li>
-            <li>📱 WhatsApp:{" "}
+          <h3 className="text-lg font-semibold mb-3 text-white">
+            {language === "urdu" ? "رابطہ" : "Contact"}
+          </h3>
+          <ul className="text-sm space-y-3 text-gray-400">
+            <li className="flex items-start gap-2">
+              <PhoneIcon className="h-5 w-5 text-gray-400" />
+              <span className="text-white font-medium">+92 300 1234567</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <ChatBubbleLeftRightIcon className="h-5 w-5 text-gray-400" />
               <a
                 href="https://wa.me/923001234567"
-                className="hover:text-white font-medium transition"
+                className="hover:text-white font-medium"
                 target="_blank" rel="noreferrer"
               >
-                +92 300 1234567
+                WhatsApp: +92 300 1234567
               </a>
             </li>
-            <li>📫 {language === "urdu" ? "پوسٹ کوڈ: 29110" : "Postal Code: 29110"}</li>
-            <li>📍 <span className="leading-snug font-medium text-white">
-              {language === "urdu"
-                ? "خانقاہ یاسین زئی، پنیالہ، تحصیل پروآ، ضلع ڈیرہ اسماعیل خان، خیبر پختونخوا"
-                : "Khanqah Yaseen Zai, Panyala, Tehsil Paharpur, District D.I. Khan, KP"}
-            </span></li>
+            <li className="flex items-start gap-2">
+              <EnvelopeIcon className="h-5 w-5 text-gray-400" />
+              <span>
+                {language === "urdu" ? "پوسٹ کوڈ: 29110" : "Postal Code: 29110"}
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPinIcon className="h-9 w-9 text-gray-400 mt-[2px]" />
+              <span className="leading-snug text-white">
+                {language === "urdu"
+                  ? "خانقاہ یاسین زئی، پنیالہ، ڈیرہ اسماعیل خان، خیبر پختونخوا"
+                  : "Khanqah Yaseen Zai, Panyala, D.I. Khan, KPK"}
+              </span>
+            </li>
           </ul>
         </div>
 
-        {/* Donations */}
+        {/* Donation Info */}
         <div>
-          <ul className="text-sm space-y-1 mb-4 text-subtext">
-            <li><span className="font-semibold text-white">{language === "urdu" ? "اکاؤنٹ کا نام" : "Account Name"}:</span> Khanqah Yaseen Zai Welfare Trust</li>
-            <li><span className="font-semibold text-white">{language === "urdu" ? "بینک" : "Bank"}:</span> Meezan Bank</li>
-            <li><span className="font-semibold text-white">{language === "urdu" ? "اکاؤنٹ نمبر" : "Account No"}:</span> 0123-4567890-1</li>
-            <li><span className="font-semibold text-white">IBAN:</span> PK67MEZN00012345678901</li>
+          <h3 className="text-lg font-semibold mb-3 text-white">
+            {language === "urdu" ? "عطیات" : "Donations"}
+          </h3>
+          <ul className="text-sm space-y-2 text-gray-400 mb-4">
+            <li className="flex items-start gap-2">
+              <span>
+                <strong className="text-white">
+                  {language === "urdu" ? "اکاؤنٹ کا نام" : "Account Name"}:
+                </strong>{" "}
+                Khanqah Yaseen Zai Welfare Trust
+              </span>
+            </li>
+            <li>
+              <strong className="text-white">{language === "urdu" ? "بینک" : "Bank"}:</strong>{" "}
+              Meezan Bank
+            </li>
+            <li>
+              <strong className="text-white">{language === "urdu" ? "اکاؤنٹ نمبر" : "Account No"}:</strong>{" "}
+              0123-4567890-1
+            </li>
+            <li>
+              <strong className="text-white">IBAN:</strong> PK67MEZN00012345678901
+            </li>
           </ul>
           <button
             onClick={toggleLanguage}
-            className="mt-6 bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-hover transition"
+            className="mt-6 bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition"
           >
             {language === "urdu" ? "ENGLISH" : "اردو"}
           </button>
         </div>
       </div>
 
-      {/* Quote */}
-      <div className="mt-12 text-center text-sm italic text-subtext max-w-xl mx-auto">
+      {/* Random Quote */}
+      <div className="mt-12 text-center text-sm italic text-gray-400 max-w-xl mx-auto">
         ❝ {language === "urdu" ? randomQuote.ur : randomQuote.en} ❞
       </div>
 
-      {/* Copyright */}
-      <div className="mt-10 text-center text-xs text-subtext border-t border-border pt-4">
+      {/* Footer Line */}
+      <div className="mt-10 text-center text-xs text-gray-500 border-t border-gray-700 pt-4">
         © {new Date().getFullYear()} Khanqah Yaseen Zai —{" "}
         {language === "urdu" ? "تمام حقوق محفوظ ہیں۔" : "All rights reserved."}
       </div>

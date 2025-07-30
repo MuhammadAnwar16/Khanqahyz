@@ -1,5 +1,11 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
+import {
+  PhoneIcon,
+  ChatBubbleLeftRightIcon,
+  MapPinIcon,
+  EnvelopeIcon,
+} from "@heroicons/react/24/outline";
 
 const ContactSection = () => {
   const { language } = useLanguage();
@@ -29,19 +35,20 @@ const ContactSection = () => {
         {/* Grid: Info + Map + Form */}
         <div className="grid md:grid-cols-2 gap-10 text-left">
           <div className="w-full max-w-4xl mx-auto mt-12 space-y-10 px-4">
-            {/* Contact Info */}
             <div className="w-full bg-white border border-border rounded-xl p-6 shadow-md">
               <div
                 className={`space-y-4 text-lg leading-relaxed ${
                   isUrdu ? "text-right font-urdu" : "text-left font-body"
                 } text-subtext`}
               >
-                <p>
-                  📞 <strong>{isUrdu ? "فون:" : "Phone:"}</strong>{" "} 
-                  +92 3001234567
+                <p className="flex items-center gap-2">
+                  <PhoneIcon className="w-5 h-5 text-black" />
+                  <strong>{isUrdu ? "فون:" : "Phone:"}</strong> +92 3001234567
                 </p>
-                <p>
-                  📱 <strong>{isUrdu ? "واٹس ایپ:" : "WhatsApp:"}</strong>{" "}
+
+                <p className="flex items-center gap-2">
+                  <ChatBubbleLeftRightIcon className="w-5 h-5 text-black" />
+                  <strong>{isUrdu ? "واٹس ایپ:" : "WhatsApp:"}</strong>{" "}
                   <a
                     href="https://wa.me/923001234567"
                     target="_blank"
@@ -51,15 +58,18 @@ const ContactSection = () => {
                     +92 300 1234567
                   </a>
                 </p>
-                <p>
-                  📍 <strong>{isUrdu ? "پتہ:" : "Address:"}</strong>{" "}
+
+                <p className="flex items-center gap-2">
+                  <MapPinIcon className="w-5 h-5 text-black" />
+                  <strong>{isUrdu ? "پتہ:" : "Address:"}</strong>{" "}
                   {isUrdu
                     ? "خانقاہ یاسین زئی، پنیالہ، ڈیرہ اسماعیل خان"
                     : "Khanqah Yaseen Zai, Panyala, D.I. Khan"}
                 </p>
-                <p>
-                  📬 <strong>{isUrdu ? "پوسٹ کوڈ:" : "Postal Code:"}</strong>{" "}
-                  29110
+
+                <p className="flex items-center gap-2">
+                  <EnvelopeIcon className="w-5 h-5 text-black" />
+                  <strong>{isUrdu ? "پوسٹ کوڈ:" : "Postal Code:"}</strong> 29110
                 </p>
               </div>
             </div>
