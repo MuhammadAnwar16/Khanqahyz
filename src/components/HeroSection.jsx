@@ -25,7 +25,7 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-4xl w-full">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold text-white leading-tight mb-6">
           {language === "urdu"
-            ? "خانقاہ یاسین زئی میں خوش آمدید"
+            ? "خانقاہ یٰسین زئی میں خوش آمدید"
             : "Welcome to Khanqah Yaseen Zai"}
         </h1>
 

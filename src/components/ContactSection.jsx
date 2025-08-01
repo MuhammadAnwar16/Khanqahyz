@@ -63,7 +63,7 @@ const ContactSection = () => {
                   <MapPinIcon className="w-5 h-5 text-black" />
                   <strong>{isUrdu ? "پتہ:" : "Address:"}</strong>{" "}
                   {isUrdu
-                    ? "خانقاہ یاسین زئی، پنیالہ، ڈیرہ اسماعیل خان"
+                    ? "خانقاہ یٰسین زئی، پنیالہ، ڈیرہ اسماعیل خان"
                     : "Khanqah Yaseen Zai, Panyala, D.I. Khan"}
                 </p>
 

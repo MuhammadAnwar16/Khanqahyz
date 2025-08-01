@@ -62,7 +62,7 @@ const Footer = () => {
         {/* Identity */}
         <div>
           <h2 className="text-2xl font-heading mb-3 text-white">
-            {language === "urdu" ? "خانقاہ یاسین زئی" : "Khanqah Yaseen Zai"}
+            {language === "urdu" ? "خانقاہ یٰسین زئی" : "Khanqah Yaseen Zai"}
           </h2>
           <p className="text-sm italic text-gray-400 leading-relaxed">
             {language === "urdu"
@@ -122,7 +122,7 @@ const Footer = () => {
               <MapPinIcon className="h-9 w-9 text-gray-400 mt-[2px]" />
               <span className="leading-snug text-white">
                 {language === "urdu"
-                  ? "خانقاہ یاسین زئی، پنیالہ، ڈیرہ اسماعیل خان، خیبر پختونخوا"
+                  ? "خانقاہ یٰسین زئی، پنیالہ، ڈیرہ اسماعیل خان، خیبر پختونخوا"
                   : "Khanqah Yaseen Zai, Panyala, D.I. Khan, KPK"}
               </span>
             </li>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
 import { HiEye, HiDownload, HiX } from "react-icons/hi";
+import { useLanguage } from "../context/LanguageContext";
 
 const Publications = () => {
   const { language } = useLanguage();
@@ -9,18 +9,23 @@ const Publications = () => {
 
   const publications = [
     {
-      title: language === "urdu" ? "رسالہ تصوف" : "Risala-e-Tasawwuf",
-      file: "/publications/risala-tasawwuf.pdf",
+      title:
+        language === "urdu"
+          ? "شجرہ نسب ساداتِ یٰسین زئی"
+          : "Lineage of Sadaat e Yaseen Zai",
+
+      file: "/publications/Shajarah e nasab.pdf",
+
       description:
         language === "urdu"
-          ? "تصوف پر ایک علمی و روحانی رسالہ"
-          : "A scholarly and spiritual treatise on Sufism",
+          ? "ساداتِ یٰسین زئی کا مختصر روحانی و نسلی سلسلہ۔"
+          : "A brief spiritual and ancestral lineage of the Sadaat of Yaseen Zai.",
     },
     {
       title:
         language === "urdu"
-          ? "شجرہ سادات یاسین زئی"
-          : "Shajra-e-Sadaat Yaseen Zai",
+          ? "خانقاہ یٰسین زئی اور ساداتِ یٰسین زئی"
+          : "Khanqah Yaseen Zai and Sadaat e Yaseen Zai",
       file: "/publications/khanqahbook.pdf",
       description:
         language === "urdu"
