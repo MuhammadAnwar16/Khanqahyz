@@ -5,6 +5,7 @@ const CurrentNasheenSection = () => {
   const { language } = useLanguage();
 
   return (
+    <div dir={language === 'urdu' ? 'rtl' : 'ltr'}>
     <section
       id="sajjada-nasheen"
       className="bg-white text-black py-24 px-6 md:px-24 font-body "
@@ -56,6 +57,7 @@ const CurrentNasheenSection = () => {
         ❞
       </div>
     </section>
+    </div>
   );
 };
 

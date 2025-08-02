@@ -56,12 +56,15 @@ const Footer = () => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
+    <div dir={language === "urdu" ? "rtl" : "ltr"}>
     <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-24 font-body border-t border-gray-800">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-center md:text-left">
+      <div className={`max-w-7xl mx-auto grid md:grid-cols-4 gap-12 ${language === "urdu" ? "text-right" : "text-left"}`}>
+
 
         {/* Identity */}
         <div>
-          <h2 className="text-2xl font-heading mb-3 text-white">
+          <h2 className={`text-2xl font-heading mb-3 text-white ${language === "urdu" ? "text-right" : "text-left"}`}>
+
             {language === "urdu" ? "خانقاہ یٰسین زئی" : "Khanqah Yaseen Zai"}
           </h2>
           <p className="text-sm italic text-gray-400 leading-relaxed">
@@ -74,7 +77,7 @@ const Footer = () => {
         {/* Links */}
         <div>
           <h3 className="text-lg font-semibold mb-3 text-white">
-            {language === "urdu" ? "روابط" : "Quick Links"}
+            {language === "urdu" ? "لنکس" : "Links"}
           </h3>
           <ul className="space-y-2 text-sm text-gray-400">
             {[
@@ -119,7 +122,7 @@ const Footer = () => {
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <MapPinIcon className="h-9 w-9 text-gray-400 mt-[2px]" />
+              <MapPinIcon className="h-7 w-7 text-gray-400 mt-[2px]" />
               <span className="leading-snug text-white">
                 {language === "urdu"
                   ? "خانقاہ یٰسین زئی، پنیالہ، ڈیرہ اسماعیل خان، خیبر پختونخوا"
@@ -134,7 +137,8 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3 text-white">
             {language === "urdu" ? "عطیات" : "Donations"}
           </h3>
-          <ul className="text-sm space-y-2 text-gray-400 mb-4">
+          <ul className={`text-sm space-y-2 text-gray-400 mb-4 ${language === "urdu" ? "text-right" : "text-left"}`}>
+
             <li className="flex items-start gap-2">
               <span>
                 <strong className="text-white">
@@ -175,6 +179,7 @@ const Footer = () => {
         {language === "urdu" ? "تمام حقوق محفوظ ہیں۔" : "All rights reserved."}
       </div>
     </footer>
+    </div>
   );
 };
 

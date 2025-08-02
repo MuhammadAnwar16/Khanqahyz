@@ -39,6 +39,7 @@ const Navbar = () => {
   ];
 
   return (
+      <div dir={language === 'urdu' ? 'rtl' : 'ltr'}>
     <>
       {/* Desktop Navbar */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-in-out">
@@ -216,6 +217,7 @@ const Navbar = () => {
         </div>
       )}
     </>
+    </div>
   );
 };
 
