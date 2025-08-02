@@ -131,21 +131,20 @@ const AboutSection = () => {
           </AccordionItem>
 
           <AccordionItem
+            title="Objectives of the Khanqah"
+              urduTitle="خانقاہ کے مقاصد"
+              language={language}
+          >
+            {language === "urdu"
+                ? "خانقاہ کا بنیادی مقصد روحانی تربیت، اصلاح نفس، اور قربِ الٰہی کے حصول کے لیے ایک مقدس ماحول فراہم کرنا ہے۔"
+                : "The primary objective of the Khanqah is to provide a sacred environment for spiritual training, self-purification, and attaining closeness to Allah."}
+          </AccordionItem>
+          <AccordionItem
             title="Training Affairs"
             urduTitle="تربیتی امور"
             language={language}
           >
             {/* Subheading Wrapper */}
-            <SubHeading
-              title="Objectives of the Khanqah"
-              urduTitle="خانقاہ کے مقاصد"
-              language={language}
-            >
-              {language === "urdu"
-                ? "خانقاہ کا بنیادی مقصد روحانی تربیت، اصلاح نفس، اور قربِ الٰہی کے حصول کے لیے ایک مقدس ماحول فراہم کرنا ہے۔"
-                : "The primary objective of the Khanqah is to provide a sacred environment for spiritual training, self-purification, and attaining closeness to Allah."}
-            </SubHeading>
-
             <SubHeading
               title="Daily Zikr / Muraqbah"
               urduTitle="روزانہ مجلسِ ذکر / مراقبہ"
