@@ -171,9 +171,6 @@ const Footer = () => {
 
           {/* Donation Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-3 text-white">
-              {language === "urdu" ? "عطیات" : "Donations"}
-            </h3>
 
             <ul
               className={`text-sm space-y-2 text-gray-400 mb-4 ${
@@ -215,7 +212,7 @@ const Footer = () => {
 
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com/yourpage"
+                  href="https://www.facebook.com/people/Khanqah-Yasin-Zai-Panyala-DIKhan-Offical/61579090561505/"
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white text-black hover:text-blue-600 transition p-2 rounded-full shadow"
@@ -251,6 +248,7 @@ const Footer = () => {
         </div>
       </footer>
     </div>
+    
   );
 };
 

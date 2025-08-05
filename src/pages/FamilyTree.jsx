@@ -2,87 +2,124 @@ import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const Node = ({ name }) => (
-  <div className="bg-white text-green-900 border border-green-300 rounded-xl px-3 py-2 shadow text-sm text-center min-w-[200px] whitespace-nowrap">
+  <div className="bg-white text-green-900 border border-green-300 rounded-xl px-4 py-2 shadow text-sm text-center min-w-[160px] mx-auto">
     {name}
   </div>
 );
 
-const Connector = () => (
-  <div className="h-4 border-l-2 border-green-400 mx-auto"></div>
+const Level = ({ children }) => (
+  <div className="flex justify-center items-start gap-6 py-4 relative">{children}</div>
 );
 
-const Branch = ({ children }) => (
-  <div className="flex flex-wrap justify-center items-start space-x-4">{children}</div>
+const ConnectorLine = ({ height = "h-6" }) => (
+  <div className={`w-px bg-green-400 ${height} mx-auto`}></div>
 );
 
 const FamilyTree = () => {
   useLanguage();
 
   return (
-    <section className="bg-emerald-50 min-h-screen py-12 px-4 md:px-16 text-center text-green-900">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 border-b-4 border-yellow-400 inline-block pb-2">
+    <section className="bg-emerald-50 min-h-screen py-12 px-4 md:px-12 text-center text-green-900 overflow-x-auto">
+      <h1 className="text-3xl md:text-4xl font-bold mb-10 border-b-4 border-yellow-400 inline-block pb-2">
         سلسلہ النسب (خانقاہ یاسین زئی)
       </h1>
 
-      <div className="flex flex-col items-center space-y-6">
+      <div className="flex flex-col items-center space-y-2">
 
-        <Node name="حضرت محمد ﷺ" />
-        <Connector />
-        <Node name="حضرت علی کرم اللہ وجہہ" />
-        <Connector />
-        <Node name="حضرت امام حسین" />
-        <Connector />
-        <Node name="حضرت امام زین العابدین" />
-        <Connector />
-        <Node name="حضرت امام محمد باقر" />
-        <Connector />
-        <Node name="حضرت امام جعفر صادق" />
-        <Connector />
-        <Node name="سید موسی کاظم" />
-        <Connector />
-        <Node name="سید علی رضا" />
-        <Connector />
-        <Node name="سید محمد تقی" />
-        <Connector />
-        <Node name="سید نقی" />
-        <Connector />
-        <Node name="سید حسن عسکری" />
-        <Connector />
-        <Node name="سید علی ہادی" />
-        <Connector />
-        <Node name="سید محمد مہدی" />
-        <Connector />
-        <Node name="سید عبد اللہ" />
-        <Connector />
-        <Node name="سید یحییٰ" />
-        <Connector />
-        <Node name="سید قاسم" />
-        <Connector />
-        <Node name="سید جعفر زکی" />
-        <Connector />
+        {/* Generation 1 */}
+        <Level>
+          <Node name="حضرت محمد ﷺ" />
+        </Level>
 
-        <Branch>
+        <ConnectorLine />
+
+        {/* Generation 2 */}
+        <Level>
+          <Node name="حضرت علی کرم اللہ وجہہ" />
+        </Level>
+
+        <ConnectorLine />
+
+        {/* Generation 3 - 10 (Inline horizontally) */}
+        <Level>
+          <Node name="حضرت امام حسین" />
+          <Node name="حضرت امام زین العابدین" />
+          <Node name="حضرت امام محمد باقر" />
+          <Node name="حضرت امام جعفر صادق" />
+          <Node name="سید موسی کاظم" />
+          <Node name="سید علی رضا" />
+        </Level>
+
+        <ConnectorLine />
+
+        <Level>
+          <Node name="سید محمد تقی" />
+          <Node name="سید نقی" />
+          <Node name="سید حسن عسکری" />
+          <Node name="سید علی ہادی" />
+          <Node name="سید محمد مہدی" />
+        </Level>
+
+        <ConnectorLine />
+
+        <Level>
+          <Node name="سید عبد اللہ" />
+          <Node name="سید یحییٰ" />
+          <Node name="سید قاسم" />
+        </Level>
+
+        <ConnectorLine />
+
+        <Level>
+          <Node name="سید جعفر زکی" />
+        </Level>
+
+        <ConnectorLine />
+
+        {/* Siblings */}
+        <Level>
           <Node name="سید عبد الرحمان" />
           <Node name="سید عبد العزیز" />
           <Node name="سید علی حسین" />
-        </Branch>
+        </Level>
 
-        <Connector />
-        <Node name="سید علی زین العابدین" />
-        <Connector />
-        <Node name="سید سلیمان" />
-        <Connector />
-        <Node name="سید حسن محمد" />
-        <Connector />
-        <Node name="سید احمد محمد" />
-        <Connector />
-        <Node name="سید محمد الیاس" />
-        <Connector />
-        <Node name="سید ابو الفتح" />
-        <Connector />
-        <Node name="سید احمد نور فقیرؒ" />
+        <ConnectorLine />
 
-        {/* Next part continues below... */}
+        {/* Downward Lineage */}
+        <Level>
+          <Node name="سید علی زین العابدین" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید سلیمان" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید حسن محمد" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید احمد محمد" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید محمد الیاس" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید ابو الفتح" />
+        </Level>
+
+        <ConnectorLine />
+        <Level>
+          <Node name="سید احمد نور فقیرؒ" />
+        </Level>
+
       </div>
     </section>
   );

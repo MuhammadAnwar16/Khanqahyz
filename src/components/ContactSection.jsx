@@ -19,6 +19,15 @@ const ContactSection = () => {
         isUrdu ? "font-urdu" : ""
       }`}
     >
+      {/* Watermark Background Logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img
+          src="/images/khanqah logo.png"
+          alt="Watermark Logo"
+          className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+        />
+      </div>
+
       <div className="max-w-6xl mx-auto text-center">
         {/* Main Heading */}
         <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-border inline-block pb-2">

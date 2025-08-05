@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { useLanguage } from "../context/LanguageContext";
 import { FaChevronDown } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const data = [
   {
@@ -67,16 +67,24 @@ const ShajrahRoadmap = () => {
 
   return (
     <section className="bg-white py-24 px-4 md:px-24">
+      {/* Watermark Background Logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img
+          src="/images/khanqah logo.png"
+          alt="Watermark Logo"
+          className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+        />
+      </div>
+
       <div className="flex justify-center">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border pb-2 text-center">
-            {language === "urdu" ? "  شجرہ تصوف"
-          : " Lineage of Tasawuf"}
-          </h2>
-        </div>
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border pb-2 text-center">
+          {language === "urdu" ? "  شجرہ تصوف" : " Lineage of Tasawuf"}
+        </h2>
+      </div>
       {/* Divider */}
-        <div className="flex justify-center">
-          <div className="w-16 h-1 bg-subtext mb-10 rounded-full opacity-30" />
-        </div>
+      <div className="flex justify-center">
+        <div className="w-16 h-1 bg-subtext mb-10 rounded-full opacity-30" />
+      </div>
 
       <div className="relative max-w-2xl mx-auto border-l-4 border-[#6B6B6B] pl-6">
         {data.map((entry, index) => (

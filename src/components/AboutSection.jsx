@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 // Separated for readability
-
 const AccordionItem = ({
   title,
   urduTitle,
@@ -12,7 +11,6 @@ const AccordionItem = ({
 }) => {
   const isUrdu = language === "urdu";
   const [isOpen, setIsOpen] = useState(defaultOpen);
-
   return (
     <div className={`mb-4 ${isUrdu ? "text-right" : "text-left"}`}>
       <button
@@ -27,7 +25,6 @@ const AccordionItem = ({
       >
         {isUrdu ? urduTitle : title}
       </button>
-
       {isOpen && (
         <div
           className={`
@@ -97,6 +94,15 @@ const AboutSection = () => {
       id="about"
       className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border "
     >
+      {/* Watermark Background Logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img
+          src="/images/khanqah logo.png"
+          alt="Watermark Logo"
+          className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+        />
+      </div>
+
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border pb-2 text-center">
@@ -132,12 +138,12 @@ const AboutSection = () => {
 
           <AccordionItem
             title="Objectives of the Khanqah"
-              urduTitle="خانقاہ کے مقاصد"
-              language={language}
+            urduTitle="خانقاہ کے مقاصد"
+            language={language}
           >
             {language === "urdu"
-                ? "خانقاہ کا بنیادی مقصد روحانی تربیت، اصلاح نفس، اور قربِ الٰہی کے حصول کے لیے ایک مقدس ماحول فراہم کرنا ہے۔"
-                : "The primary objective of the Khanqah is to provide a sacred environment for spiritual training, self-purification, and attaining closeness to Allah."}
+              ? "خانقاہ کا بنیادی مقصد روحانی تربیت، اصلاح نفس، اور قربِ الٰہی کے حصول کے لیے ایک مقدس ماحول فراہم کرنا ہے۔"
+              : "The primary objective of the Khanqah is to provide a sacred environment for spiritual training, self-purification, and attaining closeness to Allah."}
           </AccordionItem>
           <AccordionItem
             title="Training Affairs"

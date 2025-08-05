@@ -35,88 +35,97 @@ const Publications = () => {
   ];
 
   return (
-     <div dir={language === 'urdu' ? 'rtl' : 'ltr'}>
-    <section
-      id="publications"
-      className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]"
-    >
-      <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-16 border-b-[3px] border-[#D1D1D1] inline-block pb-3">
-          {language === "urdu" ? "طباعت شدہ کتب و رسائل" : "Publications"}
-        </h1>
+    <div dir={language === "urdu" ? "rtl" : "ltr"}>
+      <section
+        id="publications"
+        className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]"
+      >
+        {/* Watermark Background Logo */}
+        <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+          <img
+            src="/images/khanqah logo.png"
+            alt="Watermark Logo"
+            className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+          />
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mt-10">
-          {publications.map((pub, index) => (
-            <div
-              key={index}
-              className="relative group bg-[#F5F5F5] rounded-3xl border border-[#D1D1D1] p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
-            >
-              <div className="flex items-center gap-6">
-                <img
-                  src={pub.cover}
-                  alt={pub.title}
-                  className="w-28 h-40 object-cover rounded-xl border border-[#D1D1D1] shadow-md transition-transform duration-300 group-hover:scale-[1.03]"
-                />
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-16 border-b-[3px] border-[#D1D1D1] inline-block pb-3">
+            {language === "urdu" ? "طباعت شدہ کتب و رسائل" : "Publications"}
+          </h1>
 
-                <div className="flex-1">
-                  <h2 className="text-xl font-heading font-semibold mb-2 leading-snug">
-                    {pub.title}
-                  </h2>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                    {pub.description}
-                  </p>
+          <div className="grid md:grid-cols-2 gap-12 mt-10">
+            {publications.map((pub, index) => (
+              <div
+                key={index}
+                className="relative group bg-[#F5F5F5] rounded-3xl border border-[#D1D1D1] p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+              >
+                <div className="flex items-center gap-6">
+                  <img
+                    src={pub.cover}
+                    alt={pub.title}
+                    className="w-28 h-40 object-cover rounded-xl border border-[#D1D1D1] shadow-md transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
 
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    <button
-                      onClick={() => {
-                        const isMobile = window.innerWidth < 768;
-                        isMobile
-                          ? window.open(pub.file, "_blank")
-                          : setPreviewFile(pub.file);
-                      }}
-                      className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium border border-[#D1D1D1] rounded-full text-black hover:bg-[#E0E0E0] transition"
-                    >
-                      <HiEye className="text-lg" />
-                      {language === "urdu" ? "پیش نظارہ" : "Preview"}
-                    </button>
+                  <div className="flex-1">
+                    <h2 className="text-xl font-heading font-semibold mb-2 leading-snug">
+                      {pub.title}
+                    </h2>
+                    <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                      {pub.description}
+                    </p>
 
-                    <a
-                      href={pub.file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium bg-black text-white rounded-full hover:bg-[#222] transition"
-                    >
-                      <HiDownload className="text-lg" />
-                      {language === "urdu" ? "ڈاؤن لوڈ کریں" : "Download"}
-                    </a>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <button
+                        onClick={() => {
+                          const isMobile = window.innerWidth < 768;
+                          isMobile
+                            ? window.open(pub.file, "_blank")
+                            : setPreviewFile(pub.file);
+                        }}
+                        className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium border border-[#D1D1D1] rounded-full text-black hover:bg-[#E0E0E0] transition"
+                      >
+                        <HiEye className="text-lg" />
+                        {language === "urdu" ? "پیش نظارہ" : "Preview"}
+                      </button>
+
+                      <a
+                        href={pub.file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium bg-black text-white rounded-full hover:bg-[#222] transition"
+                      >
+                        <HiDownload className="text-lg" />
+                        {language === "urdu" ? "ڈاؤن لوڈ کریں" : "Download"}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* PDF Modal */}
-      {previewFile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden border border-[#D1D1D1]">
-            <button
-              onClick={() => setPreviewFile(null)}
-              className="absolute top-4 right-4 text-sm font-semibold flex items-center gap-2 px-4 py-1 bg-black text-white rounded-full hover:bg-[#222] transition"
-            >
-              <HiX className="text-lg" />
-              {language === "urdu" ? "بند کریں" : "Close"}
-            </button>
-            <iframe
-              src={previewFile}
-              title="PDF Preview"
-              className="w-full h-full border-none rounded-b-xl"
-            />
+            ))}
           </div>
         </div>
-      )}
-    </section>
+
+        {/* PDF Modal */}
+        {previewFile && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden border border-[#D1D1D1]">
+              <button
+                onClick={() => setPreviewFile(null)}
+                className="absolute top-4 right-4 text-sm font-semibold flex items-center gap-2 px-4 py-1 bg-black text-white rounded-full hover:bg-[#222] transition"
+              >
+                <HiX className="text-lg" />
+                {language === "urdu" ? "بند کریں" : "Close"}
+              </button>
+              <iframe
+                src={previewFile}
+                title="PDF Preview"
+                className="w-full h-full border-none rounded-b-xl"
+              />
+            </div>
+          </div>
+        )}
+      </section>
     </div>
   );
 };
