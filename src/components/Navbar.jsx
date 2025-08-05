@@ -35,6 +35,8 @@ const Navbar = () => {
       ],
     },
     { path: '/publications', label: { en: 'Publications', ur: 'مطبوعات' } },
+    { path: '/VideoGallery', label: { en: ' Media ', ur: ' میڈیا' } },
+    /*{ path: '/DuasAndSayings', label: { en: ' Quotes ', ur: ' اقوال' } },*/
     { path: '/contact', label: { en: 'Contact', ur: 'رابطہ' } },
   ];
 
