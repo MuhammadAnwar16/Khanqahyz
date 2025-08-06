@@ -205,7 +205,7 @@ const Footer = () => {
             <div className="mt-6 flex flex-wrap gap-4 items-center">
               <button
                 onClick={toggleLanguage}
-                className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition"
+                className=" relative group bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition"
               >
                 {language === "urdu" ? "ENGLISH" : "اردو"}
               </button>
@@ -215,7 +215,7 @@ const Footer = () => {
                   href="https://www.facebook.com/people/Khanqah-Yasin-Zai-Panyala-DIKhan-Offical/61579090561505/"
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-white text-black hover:text-blue-600 transition p-2 rounded-full shadow"
+                  className=" relative group bg-white text-black hover:text-blue-600 transition p-2 rounded-full shadow"
                   aria-label="Facebook"
                 >
                   <FaFacebookF className="h-5 w-5" />
@@ -224,7 +224,7 @@ const Footer = () => {
                   href="https://whatsapp.com/channel/0029VbBTJSUE50UaJtR4Y300"
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-white text-black hover:text-green-700 transition p-2 rounded-full shadow"
+                  className=" relative group bg-white text-black hover:text-green-700 transition p-2 rounded-full shadow"
                   aria-label="WhatsApp"
                 >
                   <FaWhatsapp className="h-5 w-5" />
