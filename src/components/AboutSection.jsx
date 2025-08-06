@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 
 // Separated for readability
@@ -11,21 +12,13 @@ const AccordionItem = ({
 }) => {
   const isUrdu = language === "urdu";
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  const contentRef = useRef(null);
-  const [height, setHeight] = useState(0);
 
-  useEffect(() => {
-    if (isOpen && contentRef.current) {
-      setHeight(contentRef.current.scrollHeight);
-    } else {
-      setHeight(0);
-    }
-  }, [isOpen, children]);
+  const handleToggle = () => setIsOpen(!isOpen);
 
   return (
     <div className={`mb-4 ${isUrdu ? "text-right" : "text-left"}`}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         className={`
           w-full font-semibold text-xl md:text-2xl
           border border-border bg-black/10 hover:bg-gray-100
@@ -37,73 +30,79 @@ const AccordionItem = ({
         {isUrdu ? urduTitle : title}
       </button>
 
-      {/* Animated container */}
-      <div
-        className="overflow-hidden transition-max-height duration-500 ease-in-out"
-        style={{
-          maxHeight: `${height}px`,
-        }}
-      >
-        <div
-          ref={contentRef}
-          className={`
-            px-6 text-black/80 leading-relaxed py-4
-            ${isUrdu ? "text-right font-urdu" : "text-left"}
-          `}
-          dir={isUrdu ? "rtl" : "ltr"}
-        >
-          {children}
-        </div>
-      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="accordion-content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div
+              className={`px-6 text-black/80 leading-relaxed py-4 ${
+                isUrdu ? "text-right font-urdu" : "text-left"
+              }`}
+              dir={isUrdu ? "rtl" : "ltr"}
+            >
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
+
 
 const SubHeading = ({ title, urduTitle, children, language }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
-      onClick={() => setIsOpen(!isOpen)}
       className={`
-        cursor-pointer transition-all duration-300 ease-in-outp-6 my-5
+        my-5  pb-1 cursor-pointer
         ${language === "urdu" ? "text-right" : "text-left"}
-        border-[#D1D1D1]
       `}
     >
-      {/* Header */}
-      <div className="flex justify-between items-center">
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex justify-between items-center"
+      >
         <h4
-          className={`text-lg font-semibold transition-colors duration-200
-            ${
-              language === "urdu"
-                ? "font-serifUrdu text-[#000000]"
-                : "text-[#000000]"
-            }
-          `}
+          className={`text-lg font-semibold ${
+            language === "urdu" ? "font-serifUrdu text-black" : "text-black"
+          }`}
         >
           {language === "urdu" ? urduTitle : title}
         </h4>
-        <span className="text-[#6B6B6B] text-sm">{isOpen ? "▲" : "▼"}</span>
+        <span className="text-muted text-sm">{isOpen ? "▲" : "▼"}</span>
       </div>
 
-      {/* Content */}
-      {isOpen && (
-        <p
-          className={`mt-3 relative grouptext-base leading-relaxed transition-all duration-300
-            ${
-              language === "urdu"
-                ? "font-urdu text-[#6B6B6B]"
-                : "text-[#6B6B6B]"
-            }
-          `}
-        >
-          {children}
-        </p>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="subheading-content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <p
+              className={`mt-3 text-base leading-relaxed ${
+                language === "urdu" ? "font-urdu text-muted" : "text-muted"
+              }`}
+            >
+              {children}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
+
 
 const AboutSection = () => {
   const { language } = useLanguage();
