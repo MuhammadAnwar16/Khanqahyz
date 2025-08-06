@@ -50,7 +50,7 @@ const Publications = () => {
         </div>
 
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-16 border-b-[3px] border-[#D1D1D1] inline-block pb-3">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-16 border-b-2 border-[#D1D1D1] inline-block pb-3">
             {language === "urdu" ? "طباعت شدہ کتب و رسائل" : "Publications"}
           </h1>
 

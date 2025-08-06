@@ -33,11 +33,11 @@ const GallerySection = () => {
       className="bg-white text-black py-24 px-6 md:px-24 font-body relative"
     >
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-heading text-black mb-6 border-b-4 border-border inline-block pb-2">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold  text-black mb-6 border-b-2 border-border inline-block pb-2">
           {language === "urdu" ? "تصویری جھلکیاں" : "Gallery"}
         </h2>
 
-        <p className="text-sm uppercase tracking-widest text-subtext mb-12">
+        <p className="text-sm uppercase font-urdu tracking-widest text-subtext mb-12">
           {language === "urdu"
             ? "مقدس لمحات کی بصری جھلکیاں"
             : "Visual Reflections of Sacred Moments"}

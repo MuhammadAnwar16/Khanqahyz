@@ -35,7 +35,7 @@ const ContactSection = () => {
         </h2>
 
         {/* Subheading */}
-        <p className="text-lg text-subtext mb-12">
+        <p className="text-lg font-urdu text-subtext mb-12">
           {isUrdu
             ? "زیارت یا روحانی رہنمائی کے لیے رابطہ کریں۔"
             : "Reach out for ziyarat or spiritual guidance."}
@@ -44,7 +44,7 @@ const ContactSection = () => {
         {/* Grid: Info + Map + Form */}
         <div className="grid md:grid-cols-2 gap-10 text-left">
           <div className="w-full max-w-4xl mx-auto mt-12 space-y-10 px-4">
-            <div className="w-full bg-white border border-border rounded-xl p-6 shadow-md">
+            <div className="w-full relative group bg-white border border-border rounded-xl p-6 shadow-md">
               <div
                 className={`space-y-4 text-lg leading-relaxed ${
                   isUrdu ? "text-right font-urdu" : "text-left font-body"
@@ -84,7 +84,7 @@ const ContactSection = () => {
             </div>
 
             {/* Google Map */}
-            <div className="w-full bg-white border border-border rounded-xl shadow-md overflow-hidden">
+            <div className="w-full relative group bg-white border border-border rounded-xl shadow-md overflow-hidden">
               <iframe
                 title="Khanqah Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3374.0539300182913!2d70.88149371075285!3d32.25663117377645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39264b34e519578f%3A0xe839d1ce64b684b9!2sKhanqah%20Yaseen%20Zai%20(Topi%20Sahiban)!5e0!3m2!1sen!2s!4v1750505265181!5m2!1sen!2s"
@@ -99,7 +99,7 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div
-            className={`${
+            className={`relative group ${
               language === "urdu"
                 ? "rtl font-urdu text-right"
                 : "font-body text-left"
@@ -108,7 +108,7 @@ const ContactSection = () => {
           >
             <form method="POST" noValidate className="space-y-5">
               <p
-                className={`text-xl md:text-2xl font-semibold text-subtext mb-4 ${
+                className={`text-xl  md:text-2xl font-semibold text-subtext mb-4 ${
                   language === "urdu" ? "text-right" : "text-left"
                 }`}
               >

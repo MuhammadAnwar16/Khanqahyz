@@ -80,17 +80,17 @@ const EventsSection = () => {
           {events.map((event) => (
             <div
               key={event.id}
-              className={`bg-mist rounded-2xl p-6 shadow-lg border border-border transition-all duration-300 hover:shadow-xl hover:bg-hover/20 relative ${
+              className={`bg-mist rounded-2xl p-6 shadow-lg border border-border transition-all duration-300  hover:shadow-xl hover:bg-hover/20 relative ${
                 isUrdu ? "pr-5 pl-3 border-r-[6px]" : "pl-5 pr-3 border-l-[6px]"
               } border-accent1`}
             >
-              <h3 className="text-xl md:text-2xl font-heading text-black font-bold mb-3 leading-snug">
+              <h3 className="text-xl md:text-2xl font-heading text-black font-bold mb-3 leading-snug hover:underline">
                 {isUrdu ? event.title.urdu : event.title.english}
               </h3>
-              <p className="text-sm text-subtext font-medium mb-2">
+              <p className="text-sm font-urdu text-subtext font-medium mb-2">
                 {isUrdu ? event.date.urdu : event.date.english}
               </p>
-              <p className="text-base text-black leading-relaxed">
+              <p className="text-base font-urdu text-black leading-relaxed">
                 {isUrdu ? event.description.urdu : event.description.english}
               </p>
             </div>

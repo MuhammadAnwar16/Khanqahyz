@@ -80,12 +80,21 @@ const MediaGallery = () => {
   };
 
   return (
+    
     <div dir={isUrdu ? "rtl" : "ltr"}>
       <section className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]">
+         {/* Watermark Background Logo */}
+        <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+          <img
+            src="/images/khanqah logo.png"
+            alt="Watermark Logo"
+            className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+          />
+        </div>
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 border-b-4 inline-block border-[#D1D1D1] pb-2">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 inline-block border-[#D1D1D1] pb-2">
               {isUrdu ? "میڈیا گیلری" : "Media Gallery"}
             </h1>
             <p className="text-subtext font-urdu tracking-widest text-sm uppercase">
@@ -106,7 +115,7 @@ const MediaGallery = () => {
                   setSearchTerm("");
                   setActiveCategory("All");
                 }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all border ${
+                className={`px-5 py-2 relative group rounded-full text-sm font-medium transition-all border ${
                   activeTab === tab
                     ? "bg-black text-white border-black"
                     : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
@@ -118,7 +127,7 @@ const MediaGallery = () => {
           </div>
 
           {/* Search & Filter */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
+          <div className="flex flex-col relative group md:flex-row justify-between items-center gap-4 mb-10">
             <input
               type="text"
               placeholder={isUrdu ? "تلاش کریں..." : "Search..."}
@@ -131,7 +140,7 @@ const MediaGallery = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full border text-sm font-medium transition-all ${
+                  className={`px-4 py-1.5 relative group rounded-full border text-sm font-medium transition-all ${
                     activeCategory === cat
                       ? "bg-black text-white border-black"
                       : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
@@ -160,7 +169,7 @@ const MediaGallery = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
+                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
                   onClick={() => setModalVideo(item)}
                 >
                   <div className="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-md">
@@ -204,25 +213,25 @@ const MediaGallery = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
+                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
                   onClick={() => setModalAudio(item)}
                 >
                   <div className="aspect-w-16 aspect-h-9 mb-3 flex items-center justify-center bg-[#EDEDED] rounded-md">
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm  text-gray-600">
                       🎧 {isUrdu ? "آڈیو سنیں" : "Listen Audio"}
                     </span>
                   </div>
                   <h3 className="text-lg font-urdu font-semibold group-hover:underline">
                     {isUrdu ? item.urduTitle : item.englishTitle}
                   </h3>
-                  <p className="text-sm text-subtext mt-1">
+                  <p className="text-sm font-urdu text-subtext mt-1">
                     {isUrdu
                       ? item.category === "Bayaan"
                         ? "بیان"
                         : "ذکر"
                       : item.category}
                   </p>
-                  <p className="text-sm text-muted">
+                  <p className="text-sm font-urdu text-muted">
                     {isUrdu
                       ? new Date(item.date).toLocaleDateString("ur-PK", {
                           year: "numeric",

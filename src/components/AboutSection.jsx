@@ -16,8 +16,8 @@ const AccordionItem = ({
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          w-full font-semibold text-xl md:text-2xl
-          border border-border bg-black/5 hover:bg-hover/10
+          w-full  font-semibold  text-xl md:text-2xl
+          border border-border bg-black/10 hover:bg-hover/10
           px-6 py-4 rounded-md transition-all duration-300
           ${isUrdu ? "text-right" : "text-left"}
         `}
@@ -28,7 +28,7 @@ const AccordionItem = ({
       {isOpen && (
         <div
           className={`
-            mt-4 px-6 text-black/80 transition-all duration-300 leading-relaxed
+            mt-4 px-6  text-black/80 transition-all duration-300 leading-relaxed
             ${isUrdu ? "text-right" : "text-left"}
           `}
           dir={isUrdu ? "rtl" : "ltr"}
@@ -71,7 +71,7 @@ const SubHeading = ({ title, urduTitle, children, language }) => {
       {/* Content */}
       {isOpen && (
         <p
-          className={`mt-3 text-base leading-relaxed transition-all duration-300
+          className={`mt-3 relative grouptext-base leading-relaxed transition-all duration-300
             ${
               language === "urdu"
                 ? "font-urdu text-[#6B6B6B]"
@@ -117,7 +117,7 @@ const AboutSection = () => {
 
         {/* Full Content Section */}
         <div
-          className={`text-base sm:text-lg md:text-xl text-black/80 max-w-5xl mx-auto urdu-paragraph ${
+          className={`text-base  sm:text-lg md:text-xl text-black/80 max-w-5xl mx-auto urdu-paragraph ${
             language === "urdu"
               ? "font-urdu text-right"
               : "font-body text-left leading-relaxed space-y-6"
@@ -292,7 +292,7 @@ const AboutSection = () => {
                 <div className="mt-6 text-right">
                   <a
                     href="/publications"
-                    className="inline-block px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
+                    className="inline-block relative group px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
                   >
                     مزید مطالعہ کریں
                   </a>
@@ -340,7 +340,7 @@ const AboutSection = () => {
                 <div className="mt-6 text-left">
                   <a
                     href="/publications"
-                    className="inline-block px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
+                    className="inline-block relative group px-5 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-all duration-200"
                   >
                     Explore Full Publications
                   </a>
