@@ -291,7 +291,7 @@ const MediaGallery = () => {
                   <FiX className="text-xl text-black" />
                 </button>
                 <div className="p-5 text-center">
-                  <h3 className="text-xl font-semibold">
+                  <h3 className="text-xl font-urdu font-semibold">
                     {isUrdu ? modalVideo.urduTitle : modalVideo.englishTitle}
                   </h3>
                 </div>
@@ -321,7 +321,7 @@ const MediaGallery = () => {
                 >
                   <FiX className="text-xl text-black" />
                 </button>
-                <h3 className="text-xl font-semibold mb-4 text-center">
+                <h3 className="text-xl font-urdu font-semibold mb-4 text-center">
                   {isUrdu ? modalAudio.urduTitle : modalAudio.englishTitle}
                 </h3>
                 <audio controls className="w-full rounded-md">
