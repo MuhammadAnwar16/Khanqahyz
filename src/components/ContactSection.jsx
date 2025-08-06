@@ -35,7 +35,7 @@ const ContactSection = () => {
         </h2>
 
         {/* Subheading */}
-        <p className="text-lg font-urdu text-subtext mb-12">
+        <p className="text-sm font-urdu text-subtext mb-12">
           {isUrdu
             ? "زیارت یا روحانی رہنمائی کے لیے رابطہ کریں۔"
             : "Reach out for ziyarat or spiritual guidance."}
@@ -52,13 +52,15 @@ const ContactSection = () => {
               >
                 <p className="flex items-center gap-2">
                   <PhoneIcon className="w-5 h-5 text-black" />
-                  <strong>{isUrdu ? "فون:" : "Phone:"}</strong> +92 3001234567
+                  <strong>{isUrdu ? "فون:" : "Phone:"}</strong>
+                  <span dir="ltr">+92 3001234567</span>
                 </p>
 
                 <p className="flex items-center gap-2">
                   <ChatBubbleLeftRightIcon className="w-5 h-5 text-black" />
                   <strong>{isUrdu ? "واٹس ایپ:" : "WhatsApp:"}</strong>{" "}
                   <a
+                    dir="ltr"
                     href="https://wa.me/923001234567"
                     target="_blank"
                     rel="noreferrer"

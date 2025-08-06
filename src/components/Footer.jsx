@@ -137,17 +137,20 @@ const Footer = () => {
             <ul className="text-sm space-y-3 text-gray-400">
               <li className="flex items-start gap-2">
                 <PhoneIcon className="h-5 w-5 text-gray-400" />
-                <span className="text-white font-medium">+92 300 1234567</span>
+                <span className="text-white font-medium" dir="ltr">+92 300 1234567</span>
               </li>
               <li className="flex items-start gap-2">
                 <ChatBubbleLeftRightIcon className="h-5 w-5 text-gray-400" />
+                
+                {language === "urdu" ? "واٹس ایپ:" : "WhatsApp:"}{" "}
                 <a
+                dir="ltr"
                   href="https://wa.me/923001234567"
                   className="hover:text-white font-medium"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  WhatsApp: +92 300 1234567
+                   +92 300 1234567
                 </a>
               </li>
               <li className="flex items-start gap-2">
@@ -193,7 +196,7 @@ const Footer = () => {
                 <strong className="text-white">
                   {language === "urdu" ? "اکاؤنٹ نمبر:" : "Account No:"}
                 </strong>{" "}
-                0123-4567890-1
+                <span dir="ltr">0123-4567890-1</span>
               </li>
               <li>
                 <strong className="text-white">IBAN:</strong>{" "}

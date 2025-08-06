@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 // Separated for readability
@@ -11,13 +11,24 @@ const AccordionItem = ({
 }) => {
   const isUrdu = language === "urdu";
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (isOpen && contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [isOpen, children]);
+
   return (
     <div className={`mb-4 ${isUrdu ? "text-right" : "text-left"}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          w-full  font-semibold  text-xl md:text-2xl
-          border border-border bg-black/10 hover:bg-hover/10
+          w-full font-semibold text-xl md:text-2xl
+          border border-border bg-black/10 hover:bg-gray-100
           px-6 py-4 rounded-md transition-all duration-300
           ${isUrdu ? "text-right" : "text-left"}
         `}
@@ -25,17 +36,25 @@ const AccordionItem = ({
       >
         {isUrdu ? urduTitle : title}
       </button>
-      {isOpen && (
+
+      {/* Animated container */}
+      <div
+        className="overflow-hidden transition-max-height duration-500 ease-in-out"
+        style={{
+          maxHeight: `${height}px`,
+        }}
+      >
         <div
+          ref={contentRef}
           className={`
-            mt-4 px-6  text-black/80 transition-all duration-300 leading-relaxed
-            ${isUrdu ? "text-right" : "text-left"}
+            px-6 text-black/80 leading-relaxed py-4
+            ${isUrdu ? "text-right font-urdu" : "text-left"}
           `}
           dir={isUrdu ? "rtl" : "ltr"}
         >
           {children}
         </div>
-      )}
+      </div>
     </div>
   );
 };

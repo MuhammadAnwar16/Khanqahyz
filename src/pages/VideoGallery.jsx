@@ -1,10 +1,10 @@
 "use client";
-
-import React, { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
 import { FiX } from "react-icons/fi";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
+const categories = ["All", "Bayaan", "Dhikr", "Event"];
 const allVideos = [
   {
     id: 1,
@@ -23,7 +23,6 @@ const allVideos = [
     date: "2025-06-10",
   },
 ];
-
 const allAudios = [
   {
     id: 1,
@@ -90,8 +89,6 @@ const allAudios = [
     date: "2025-05-10",
   },
 ];
-
-const categories = ["All", "Bayaan", "Dhikr", "Event"];
 
 const MediaGallery = () => {
   const { language } = useLanguage();
@@ -393,5 +390,6 @@ const MediaGallery = () => {
     </div>
   );
 };
+
 
 export default MediaGallery;
