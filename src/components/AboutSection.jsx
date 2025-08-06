@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import React, { useState, useRef, useEffect } from "react";
 
 // Separated for readability
 const AccordionItem = ({
@@ -12,9 +12,7 @@ const AccordionItem = ({
 }) => {
   const isUrdu = language === "urdu";
   const [isOpen, setIsOpen] = useState(defaultOpen);
-
   const handleToggle = () => setIsOpen(!isOpen);
-
   return (
     <div className={`mb-4 ${isUrdu ? "text-right" : "text-left"}`}>
       <button
@@ -29,7 +27,6 @@ const AccordionItem = ({
       >
         {isUrdu ? urduTitle : title}
       </button>
-
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -55,14 +52,13 @@ const AccordionItem = ({
   );
 };
 
-
 const SubHeading = ({ title, urduTitle, children, language }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
       className={`
-        my-5  pb-1 cursor-pointer
+        my-5 pb-1 cursor-pointer
         ${language === "urdu" ? "text-right" : "text-left"}
       `}
     >
@@ -87,22 +83,26 @@ const SubHeading = ({ title, urduTitle, children, language }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="overflow-hidden"
           >
-            <p
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
               className={`mt-3 text-base leading-relaxed ${
                 language === "urdu" ? "font-urdu text-muted" : "text-muted"
               }`}
             >
               {children}
-            </p>
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
 };
-
 
 const AboutSection = () => {
   const { language } = useLanguage();
