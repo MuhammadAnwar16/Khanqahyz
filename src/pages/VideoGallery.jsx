@@ -8,8 +8,8 @@ import { FiX } from "react-icons/fi";
 const allVideos = [
   {
     id: 1,
-    englishTitle: "Spiritual Gathering – July 2025",
-    urduTitle: "روحانی اجتماع – جولائی 2025",
+    englishTitle: "Spiritual Gathering ",
+    urduTitle: "روحانی اجتماع ",
     youtubeUrl: "https://www.youtube-nocookie.com/embed/ZYaZ6Odbx_Y",
     category: "Event",
     date: "2025-07-15",
@@ -35,6 +35,54 @@ const allAudios = [
   },
   {
     id: 2,
+    englishTitle: "Short Talk on Tasawwuf",
+    urduTitle: "تصوف پر مختصر بیان",
+    audioUrl: "/audios/tasawwuf-talk.mp3",
+    category: "Bayaan",
+    date: "2025-05-10",
+  },
+  {
+    id: 3,
+    englishTitle: "Dhikr Session – June 2025",
+    urduTitle: "ذکر کی نشست – جون 2025",
+    audioUrl: "/audios/dhikr-june.mp3",
+    category: "Dhikr",
+    date: "2025-06-20",
+  },
+  {
+    id: 4,
+    englishTitle: "Short Talk on Tasawwuf",
+    urduTitle: "تصوف پر مختصر بیان",
+    audioUrl: "/audios/tasawwuf-talk.mp3",
+    category: "Bayaan",
+    date: "2025-05-10",
+  },
+  {
+    id: 5,
+    englishTitle: "Dhikr Session – June 2025",
+    urduTitle: "ذکر کی نشست – جون 2025",
+    audioUrl: "/audios/dhikr-june.mp3",
+    category: "Dhikr",
+    date: "2025-06-20",
+  },
+  {
+    id: 6,
+    englishTitle: "Short Talk on Tasawwuf",
+    urduTitle: "تصوف پر مختصر بیان",
+    audioUrl: "/audios/tasawwuf-talk.mp3",
+    category: "Bayaan",
+    date: "2025-05-10",
+  },
+  {
+    id: 7,
+    englishTitle: "Dhikr Session – June 2025",
+    urduTitle: "ذکر کی نشست – جون 2025",
+    audioUrl: "/audios/dhikr-june.mp3",
+    category: "Dhikr",
+    date: "2025-06-20",
+  },
+  {
+    id: 8,
     englishTitle: "Short Talk on Tasawwuf",
     urduTitle: "تصوف پر مختصر بیان",
     audioUrl: "/audios/tasawwuf-talk.mp3",
@@ -169,7 +217,7 @@ const MediaGallery = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
+                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer group"
                   onClick={() => setModalVideo(item)}
                 >
                   <div className="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-md">
@@ -213,7 +261,7 @@ const MediaGallery = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm hover:shadow-md transition p-4 cursor-pointer group"
+                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer group"
                   onClick={() => setModalAudio(item)}
                 >
                   <div className="aspect-w-16 aspect-h-9 mb-3 flex items-center justify-center bg-[#EDEDED] rounded-md">
@@ -256,7 +304,7 @@ const MediaGallery = () => {
                 <button
                   key={i + 1}
                   onClick={() => handlePageChange(i + 1)}
-                  className={`px-4 py-2 rounded-md text-sm border font-medium ${
+                  className={`px-4 py-2 relative group rounded-md text-sm border font-medium ${
                     currentPage === i + 1
                       ? "bg-black text-white border-black"
                       : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
