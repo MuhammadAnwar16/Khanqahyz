@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { FaChevronDown } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const { language, toggleLanguage } = useLanguage();
@@ -39,6 +40,54 @@ const Navbar = () => {
     /*{ path: '/DuasAndSayings', label: { en: ' Quotes ', ur: ' اقوال' } },*/
     { path: '/contact', label: { en: 'Contact', ur: 'رابطہ' } },
   ];
+  const menuVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: 'easeInOut',
+      when: 'beforeChildren',
+      staggerChildren: 0.06,
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 10 },
+};
+
+const dropdownVariants = {
+  hidden: { opacity: 0, y: -10, height: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    height: 'auto',
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+  exit: { opacity: 0, y: -10, height: 0, transition: { duration: 0.2 } },
+};
+const handleLinkClick = (href) => {
+  // Trigger fade out, then navigate
+  setMenuOpen(false); // If you're controlling via state only
+
+  // Optional: You can add delay here to let the exit animation complete
+  setTimeout(() => {
+    window.location.href = href; // Can replace with router.push in Next.js
+  }, 300); // Matches exit animation duration
+};
+
 
   return (
       <div dir={language === 'urdu' ? 'rtl' : 'ltr'}>
@@ -142,82 +191,113 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Hamburger Icon */}
-      <div className="fixed top-6 left-6 z-50 md:hidden">
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={`
-            text-2xl p-2 rounded-md backdrop-blur border border-border
-            ${scrolled ? 'bg-black/90 text-white' : 'bg-transparent text-subtext'}
-          `}
-          aria-label="Menu"
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
-      </div>
+<div className="fixed top-6 left-6 z-50 md:hidden">
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className={`
+      text-2xl p-2 rounded-md backdrop-blur border border-border transition
+      ${
+        scrolled
+          ? 'bg-black/90 text-white'
+          : 'bg-transparent text-subtext'
+      }
+    `}
+    aria-label="Menu"
+  >
+    {menuOpen ? <FiX /> : <FiMenu />}
+  </button>
+</div>
 
-      {/* Mobile Fullscreen Overlay Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8 text-white text-2xl font-body transition-all">
-          {links.map((link, index) => {
-            const isActive = location.pathname === link.path;
+{/* Mobile Fullscreen Overlay Menu */}
+<AnimatePresence>
+  {menuOpen && (
+    <motion.div
+      key="mobile-menu"
+      variants={menuVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="fixed inset-0 bg-black/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center gap-8 text-white text-2xl font-body"
+    >
+      {links.map((link, index) => {
+        const isActive = location.pathname === link.path;
 
-            if (link.submenu) {
-              return (
-                <div key={index} className="flex flex-col items-center">
-                  <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center gap-2 text-white font-semibold text-2xl"
-                  >
-                    {language === 'urdu' ? link.label.ur : link.label.en}
-                    <FaChevronDown
-                      className={`text-xs mt-1 transition-transform duration-300 ${
-                        dropdownOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  {dropdownOpen && (
-                    <div className="flex flex-col gap-2 mt-3 text-lg">
-                      {link.submenu.map((sublink, subIndex) => (
-                        <a
-                          key={subIndex}
-                          href={sublink.path}
-                          onClick={() => setMenuOpen(false)}
-                          className="text-subtext hover:text-white transition"
-                        >
-                          {language === 'urdu' ? sublink.label.ur : sublink.label.en}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            return (
-              <a
-                key={link.path}
-                href={link.path}
-                onClick={() => setMenuOpen(false)}
-                className={`
-                  transition-colors duration-300
-                  ${isActive ? 'text-white font-bold' : 'hover:text-subtext'}
-                `}
+        if (link.submenu) {
+          return (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="flex flex-col items-center"
+            >
+              <button
+                onClick={() => setDropdownOpen(dropdownOpen === index ? null : index)}
+                className="flex items-center gap-2 text-white font-semibold text-2xl"
               >
                 {language === 'urdu' ? link.label.ur : link.label.en}
-              </a>
-            );
-          })}
-          <button
-            onClick={() => {
-              toggleLanguage();
-              setMenuOpen(false);
-            }}
-            className="mt-6 bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-hover transition"
+                <FaChevronDown
+                  className={`text-xs mt-1 transition-transform duration-300 ${
+                    dropdownOpen === index ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence initial={false}>
+                {dropdownOpen === index && (
+                  <motion.div
+                    key="dropdown"
+                    variants={dropdownVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="flex flex-col gap-2 mt-3 text-lg overflow-hidden"
+                  >
+                    {link.submenu.map((sublink, subIndex) => (
+                      <motion.a
+                        key={subIndex}
+                        onClick={() => handleLinkClick(sublink.path)}
+                        className="text-subtext hover:text-white transition cursor-pointer"
+                      >
+                        {language === 'urdu'
+                          ? sublink.label.ur
+                          : sublink.label.en}
+                      </motion.a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        }
+
+        return (
+          <motion.a
+            key={link.path}
+            onClick={() => handleLinkClick(link.path)}
+            variants={itemVariants}
+            className={`transition-colors duration-300 cursor-pointer ${
+              isActive ? 'text-white font-bold' : 'hover:text-subtext'
+            }`}
           >
-            {language === 'urdu' ? 'ENGLISH' : 'اردو'}
-          </button>
-        </div>
-      )}
+            {language === 'urdu' ? link.label.ur : link.label.en}
+          </motion.a>
+        );
+      })}
+
+      <motion.button
+        onClick={() => {
+          toggleLanguage();
+          setMenuOpen(false);
+        }}
+        variants={itemVariants}
+        className="mt-6 bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-hover transition"
+      >
+        {language === 'urdu' ? 'ENGLISH' : 'اردو'}
+      </motion.button>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
     </>
     </div>
   );
