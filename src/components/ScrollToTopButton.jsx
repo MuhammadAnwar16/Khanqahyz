@@ -8,12 +8,12 @@ const ScrollToTopButton = ({ modalOpen = false }) => {
   const [isUserActive, setIsUserActive] = useState(true);
 
   useEffect(() => {
-    const resetInactivityTimer = () => {
-      if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
-      inactivityTimer.current = setTimeout(() => {
-        setIsUserActive(false);
-      }, 1500); // 1.5 seconds
-    };
+  const resetInactivityTimer = () => {
+    if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    inactivityTimer.current = setTimeout(() => {
+      setIsUserActive(false);
+    }, 4000); 
+  };
 
     const handleUserActivity = () => {
       setIsUserActive(true);
@@ -75,7 +75,7 @@ const ScrollToTopButton = ({ modalOpen = false }) => {
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top"
-        className="p-3 rounded-full bg-black text-white hover:bg-hover transition-all duration-300 shadow-lg hover:shadow-2xl ring-1 ring-border"
+        className="p-3 rounded-full bg-black text-white hover:bg-[grey] transition-all duration-300 shadow-lg hover:shadow-2xl ring-1 ring-border"
       >
         <FiArrowUp className="text-xl" />
       </button>
