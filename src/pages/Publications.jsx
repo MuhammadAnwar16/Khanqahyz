@@ -1,6 +1,7 @@
 "use client";
+import { FiX } from "react-icons/fi";
 import React, { useState } from "react";
-import { HiEye, HiDownload, HiX } from "react-icons/hi";
+import { HiEye, HiDownload } from "react-icons/hi";
 import { useLanguage } from "../context/LanguageContext";
 
 const Publications = () => {
@@ -117,10 +118,9 @@ const Publications = () => {
             <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[80vh] overflow-hidden border border-[#D1D1D1]">
               <button
                 onClick={() => setPreviewFile(null)}
-                className="absolute top-4 right-4 text-sm font-semibold flex items-center gap-2 px-4 py-1 bg-black text-white rounded-full hover:bg-[#222] transition"
+                className="absolute top-4 right-4 bg-white border border-gray-300 rounded-full p-2 shadow-md hover:bg-gray-100"
               >
-                <HiX className="text-lg" />
-                {language === "urdu" ? "بند کریں" : "Close"}
+                <FiX className="text-xl text-black" />
               </button>
               <iframe
                 src={previewFile}

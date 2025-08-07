@@ -1,4 +1,5 @@
 import Modal from "react-modal";
+import { FiX } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -88,9 +89,9 @@ const GallerySection = () => {
             </p>
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-xs hover:bg-hover transition"
+              className="absolute top-4 right-4 bg-white border border-gray-300 rounded-full p-2 shadow-md hover:bg-gray-100"
             >
-              {language === "urdu" ? "بند کریں" : "Close"}
+              <FiX className="text-xl text-black" />
             </button>
           </div>
         )}
