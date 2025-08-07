@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import Modal from "react-modal";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 const GallerySection = () => {
@@ -26,6 +26,13 @@ const GallerySection = () => {
     setModalOpen(false);
     setSelectedImg(null);
   };
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [modalOpen]);
 
   return (
     <section

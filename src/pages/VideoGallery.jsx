@@ -1,6 +1,6 @@
 "use client";
 import { FiX } from "react-icons/fi";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion"; // eslint-disable-line no-unused-vars
 
@@ -123,6 +123,20 @@ const MediaGallery = () => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  useEffect(() => {
+    const body = document.body;
+    const hasModalOpen = modalVideo || modalAudio;
+
+    if (hasModalOpen) {
+      body.style.overflow = "hidden"; // 🔒 lock scroll
+    } else {
+      body.style.overflow = ""; // ✅ restore scroll
+    }
+
+    return () => {
+      body.style.overflow = ""; // cleanup
+    };
+  }, [modalVideo, modalAudio]);
 
   return (
     <div dir={isUrdu ? "rtl" : "ltr"}>

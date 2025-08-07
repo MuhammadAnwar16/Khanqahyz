@@ -1,36 +1,75 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FiArrowUp } from 'react-icons/fi';
 
-const ScrollToTopButton = () => {
+const ScrollToTopButton = ({ modalOpen = false }) => {
   const [visible, setVisible] = useState(false);
   const lastScrollY = useRef(0);
+  const inactivityTimer = useRef(null);
+  const [isUserActive, setIsUserActive] = useState(true);
 
   useEffect(() => {
+    const resetInactivityTimer = () => {
+      if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+      inactivityTimer.current = setTimeout(() => {
+        setIsUserActive(false);
+      }, 1500); // 1.5 seconds
+    };
+
+    const handleUserActivity = () => {
+      setIsUserActive(true);
+      resetInactivityTimer();
+    };
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Hide if modal is open
+      if (modalOpen) {
+        setVisible(false);
+        return;
+      }
+
+      // Show when scrolled down and user scrolls further
       if (currentScrollY > 300 && currentScrollY > lastScrollY.current) {
-        setVisible(true); // Show only when scrolling down
+        setVisible(true);
+        setIsUserActive(true);
+        resetInactivityTimer();
       } else {
-        setVisible(false); // Hide when scrolling up
+        setVisible(false);
       }
 
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleUserActivity);
+    window.addEventListener('touchstart', handleUserActivity);
+
+    resetInactivityTimer();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleUserActivity);
+      window.removeEventListener('touchstart', handleUserActivity);
+      if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    };
+  }, [modalOpen]);
+
+  useEffect(() => {
+    if (modalOpen) setVisible(false);
+  }, [modalOpen]);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const shouldShow = visible && isUserActive && !modalOpen;
 
   return (
     <div
       className={`
         fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 transition-all duration-300
-        ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'}
+        ${shouldShow ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'}
       `}
     >
       <button
