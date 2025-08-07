@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";// eslint-disable-line no-unused-vars
 import { FaArrowDown } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 const data = [
   {
@@ -34,11 +34,11 @@ const ShajrahRoadmap = () => {
   return (
     <section className="relative py-20 px-4 md:px-24 bg-white overflow-hidden">
       {/* Watermark Background Logo */}
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+      <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
         <img
           src="/images/khanqah logo.png"
           alt="Watermark Logo"
-          className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+          className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
         />
       </div>
 

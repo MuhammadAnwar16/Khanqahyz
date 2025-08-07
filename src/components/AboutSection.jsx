@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
-import React, { useState, useRef, useEffect } from "react";// eslint-disable-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion"; // eslint-disable-line no-unused-vars
+import React, { useState, useRef, useEffect } from "react"; // eslint-disable-line no-unused-vars
 
 // Separated for readability
 const AccordionItem = ({
@@ -113,11 +113,11 @@ const AboutSection = () => {
       className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-border "
     >
       {/* Watermark Background Logo */}
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+      <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
         <img
           src="/images/khanqah logo.png"
           alt="Watermark Logo"
-          className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+          className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
         />
       </div>
 

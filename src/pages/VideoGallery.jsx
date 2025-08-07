@@ -1,8 +1,8 @@
 "use client";
 import { FiX } from "react-icons/fi";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 const categories = ["All", "Bayaan", "Dhikr", "Event"];
 const allVideos = [
@@ -125,15 +125,14 @@ const MediaGallery = () => {
   };
 
   return (
-    
     <div dir={isUrdu ? "rtl" : "ltr"}>
       <section className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]">
-         {/* Watermark Background Logo */}
-        <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        {/* Watermark Background Logo */}
+        <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
           <img
             src="/images/khanqah logo.png"
             alt="Watermark Logo"
-            className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+            className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
           />
         </div>
         <div className="max-w-7xl mx-auto">
@@ -333,7 +332,9 @@ const MediaGallery = () => {
                   <iframe
                     className="w-full h-full rounded-lg"
                     src={modalVideo.youtubeUrl}
-                    title={isUrdu ? modalVideo.urduTitle : modalVideo.englishTitle}
+                    title={
+                      isUrdu ? modalVideo.urduTitle : modalVideo.englishTitle
+                    }
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
@@ -380,7 +381,9 @@ const MediaGallery = () => {
                 </h3>
                 <audio controls className="w-full rounded-md">
                   <source src={modalAudio.audioUrl} type="audio/mpeg" />
-                  {isUrdu ? "آپ کا براؤزر آڈیو کو سپورٹ نہیں کرتا" : "Your browser does not support the audio element."}
+                  {isUrdu
+                    ? "آپ کا براؤزر آڈیو کو سپورٹ نہیں کرتا"
+                    : "Your browser does not support the audio element."}
                 </audio>
               </motion.div>
             </motion.div>
@@ -390,6 +393,5 @@ const MediaGallery = () => {
     </div>
   );
 };
-
 
 export default MediaGallery;

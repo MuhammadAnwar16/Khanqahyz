@@ -2,7 +2,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
 
 const Navbar = () => {
@@ -194,33 +194,32 @@ const Navbar = () => {
 
         {/* Mobile Hamburger Icon */}
         <div className="fixed top-6 left-6 z-50 md:hidden">
-  <button
-    onClick={() => setMenuOpen(!menuOpen)}
-    className={`group relative w-9 h-9 flex items-center justify-center transition
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`group relative w-9 h-9 flex items-center justify-center transition
       rounded-md border border-border backdrop-blur
       ${scrolled ? "bg-black/90 text-white" : "bg-transparent text-subtext"} 
     `}
-    aria-label="Menu"
-  >
-    {/* Hamburger lines */}
-    <span
-      className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
+            aria-label="Menu"
+          >
+            {/* Hamburger lines */}
+            <span
+              className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
         ${menuOpen ? "rotate-45 top-1/2 translate-y-0" : "-translate-y-2"}
       `}
-    />
-    <span
-      className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
+            />
+            <span
+              className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
         ${menuOpen ? "opacity-0" : "opacity-100"}
       `}
-    />
-    <span
-      className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
+            />
+            <span
+              className={`absolute h-[2px] w-6 bg-current transition-all duration-300 ease-in-out
         ${menuOpen ? "-rotate-45 top-1/2 translate-y-0" : "translate-y-2"}
       `}
-    />
-  </button>
-</div>
-
+            />
+          </button>
+        </div>
 
         {/* Mobile Fullscreen Overlay Menu */}
         <AnimatePresence>

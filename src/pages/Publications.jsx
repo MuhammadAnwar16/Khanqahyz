@@ -41,11 +41,11 @@ const Publications = () => {
         className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]"
       >
         {/* Watermark Background Logo */}
-        <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
           <img
             src="/images/khanqah logo.png"
             alt="Watermark Logo"
-            className="w-4/4 max-w-5xl opacity-10 grayscale filter translate-y-12"
+            className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
           />
         </div>
 
@@ -54,10 +54,10 @@ const Publications = () => {
             {language === "urdu" ? "طباعت شدہ کتب و رسائل" : "Publications"}
           </h1>
           <p className="text-sm font-urdu text-subtext mb-14">
-    {language === "urdu"
-      ? "خانقاہ کی روحانی تعلیمات پر مبنی طباعت شدہ کتب و رسائل کا مطالعہ کریں"
-      : "Explore the timeless printed works reflecting the spiritual teachings of the Khanqah."}
-  </p>
+            {language === "urdu"
+              ? "خانقاہ کی روحانی تعلیمات پر مبنی طباعت شدہ کتب و رسائل کا مطالعہ کریں۔"
+              : "Explore the timeless printed works reflecting the spiritual teachings of the Khanqah."}
+          </p>
 
           <div className="grid md:grid-cols-2 gap-12 mt-10">
             {publications.map((pub, index) => (
