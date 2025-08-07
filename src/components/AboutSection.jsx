@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";// eslint-disable-line no-unused-vars
 
 // Separated for readability
 const AccordionItem = ({

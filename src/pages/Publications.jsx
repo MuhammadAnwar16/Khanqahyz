@@ -50,9 +50,14 @@ const Publications = () => {
         </div>
 
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-16 border-b-2 border-[#D1D1D1] inline-block pb-3">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-[#D1D1D1] inline-block pb-3">
             {language === "urdu" ? "طباعت شدہ کتب و رسائل" : "Publications"}
           </h1>
+          <p className="text-sm font-urdu text-subtext mb-14">
+    {language === "urdu"
+      ? "خانقاہ کی روحانی تعلیمات پر مبنی طباعت شدہ کتب و رسائل کا مطالعہ کریں"
+      : "Explore the timeless printed works reflecting the spiritual teachings of the Khanqah."}
+  </p>
 
           <div className="grid md:grid-cols-2 gap-12 mt-10">
             {publications.map((pub, index) => (

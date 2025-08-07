@@ -1,7 +1,7 @@
 "use client";
 import { FiX } from "react-icons/fi";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
 
 const categories = ["All", "Bayaan", "Dhikr", "Event"];
@@ -144,7 +144,7 @@ const MediaGallery = () => {
             </h1>
             <p className="text-subtext font-urdu tracking-widest text-sm uppercase">
               {isUrdu
-                ? "خانقاہ یاسین زئی کے بیانات، ذکر اور تقاریب کی ویڈیوز و آڈیوز"
+                ? "خانقاہ یاسین زئی کے بیانات، ذکر اور تقاریب کی ویڈیوز و آڈیوز۔"
                 : "Videos and Audios from Khanqah Yaseen Zai’s sermons, dhikr, and gatherings."}
             </p>
           </div>
