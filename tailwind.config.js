@@ -17,8 +17,8 @@ export default {
       },
       fontFamily: {
         urdu: ['"Noto Nastaliq Urdu"', '"Scheherazade New"', 'serif'],
-        heading: ['"Playfair Display"', 'serif'],
-        body: ['Inter', 'Lato', 'sans-serif'],
+        heading: ['"Cormorant Garamond"', 'serif'],
+      body: ['Lato', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 4px 12px rgba(0,0,0,0.08)', // Custom soft depth shadow
