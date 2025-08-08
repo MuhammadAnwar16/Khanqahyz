@@ -28,7 +28,7 @@ const allAudios = [
     id: 1,
     englishTitle: "Importance of Dhikr",
     urduTitle: "ذکر کی اہمیت",
-    audioUrl: "/audios/bayaan-august2025.mp3",
+   audioUrl: "/audios/bayaan-august2025.mp3",
     category: "Bayaan",
     date: "2025-08-07",
   },
