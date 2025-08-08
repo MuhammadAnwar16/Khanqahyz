@@ -26,62 +26,14 @@ const allVideos = [
 const allAudios = [
   {
     id: 1,
-    englishTitle: "Dhikr Session – June 2025",
-    urduTitle: "ذکر کی نشست – جون 2025",
-    audioUrl: "/audios/dhikr-june.mp3",
-    category: "Dhikr",
-    date: "2025-06-20",
+    englishTitle: "Importance of Dhikr",
+    urduTitle: "ذکر کی اہمیت",
+    audioUrl: "/audios/bayaan-august2025.mp3",
+    category: "Bayaan",
+    date: "2025-08-07",
   },
   {
     id: 2,
-    englishTitle: "Short Talk on Tasawwuf",
-    urduTitle: "تصوف پر مختصر بیان",
-    audioUrl: "/audios/tasawwuf-talk.mp3",
-    category: "Bayaan",
-    date: "2025-05-10",
-  },
-  {
-    id: 3,
-    englishTitle: "Dhikr Session – June 2025",
-    urduTitle: "ذکر کی نشست – جون 2025",
-    audioUrl: "/audios/dhikr-june.mp3",
-    category: "Dhikr",
-    date: "2025-06-20",
-  },
-  {
-    id: 4,
-    englishTitle: "Short Talk on Tasawwuf",
-    urduTitle: "تصوف پر مختصر بیان",
-    audioUrl: "/audios/tasawwuf-talk.mp3",
-    category: "Bayaan",
-    date: "2025-05-10",
-  },
-  {
-    id: 5,
-    englishTitle: "Dhikr Session – June 2025",
-    urduTitle: "ذکر کی نشست – جون 2025",
-    audioUrl: "/audios/dhikr-june.mp3",
-    category: "Dhikr",
-    date: "2025-06-20",
-  },
-  {
-    id: 6,
-    englishTitle: "Short Talk on Tasawwuf",
-    urduTitle: "تصوف پر مختصر بیان",
-    audioUrl: "/audios/tasawwuf-talk.mp3",
-    category: "Bayaan",
-    date: "2025-05-10",
-  },
-  {
-    id: 7,
-    englishTitle: "Dhikr Session – June 2025",
-    urduTitle: "ذکر کی نشست – جون 2025",
-    audioUrl: "/audios/dhikr-june.mp3",
-    category: "Dhikr",
-    date: "2025-06-20",
-  },
-  {
-    id: 8,
     englishTitle: "Short Talk on Tasawwuf",
     urduTitle: "تصوف پر مختصر بیان",
     audioUrl: "/audios/tasawwuf-talk.mp3",
@@ -128,13 +80,13 @@ const MediaGallery = () => {
     const hasModalOpen = modalVideo || modalAudio;
 
     if (hasModalOpen) {
-      body.style.overflow = "hidden"; // 🔒 lock scroll
+      body.style.overflow = "hidden";
     } else {
-      body.style.overflow = ""; // ✅ restore scroll
+      body.style.overflow = ""; 
     }
 
     return () => {
-      body.style.overflow = ""; // cleanup
+      body.style.overflow = ""; 
     };
   }, [modalVideo, modalAudio]);
 
@@ -251,7 +203,7 @@ const MediaGallery = () => {
                         : "تقریب"
                       : item.category}
                   </p>
-                  <p className="text-sm font-urdu text-muted">
+                  <p className="text-sm font-urdu mt-2 text-muted">
                     {isUrdu
                       ? new Date(item.date).toLocaleDateString("ur-PK", {
                           year: "numeric",
@@ -289,7 +241,7 @@ const MediaGallery = () => {
                         : "ذکر"
                       : item.category}
                   </p>
-                  <p className="text-sm font-urdu text-muted">
+                  <p className="text-sm font-urdu mt-3 text-muted">
                     {isUrdu
                       ? new Date(item.date).toLocaleDateString("ur-PK", {
                           year: "numeric",
