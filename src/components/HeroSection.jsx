@@ -31,8 +31,8 @@ const HeroSection = () => {
 
         <p className="text-base font-urdu sm:text-lg md:text-xl font-nastaliq text-white/90 leading-relaxed max-w-2xl mx-auto mb-8">
           {language === "urdu"
-            ? "ایک روحانی مرکز جہاں دلوں کو سکون، ذکرِ الٰہی، اور روحانی تربیت میسر آتی ہے۔"
-            : "A spiritual sanctuary for remembrance, peace, and divine connection."}
+            ? "ایک روحانی تربیتی مرکز جہاں ذکرِ الٰہی کے ذریعے دلوں کو تزکیہ، اور روحانی تربیت میسر آتی ہے۔"
+            : "A spiritual training center where hearts are purified and spiritual training is provided through the remembrance of Allah."}
         </p>
 
         <div className="text-sm md:text-base italic text-white tracking-wide">

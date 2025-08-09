@@ -18,38 +18,38 @@ const EventsSection = () => {
         english: "First Thursday of every month",
       },
       description: {
-        urdu: "ذکرِ الٰہی، درود و سلام، اور اجتماعی دعا کی محفل۔",
-        english: "A gathering of remembrance, salawat, and collective prayer.",
+        urdu: "ذکرِ الٰہی، بیان تصوف، اور اجتماعی دعا کی محفل۔",
+        english: "Gathering for remembrance of Allah, Sufi discourse, and collective prayer.",
       },
     },
     {
       id: 2,
       title: {
-        urdu: "سالانہ عرس شریف",
-        english: "Annual Urs Sharif",
+        urdu: "ہفتہ وار ختم خواجگان",
+        english: "Weekly Khatm-e-Khwajagan",
       },
       date: {
-        urdu: "14 ربیع الثانی",
-        english: "14th Rabi-ul-Thani",
+        urdu: "ہر جمعرات کے بعد نماز عصر  ",
+        english: "Every Thursday after Asr prayer",
       },
       description: {
-        urdu: "حضرت پیر صاحب کے وصال کی یاد میں سالانہ اجتماع۔",
-        english: "Commemorating the spiritual legacy of Peer Sahib.",
+        urdu: "",
+        english: "",
       },
     },
     {
       id: 3,
       title: {
-        urdu: "درس قرآن و حدیث",
-        english: "Weekly Dars-e-Qur’an & Hadith",
+        urdu: "  اجتماعی مطالع تصوف ",
+        english: "Collective Study of Sufism",
       },
       date: {
-        urdu: "ہر جمعہ بعد نمازِ عصر",
-        english: "Every Friday after Asr prayer",
+        urdu: " روزانہ بعد نمازِ عشاہ ",
+        english: "Daily after Isha prayer",
       },
       description: {
-        urdu: "قرآن و سنت کی روشنی میں روحانی اصلاح۔",
-        english: "Spiritual insights from the Qur’an and Sunnah.",
+        urdu: "قرآن و سنت کی روشنی میں شعوری تربیت۔",
+        english: "Conscious training in the light of Quran and Sunnah.",
       },
     },
   ];
@@ -67,8 +67,8 @@ const EventsSection = () => {
 
         <p className="text-sm font-urdu uppercase tracking-wider text-subtext mb-14">
           {isUrdu
-            ? "ذکر، محبت، اور روحانی یکجہتی"
-            : "Zikr, Love, and Spiritual Unity"}
+            ? "ذکر، صحبت، اور شعوری یکجہتی"
+            : "Remembrance, Company, and Conscious Unity"}
         </p>
 
         {/* Cards */}

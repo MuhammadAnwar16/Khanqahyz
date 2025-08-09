@@ -475,6 +475,7 @@ const AboutDescription = () => {
         </>
       ) : (
         <>
+        
           <p>
             <strong>Yaseen Zai Sadaat</strong> is a prominent tribe originally
             from the district of <strong>Pishin</strong> in the province of{" "}

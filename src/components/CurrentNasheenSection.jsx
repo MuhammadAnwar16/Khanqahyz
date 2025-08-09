@@ -23,7 +23,7 @@ const CurrentNasheenSection = () => {
         {/* Textual Info */}
         <div>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border inline-block pb-2">
-            {language === "urdu" ? "موجودہ سجادہ نشین" : "Current Sajjada Nasheen"}
+            {language === "urdu" ? "موجودہ مسندہ نشین" : "Current Masnad-e-Nasheen"}
           </h2>
 
           <p
@@ -32,8 +32,8 @@ const CurrentNasheenSection = () => {
             }`}
           >
             {language === "urdu"
-              ? "حضرت پیر صاحب قبلہ دامت برکاتہم، موجودہ سجادہ نشین، روحانیت، اخلاص، اور سنت کی روشنی میں لوگوں کی رہنمائی فرما رہے ہیں۔ آپ کی تعلیمات سلوک، اخلاق، اور ذکرِ الٰہی پر مشتمل ہیں۔"
-              : "Hazrat Pir Sahib Qibla (Damat Barakatuhum), the present spiritual custodian, guides people through sincerity, spirituality, and the Sunnah. His teachings emphasize inner purification, remembrance, and service."}
+              ? "حضرت مولانا ڈاکٹر صاحبزادہ رشید احمد صاحب دامت برکاتھم خانقاہ کے موجودہ مسند نشین ہیں۔ آپ شریعت، طریقت اور سیاست کے جامع ہیں اور اسلاف کے طریقے پردین اسلام کے ان تینوں شعبوں میں لوگوں کی تربیت فرما رہے ہیں۔"
+              : "Hazrat Maulana Dr. Sahibzada Rasheed Ahmed Sahib Damat Barakatuhum is the current Masnad-e-Nasheen of the Khanqah. He is a comprehensive scholar in Shariah, Tariqat, and politics, training people in all three fields according to the ways of our predecessors."}
           </p>
 
           <p className="text-sm italic text-subtext">
