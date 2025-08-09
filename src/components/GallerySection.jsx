@@ -45,7 +45,7 @@ const GallerySection = () => {
           {language === "urdu" ? "تصویری جھلکیاں" : "Gallery"}
         </h2>
 
-        <p className="text-sm uppercase font-urdu tracking-widest text-subtext mb-12">
+        <p className="text-sm  font-urdu tracking-widest text-subtext mb-12">
           {language === "urdu"
             ? "مقدس لمحات کی بصری جھلکیاں"
             : "Visual Reflections of Sacred Moments"}

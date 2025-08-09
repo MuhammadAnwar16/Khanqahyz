@@ -65,7 +65,7 @@ const EventsSection = () => {
           {isUrdu ? "روحانی تقریبات" : "Spiritual Events"}
         </h2>
 
-        <p className="text-sm font-urdu uppercase tracking-wider text-subtext mb-14">
+        <p className="text-sm font-urdu  tracking-wider text-subtext mb-14">
           {isUrdu
             ? "ذکر، صحبت، اور شعوری یکجہتی"
             : "Remembrance, Company, and Conscious Unity"}
