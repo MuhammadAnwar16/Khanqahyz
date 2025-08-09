@@ -150,12 +150,16 @@ ${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"}
 
               return (
                 <a
-  key={link.path}
-  href={link.path}
-  className={`
+                  key={link.path}
+                  href={link.path}
+                  className={`
     px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
     transform hover:scale-105 hover:font-semibold motion-reduce:transition-none
-    ${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"} 
+    ${
+      scrolled
+        ? "hover:bg-black/20 dark:hover:bg-white/15"
+        : "hover:bg-black/10"
+    } 
     ${
       isActive
         ? scrolled
@@ -166,8 +170,7 @@ ${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"}
         : "text-black hover:text-black"
     }
   `}
->
-
+                >
                   {language === "urdu" ? link.label.ur : link.label.en}
                 </a>
               );

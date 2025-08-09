@@ -1,13 +1,23 @@
 "use client";
 import { FiX } from "react-icons/fi";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiEye, HiDownload } from "react-icons/hi";
 import { useLanguage } from "../context/LanguageContext";
 
 const Publications = () => {
   const { language } = useLanguage();
   const [previewFile, setPreviewFile] = useState(null);
+useEffect(() => {
+    if (previewFile) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
 
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [previewFile]);
   const publications = [
     {
       title:
@@ -34,6 +44,7 @@ const Publications = () => {
           : "A detailed book on the lineage and spiritual heritage of Yaseen Zai Syeds",
     },
   ];
+  
 
   return (
     <div dir={language === "urdu" ? "rtl" : "ltr"}>

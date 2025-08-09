@@ -12,18 +12,38 @@ const CurrentNasheenSection = () => {
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Image */}
-        <div className="overflow-hidden rounded-xl shadow-md border border-border">
-          <img
-            src="/images/sajjada-nasheen.jpg"
-            alt="Current Sajjada Nasheen"
-            className="w-full h-auto object-cover rounded-xl"
-          />
-        </div>
+        <div className="relative group max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg border border-border">
+  {/* Main Image */}
+  <img
+    src="/images/sajjada.jpg"
+    alt="Current Sajjada Nasheen"
+    className="w-full h-auto object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+  />
+
+  {/* Subtle Gradient Overlay for Depth */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-500"></div>
+
+  {/* Text Overlay */}
+  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-center">
+    <p
+      className={`text-lg md:text-xl text-white font-serif tracking-wide ${
+        language === "urdu"
+          ? "font-urdu text-right leading-relaxed"
+          : "font-body text-center"
+      }`}
+    >
+      {language === "urdu"
+        ? "حضرت مولانا ڈاکٹر صاحبزادہ رشید احمد صاحب"
+        : "Hazrat Maulana Dr. Sahibzada Rasheed Ahmed Sahib"}
+    </p>
+  </div>
+</div>
+
 
         {/* Textual Info */}
         <div>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-black border-b-2 border-border inline-block pb-2">
-            {language === "urdu" ? "موجودہ مسندہ نشین" : "Current Masnad-e-Nasheen"}
+            {language === "urdu" ? "موجودہ مسند نشین" : "Current Masnad-e-Nasheen"}
           </h2>
 
           <p
