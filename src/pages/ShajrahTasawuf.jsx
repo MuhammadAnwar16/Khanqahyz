@@ -81,7 +81,7 @@ const ShajrahRoadmap = () => {
 
             {/* Arrow */}
             {index < data.length - 1 && (
-              <FaArrowDown className="text-[#6B6B6B] text-lg mt-2 animate-pulse" />
+              <FaArrowDown className="text-black text-lg mt-2 animate-bounce-pulse" />
             )}
           </React.Fragment>
         ))}

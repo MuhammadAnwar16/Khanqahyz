@@ -1,125 +1,69 @@
+"use client";
 import React from "react";
+import { FaArrowDown } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 
-const Node = ({ name }) => (
-  <div className="bg-white text-green-900 border border-green-300 rounded-xl px-4 py-2 shadow text-sm text-center min-w-[160px] mx-auto">
-    {name}
-  </div>
-);
-
-const Level = ({ children }) => (
-  <div className="flex justify-center items-start gap-6 py-4 relative">{children}</div>
-);
-
-const ConnectorLine = ({ height = "h-6" }) => (
-  <div className={`w-px bg-green-400 ${height} mx-auto`}></div>
-);
+const data = [];
 
 const FamilyTree = () => {
-  useLanguage();
+  const { language } = useLanguage();
+  const isUrdu = language === "urdu";
 
   return (
-    <section className="bg-emerald-50 min-h-screen py-12 px-4 md:px-12 text-center text-green-900 overflow-x-auto">
-      <h1 className="text-3xl md:text-4xl font-bold mb-10 border-b-4 border-yellow-400 inline-block pb-2">
-        سلسلہ النسب (خانقاہ یاسین زئی)
-      </h1>
+    <section className="relative py-20 px-4 md:px-24 bg-white overflow-hidden">
+      {/* Watermark Background Logo */}
+      <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
+        <img
+          src="/images/khanqah logo.png"
+          alt="Watermark Logo"
+          className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
+        />
+      </div>
 
-      <div className="flex flex-col items-center space-y-2">
+      <div className="relative z-10 text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold text-black border-b-2 border-border pb-4 inline-block">
+          {isUrdu ? "شجرہ نسب" : "Lineage of Nasab"}
+        </h2>
+        <p
+          className={`mt-3 text-sm font-urdu  tracking-wider text-subtext mb-14 ${
+            isUrdu ? "font-urdu leading-loose" : ""
+          }`}
+        >
+          {isUrdu
+            ? " یہ مقدس سلسلہ نسب کے روحانی سلسلہ تربیت کو ظاہر کرتا ہے۔"
+            : " This sacred lineage reflects the golden chain of spiritual mentorship in the path of Nasab."}
+        </p>
+      </div>
 
-        {/* Generation 1 */}
-        <Level>
-          <Node name="حضرت محمد ﷺ" />
-        </Level>
+      {/* Roadmap Flow */}
+      <div
+        dir={isUrdu ? "rtl" : "ltr"}
+        className="relative z-10 flex flex-col items-center gap-6"
+      >
+        {data.map((entry, index) => (
+          <React.Fragment key={index}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#F5F5F5] border border-border shadow-md px-6 py-4 rounded-lg w-full max-w-xs text-center hover:scale-105 transition duration-300"
+            >
+              <p
+                className={`text-base md:text-lg text-black ${
+                  isUrdu ? "font-urdu" : "font-medium"
+                }`}
+              >
+                {isUrdu ? entry.urdu : entry.english}
+              </p>
+            </motion.div>
 
-        <ConnectorLine />
-
-        {/* Generation 2 */}
-        <Level>
-          <Node name="حضرت علی کرم اللہ وجہہ" />
-        </Level>
-
-        <ConnectorLine />
-
-        {/* Generation 3 - 10 (Inline horizontally) */}
-        <Level>
-          <Node name="حضرت امام حسین" />
-          <Node name="حضرت امام زین العابدین" />
-          <Node name="حضرت امام محمد باقر" />
-          <Node name="حضرت امام جعفر صادق" />
-          <Node name="سید موسی کاظم" />
-          <Node name="سید علی رضا" />
-        </Level>
-
-        <ConnectorLine />
-
-        <Level>
-          <Node name="سید محمد تقی" />
-          <Node name="سید نقی" />
-          <Node name="سید حسن عسکری" />
-          <Node name="سید علی ہادی" />
-          <Node name="سید محمد مہدی" />
-        </Level>
-
-        <ConnectorLine />
-
-        <Level>
-          <Node name="سید عبد اللہ" />
-          <Node name="سید یحییٰ" />
-          <Node name="سید قاسم" />
-        </Level>
-
-        <ConnectorLine />
-
-        <Level>
-          <Node name="سید جعفر زکی" />
-        </Level>
-
-        <ConnectorLine />
-
-        {/* Siblings */}
-        <Level>
-          <Node name="سید عبد الرحمان" />
-          <Node name="سید عبد العزیز" />
-          <Node name="سید علی حسین" />
-        </Level>
-
-        <ConnectorLine />
-
-        {/* Downward Lineage */}
-        <Level>
-          <Node name="سید علی زین العابدین" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید سلیمان" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید حسن محمد" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید احمد محمد" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید محمد الیاس" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید ابو الفتح" />
-        </Level>
-
-        <ConnectorLine />
-        <Level>
-          <Node name="سید احمد نور فقیرؒ" />
-        </Level>
-
+            {/* Arrow */}
+            {index < data.length - 1 && (
+              <FaArrowDown className="text-[#6B6B6B] text-lg mt-2 animate-bounce-pulse" />
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </section>
   );
