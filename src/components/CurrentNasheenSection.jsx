@@ -32,7 +32,7 @@ const CurrentNasheenSection = () => {
             }`}
           >
             {language === "urdu"
-              ? "حضرت مولانا ڈاکٹر صاحبزادہ رشید احمد صاحب دامت برکاتھم خانقاہ کے موجودہ مسند نشین ہیں۔ آپ شریعت، طریقت اور سیاست کے جامع ہیں اور اسلاف کے طریقے پردین اسلام کے ان تینوں شعبوں میں لوگوں کی تربیت فرما رہے ہیں۔"
+              ? "حضرت مولانا ڈاکٹر صاحبزادہ رشید احمد صاحب دامت برکاتھم خانقاہ کے موجودہ مسند نشین ہیں۔ آپ شریعت، طریقت اور سیاست کے جامع ہیں اور اسلاف کے طریقے پر دین اسلام کے ان تینوں شعبوں میں لوگوں کی تربیت فرما رہے ہیں۔"
               : "Hazrat Maulana Dr. Sahibzada Rasheed Ahmed Sahib Damat Barakatuhum is the current Masnad-e-Nasheen of the Khanqah. He is a comprehensive scholar in Shariah, Tariqat, and politics, training people in all three fields according to the ways of our predecessors."}
           </p>
 
