@@ -2,8 +2,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { useLanguage } from "../context/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 const Navbar = () => {
   const { language, toggleLanguage } = useLanguage();
@@ -95,11 +95,11 @@ const Navbar = () => {
     <div dir={language === "urdu" ? "rtl" : "ltr"}>
       <>
         {/* Desktop Navbar */}
-        <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-in-out">
+        <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-in-out ">
           <div
             className={`
             hidden md:flex rounded-full px-6 py-2 items-center font-body gap-6
-            transition-all duration-700 ease-in-out border
+            transition-all duration-700 ease-in-out border 
             ${
               scrolled
                 ? "bg-black/80 backdrop-blur-xl border-border text-white shadow-md"
@@ -116,11 +116,13 @@ const Navbar = () => {
                     <button
                       className={`
                       flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
-                      transform hover:scale-150 hover:font-bold
+transform hover:scale-130 hover:font-semibold  motion-reduce:transition-none
+${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"} 
+
                       ${
                         scrolled
                           ? "text-white hover:text-white"
-                          : "text-black hover:text-black"
+                          : "text-black hover:text-black "
                       }
                     `}
                     >
@@ -134,7 +136,7 @@ const Navbar = () => {
                         <a
                           key={subIndex}
                           href={sublink.path}
-                          className="block px-4 py-2 text-sm text-black hover:font-bold  hover:bg-hover transition-all"
+                          className="block px-4 py-3 text-sm text-black hover:font-bold  hover:bg-hover transition-all"
                         >
                           {language === "urdu"
                             ? sublink.label.ur
@@ -148,22 +150,24 @@ const Navbar = () => {
 
               return (
                 <a
-                  key={link.path}
-                  href={link.path}
-                  className={`
-                  px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
-                  transform hover:scale-150 hover:font-bold
-                  ${
-                    isActive
-                      ? scrolled
-                        ? "text-white underline underline-offset-4"
-                        : "text-black underline underline-offset-4"
-                      : scrolled
-                      ? "text-white/80 hover:text-white"
-                      : "text-black hover:text-black"
-                  }
-                `}
-                >
+  key={link.path}
+  href={link.path}
+  className={`
+    px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
+    transform hover:scale-105 hover:font-semibold motion-reduce:transition-none
+    ${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"} 
+    ${
+      isActive
+        ? scrolled
+          ? "text-white underline underline-offset-4 font-semibold"
+          : "text-black underline underline-offset-4 font-semibold"
+        : scrolled
+        ? "text-white/80 hover:text-white"
+        : "text-black hover:text-black"
+    }
+  `}
+>
+
                   {language === "urdu" ? link.label.ur : link.label.en}
                 </a>
               );

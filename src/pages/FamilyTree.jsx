@@ -11,7 +11,7 @@ const FamilyTree = () => {
   const isUrdu = language === "urdu";
 
   return (
-    <section className="relative py-20 px-4 md:px-24 bg-white overflow-hidden">
+    <section className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]">
       {/* Watermark Background Logo */}
       <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
         <img
@@ -22,7 +22,7 @@ const FamilyTree = () => {
       </div>
 
       <div className="relative z-10 text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold text-black border-b-2 border-border pb-4 inline-block">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-[#D1D1D1] inline-block pb-3">
           {isUrdu ? "شجرہ نسب" : "Lineage of Nasab"}
         </h2>
         <p
