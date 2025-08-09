@@ -47,7 +47,7 @@ const ShajrahRoadmap = () => {
           {isUrdu ? "شجرہ تصوف" : "Lineage of Tasawuf"}
         </h2>
         <p
-          className={`mt-3 text-sm font-urdu uppercase tracking-wider text-subtext mb-14 ${
+          className={`mt-3 text-sm font-urdu  tracking-wider text-subtext mb-14 ${
             isUrdu ? "font-urdu leading-loose" : ""
           }`}
         >

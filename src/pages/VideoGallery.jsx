@@ -107,7 +107,7 @@ const MediaGallery = () => {
             <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 inline-block border-[#D1D1D1] pb-2">
               {isUrdu ? "میڈیا گیلری" : "Media Gallery"}
             </h1>
-            <p className="text-subtext font-urdu tracking-widest text-sm uppercase">
+            <p className="text-subtext font-urdu tracking-widest text-sm ">
               {isUrdu
                 ? "خانقاہ یاسین زئی کے بیانات، ذکر اور تقاریب کی ویڈیوز و آڈیوز۔"
                 : "Videos and Audios from Khanqah Yaseen Zai’s sermons, dhikr, and gatherings."}
