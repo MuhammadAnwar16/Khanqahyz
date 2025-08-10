@@ -156,43 +156,54 @@ const Navbar = () => {
                     </button>
 
                     {/* Dropdown */}
-                    <div
-                      className={`
-  absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[7rem]
-  backdrop-blur-xl shadow-lg rounded-2xl transition-all duration-300 ease-out z-50 overflow-hidden
-  border-l border-r border-b
-  ${
-    hovered
-      ? "opacity-100 scale-100 pointer-events-auto"
-      : "opacity-0 scale-95 pointer-events-none"
-  }
-  ${
-    scrolled
+<div
+  className={`
+    absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[7rem]
+    backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden
+    border-l border-r border-b z-50
+    transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
+    ${hovered ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-3 scale-95 pointer-events-none"}
+    ${scrolled
       ? "bg-black/80 border-border text-white"
       : "bg-white/70 border-black/10 text-black/90"
-  }
-`}
-                    >
-                      {link.submenu.map((sublink, subIndex) => (
-                        <a
-                          key={subIndex}
-                          href={sublink.path}
-                          className={`
-              block px-4 py-2 text-sm font-medium rounded-full text-center
-              transition-all duration-300 transform hover:scale-105 hover:font-semibold
-              ${
-                scrolled
-                  ? "hover:bg-black/20 dark:hover:bg-white/15 text-white hover:text-white"
-                  : "hover:bg-black/10 text-black hover:text-black"
-              }
-            `}
-                        >
-                          {language === "urdu"
-                            ? sublink.label.ur
-                            : sublink.label.en}
-                        </a>
-                      ))}
-                    </div>
+    }
+  `}
+  style={{
+    maxHeight: hovered ? `${link.submenu.length * 4}rem` : "0rem", // folding height
+    transition: "max-height 400ms ease-in-out, opacity 300ms ease, transform 300ms ease",
+  }}
+>
+  {link.submenu.map((sublink, subIndex) => {
+    const totalItems = link.submenu.length;
+    const delay = hovered
+      ? `${subIndex * 100}ms` // open top to bottom
+      : `${(totalItems - subIndex - 1) * 100}ms`; // close bottom to top
+
+    return (
+      <a
+        key={subIndex}
+        href={sublink.path}
+        style={{
+          transitionDelay: delay,
+        }}
+        className={`
+          block px-4 py-2 text-sm font-medium rounded-full text-center
+          transform transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:font-semibold
+          ${hovered
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 -translate-y-2 scale-95"}
+          ${scrolled
+            ? "hover:bg-black/20 dark:hover:bg-white/15 text-white hover:text-white"
+            : "hover:bg-black/10 text-black hover:text-black"
+          }
+        `}
+      >
+        {language === "urdu" ? sublink.label.ur : sublink.label.en}
+      </a>
+    );
+  })}
+</div>
+
                   </div>
                 );
               }
