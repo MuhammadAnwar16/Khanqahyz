@@ -46,3 +46,14 @@
 .animate-bounce-pulse {
   animation: bouncePulse 2s infinite ease-in-out;
 }
+.lock-width {
+  position: relative;
+}
+.lock-width::after {
+  content: attr(data-text);
+  font-weight: 700; /* Bold version */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  overflow: hidden;
+}

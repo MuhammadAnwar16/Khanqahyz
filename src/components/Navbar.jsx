@@ -98,45 +98,94 @@ const Navbar = () => {
         <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 ease-in-out ">
           <div
             className={`
-            hidden md:flex rounded-full px-6 py-2 items-center font-body gap-6
-            transition-all duration-700 ease-in-out border 
-            ${
-              scrolled
-                ? "bg-black/80 backdrop-blur-xl border-border text-white shadow-md"
-                : "bg-transparent border-transparent text-black"
-            }
-          `}
+      hidden md:flex rounded-full px-6 py-2 items-center font-body gap-6
+      transition-all duration-700 ease-in-out border 
+      ${
+        scrolled
+          ? "bg-black/80 backdrop-blur-xl border-border text-white shadow-md"
+          : "bg-transparent border-transparent text-black"
+      }
+    `}
           >
             {links.map((link, index) => {
               const isActive = location.pathname === link.path;
 
               if (link.submenu) {
+                const [hovered, setHovered] = useState(false);
+                const hoverTimeout = React.useRef(null);
+
+                const handleMouseEnter = () => {
+                  clearTimeout(hoverTimeout.current);
+                  setHovered(true);
+                };
+
+                const handleMouseLeave = () => {
+                  hoverTimeout.current = setTimeout(
+                    () => setHovered(false),
+                    150
+                  );
+                };
+
                 return (
-                  <div key={index} className="relative group">
+                  <div
+                    key={index}
+                    className="relative lock-width"
+                    data-text={
+                      language === "urdu" ? link.label.ur : link.label.en
+                    }
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <button
                       className={`
-                      flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
-transform hover:scale-130 hover:font-semibold  motion-reduce:transition-none
-${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"} 
-
-                      ${
-                        scrolled
-                          ? "text-white hover:text-white"
-                          : "text-black hover:text-black "
-                      }
-                    `}
+          flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
+          transform hover:scale-130 hover:font-semibold
+          ${
+            scrolled
+              ? "hover:bg-black/20 dark:hover:bg-white/15 text-white/80 hover:text-white"
+              : "hover:bg-black/10 text-black hover:text-black"
+          }
+        `}
                     >
                       {language === "urdu" ? link.label.ur : link.label.en}
-                      <FaChevronDown className="text-xs mt-[1px] transition-transform duration-300 group-hover:rotate-180" />
+                      <FaChevronDown
+                        className={`text-xs mt-[1px] transition-transform duration-300 ${
+                          hovered ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
 
                     {/* Dropdown */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-40 bg-white shadow-xl rounded-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 z-50 overflow-hidden">
+                    <div
+                      className={`
+  absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[7rem]
+  backdrop-blur-xl shadow-lg rounded-2xl transition-all duration-300 ease-out z-50 overflow-hidden
+  border-l border-r border-b
+  ${
+    hovered
+      ? "opacity-100 scale-100 pointer-events-auto"
+      : "opacity-0 scale-95 pointer-events-none"
+  }
+  ${
+    scrolled
+      ? "bg-black/80 border-border text-white"
+      : "bg-white/70 border-black/10 text-black/90"
+  }
+`}
+                    >
                       {link.submenu.map((sublink, subIndex) => (
                         <a
                           key={subIndex}
                           href={sublink.path}
-                          className="block px-4 py-3 text-sm text-black hover:font-bold  hover:bg-hover transition-all"
+                          className={`
+              block px-4 py-2 text-sm font-medium rounded-full text-center
+              transition-all duration-300 transform hover:scale-105 hover:font-semibold
+              ${
+                scrolled
+                  ? "hover:bg-black/20 dark:hover:bg-white/15 text-white hover:text-white"
+                  : "hover:bg-black/10 text-black hover:text-black"
+              }
+            `}
                         >
                           {language === "urdu"
                             ? sublink.label.ur
@@ -151,25 +200,28 @@ ${scrolled ? "hover:bg-black/20 dark:hover:bg-white/15" : "hover:bg-black/10"}
               return (
                 <a
                   key={link.path}
-                  href={link.path}
+                  data-text={
+                    language === "urdu" ? link.label.ur : link.label.en
+                  }
                   className={`
-    px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
-    transform hover:scale-105 hover:font-semibold motion-reduce:transition-none
-    ${
-      scrolled
-        ? "hover:bg-black/20 dark:hover:bg-white/15"
-        : "hover:bg-black/10"
-    } 
-    ${
-      isActive
-        ? scrolled
-          ? "text-white underline underline-offset-4 font-semibold"
-          : "text-black underline underline-offset-4 font-semibold"
-        : scrolled
-        ? "text-white/80 hover:text-white"
-        : "text-black hover:text-black"
-    }
-  `}
+            lock-width px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
+            transform hover:scale-105 hover:font-semibold motion-reduce:transition-none
+            ${
+              scrolled
+                ? "hover:bg-black/20 dark:hover:bg-white/15"
+                : "hover:bg-black/10"
+            } 
+            ${
+              isActive
+                ? scrolled
+                  ? "text-white underline underline-offset-4 font-semibold"
+                  : "text-black underline underline-offset-4 font-semibold"
+                : scrolled
+                ? "text-white/80 hover:text-white"
+                : "text-black hover:text-black"
+            }
+          `}
+                  href={link.path}
                 >
                   {language === "urdu" ? link.label.ur : link.label.en}
                 </a>
