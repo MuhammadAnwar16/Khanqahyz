@@ -26,7 +26,7 @@ const EventsSection = () => {
       id: 2,
       title: {
         urdu: "ہفتہ وار ختم خواجگان",
-        english: "Weekly Khatm-e-Khwajagan",
+        english: "Weekly Khatm-e-Khwajgan",
       },
       date: {
         urdu: "ہر جمعرات کے بعد نماز عصر  ",
