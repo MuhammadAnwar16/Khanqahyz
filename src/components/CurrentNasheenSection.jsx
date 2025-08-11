@@ -15,7 +15,7 @@ const CurrentNasheenSection = () => {
         <div className="relative group max-w-xl mx-auto overflow-hidden rounded-2xl shadow-lg border border-border">
   {/* Main Image */}
   <img
-    src="/images/sajjada.jpg"
+    src="/images/masnad-nasheen.jpg"
     alt="Current Sajjada Nasheen"
     className="w-full h-auto object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
   />
