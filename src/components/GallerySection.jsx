@@ -1,7 +1,7 @@
 import Modal from "react-modal";
-import { FiX, FiChevronLeft, FiChevronRight, FiCamera } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { FiX, FiChevronLeft, FiChevronRight, FiCamera } from "react-icons/fi";
 
 const GallerySection = () => {
   const { language } = useLanguage();
@@ -10,33 +10,33 @@ const GallerySection = () => {
     {
       id: 1,
       name: language === "urdu" ? "مسجد" : "Mosque",
-      images: ["/images/main.jpg", "/images/mosque.jpg", "/images/hero.jpg"]
+      images: ["/images/main.jpg", "/images/mosque.jpg", "/images/hero.jpg"],
     },
     {
       id: 2,
       name: language === "urdu" ? "عرس" : "Urs Gathering",
-      images: ["/images/gallery2.jpg"]
+      images: ["/images/gallery2.jpg"],
     },
     {
       id: 3,
       name: language === "urdu" ? "ذکر" : "Zikr Circle",
-      images: ["/images/gallery3.jpg"]
+      images: ["/images/gallery3.jpg"],
     },
     {
       id: 4,
       name: language === "urdu" ? "کلاس" : "Quran Session",
-      images: ["/images/gallery4.jpg"]
+      images: ["/images/gallery4.jpg"],
     },
     {
       id: 5,
       name: language === "urdu" ? "پیر" : "Spiritual Leader",
-      images: ["/images/gallery5.jpg"]
+      images: ["/images/gallery5.jpg"],
     },
     {
       id: 6,
       name: language === "urdu" ? "زیارت" : "Evening Ziyarat",
-      images: ["/images/gallery6.jpg"]
-    }
+      images: ["/images/gallery6.jpg"],
+    },
   ];
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -93,6 +93,18 @@ const GallerySection = () => {
     setTouchStartX(null);
     setTouchEndX(null);
   };
+  // Auto image changer when modal is open
+  useEffect(() => {
+    if (modalOpen && selectedCollection?.images?.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) =>
+          prev === selectedCollection.images.length - 1 ? 0 : prev + 1
+        );
+      }, 4000); // change every 4 seconds (you can adjust)
+
+      return () => clearInterval(interval); // cleanup on close/unmount
+    }
+  }, [modalOpen, selectedCollection]);
 
   useEffect(() => {
     if (modalOpen) {
@@ -107,7 +119,9 @@ const GallerySection = () => {
       {/* Wrap your whole page content that should be blurred & disabled when modal open */}
       <div
         id="page-content"
-        className={`${modalOpen ? "blur-sm pointer-events-none select-none" : ""}`}
+        className={`${
+          modalOpen ? "blur-sm pointer-events-none select-none" : ""
+        }`}
       >
         <section
           id="gallery"
@@ -180,11 +194,20 @@ const GallerySection = () => {
               alt={`${selectedCollection.name} - ${currentIndex + 1}`}
               className="rounded-md w-full max-h-[80vh] object-contain"
             />
-
-            <p className="text-subtext text-sm text-center mt-4 italic">
-              {selectedCollection.name} — {currentIndex + 1} /{" "}
-              {selectedCollection.images.length}
-            </p>
+            {/* Pagination Dots */}
+            <div className="flex justify-center mt-4 gap-2">
+              {selectedCollection.images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentIndex === index
+                      ? "w-6 bg-black" // Active line
+                      : "w-3 bg-gray-400" // Inactive line
+                  }`}
+                  onClick={() => setCurrentIndex(index)} // Allow click navigation
+                />
+              ))}
+            </div>
 
             {selectedCollection.images.length > 1 && (
               <>
