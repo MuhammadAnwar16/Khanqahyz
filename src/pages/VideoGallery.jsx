@@ -1,10 +1,28 @@
 "use client";
-import { FiX } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { FiX, FiVideo, FiHeadphones } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 const categories = ["All", "Bayaan", "Dhikr", "Event"];
+const allAudios = [
+  {
+    id: 1,
+    englishTitle: "Importance of Dhikr",
+    urduTitle: "ذکر کی اہمیت",
+    audioUrl: "/audios/bayaan-august2025.mp3",
+    category: "Bayaan",
+    date: "2025-08-07",
+  },
+  {
+    id: 2,
+    englishTitle: "Short Talk on Tasawwuf",
+    urduTitle: "تصوف پر مختصر بیان",
+    audioUrl: "/audios/tasawwuf-talk.mp3",
+    category: "Bayaan",
+    date: "2025-05-10",
+  },
+];
 const allVideos = [
   {
     id: 1,
@@ -21,24 +39,6 @@ const allVideos = [
     youtubeUrl: "https://www.youtube-nocookie.com/embed/ZYaZ6Odbx_Y",
     category: "Bayaan",
     date: "2025-06-10",
-  },
-];
-const allAudios = [
-  {
-    id: 1,
-    englishTitle: "Importance of Dhikr",
-    urduTitle: "ذکر کی اہمیت",
-   audioUrl: "/audios/bayaan-august2025.mp3",
-    category: "Bayaan",
-    date: "2025-08-07",
-  },
-  {
-    id: 2,
-    englishTitle: "Short Talk on Tasawwuf",
-    urduTitle: "تصوف پر مختصر بیان",
-    audioUrl: "/audios/tasawwuf-talk.mp3",
-    category: "Bayaan",
-    date: "2025-05-10",
   },
 ];
 
@@ -82,11 +82,11 @@ const MediaGallery = () => {
     if (hasModalOpen) {
       body.style.overflow = "hidden";
     } else {
-      body.style.overflow = ""; 
+      body.style.overflow = "";
     }
 
     return () => {
-      body.style.overflow = ""; 
+      body.style.overflow = "";
     };
   }, [modalVideo, modalAudio]);
 
@@ -170,94 +170,114 @@ const MediaGallery = () => {
             </div>
           </div>
 
-          {/* Media Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {paginatedItems.map((item) =>
-              activeTab === "Videos" ? (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer group"
-                  onClick={() => setModalVideo(item)}
-                >
-                  <div className="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-md">
-                    <iframe
-                      className="w-full h-full pointer-events-none"
-                      src={item.youtubeUrl}
-                      title={isUrdu ? item.urduTitle : item.englishTitle}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  <h3 className="text-lg font-urdu font-semibold group-hover:underline">
-                    {isUrdu ? item.urduTitle : item.englishTitle}
-                  </h3>
-                  <p className="text-sm font-urdu text-subtext mt-1">
-                    {isUrdu
-                      ? item.category === "Bayaan"
-                        ? "بیان"
-                        : item.category === "Dhikr"
-                        ? "ذکر"
-                        : "تقریب"
-                      : item.category}
-                  </p>
-                  <p className="text-sm font-urdu mt-2 text-muted">
-                    {isUrdu
-                      ? new Date(item.date).toLocaleDateString("ur-PK", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })
-                      : new Date(item.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                  </p>
-                </motion.div>
+          {/* Media Grid or Empty State */}
+          {paginatedItems.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {paginatedItems.map((item) =>
+                activeTab === "Videos" ? (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer"
+                    onClick={() => setModalVideo(item)}
+                  >
+                    <div className="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-md">
+                      <iframe
+                        className="w-full h-full pointer-events-none"
+                        src={item.youtubeUrl}
+                        title={isUrdu ? item.urduTitle : item.englishTitle}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                    <h3 className="text-lg font-urdu font-semibold group-hover:underline">
+                      {isUrdu ? item.urduTitle : item.englishTitle}
+                    </h3>
+                    <p className="text-sm font-urdu text-subtext mt-1">
+                      {isUrdu
+                        ? item.category === "Bayaan"
+                          ? "بیان"
+                          : item.category === "Dhikr"
+                          ? "ذکر"
+                          : "تقریب"
+                        : item.category}
+                    </p>
+                    <p className="text-sm font-urdu mt-2 text-muted">
+                      {isUrdu
+                        ? new Date(item.date).toLocaleDateString("ur-PK", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer"
+                    onClick={() => setModalAudio(item)}
+                  >
+                    <div className="aspect-w-16 aspect-h-9 mb-3 flex items-center justify-center bg-[#EDEDED] rounded-md">
+                      <span className="text-sm text-gray-600">
+                        🎧 {isUrdu ? "آڈیو سنیں" : "Listen Audio"}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-urdu font-semibold group-hover:underline">
+                      {isUrdu ? item.urduTitle : item.englishTitle}
+                    </h3>
+                    <p className="text-sm font-urdu text-subtext mt-1">
+                      {isUrdu
+                        ? item.category === "Bayaan"
+                          ? "بیان"
+                          : "ذکر"
+                        : item.category}
+                    </p>
+                    <p className="text-sm font-urdu mt-3 text-muted">
+                      {isUrdu
+                        ? new Date(item.date).toLocaleDateString("ur-PK", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                    </p>
+                  </motion.div>
+                )
+              )}
+            </div>
+          ) : (
+            <div className="relative group col-span-full flex flex-col items-center justify-center py-16 px-6 bg-[#F5F5F5] rounded-2xl border border-[#D1D1D1] shadow-sm">
+              {activeTab === "Videos" ? (
+                <FiVideo className="w-12 h-12 text-[#6B6B6B] mb-4 opacity-70" />
               ) : (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-[#F5F5F5] relative group rounded-xl shadow-sm border border-[#D1D1D1] hover:shadow-md transition p-4 cursor-pointer group"
-                  onClick={() => setModalAudio(item)}
-                >
-                  <div className="aspect-w-16 aspect-h-9 mb-3 flex items-center justify-center bg-[#EDEDED] rounded-md">
-                    <span className="text-sm  text-gray-600">
-                      🎧 {isUrdu ? "آڈیو سنیں" : "Listen Audio"}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-urdu font-semibold group-hover:underline">
-                    {isUrdu ? item.urduTitle : item.englishTitle}
-                  </h3>
-                  <p className="text-sm font-urdu text-subtext mt-1">
-                    {isUrdu
-                      ? item.category === "Bayaan"
-                        ? "بیان"
-                        : "ذکر"
-                      : item.category}
-                  </p>
-                  <p className="text-sm font-urdu mt-3 text-muted">
-                    {isUrdu
-                      ? new Date(item.date).toLocaleDateString("ur-PK", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })
-                      : new Date(item.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                  </p>
-                </motion.div>
-              )
-            )}
-          </div>
+                <FiHeadphones className="w-12 h-12 text-[#6B6B6B] mb-4 opacity-70" />
+              )}
+
+              <p className="text-lg text-[#6B6B6B] font-medium text-center">
+                {isUrdu ? "کوئی میڈیا مواد نہیں ملا" : "No media found"}
+              </p>
+
+              <p className="text-sm text-[#999] mt-2 text-center max-w-md">
+                {isUrdu
+                  ? "براہ کرم دوبارہ کوشش کریں یا فلٹر اور تلاش کی ترتیبات تبدیل کریں۔"
+                  : "Please try again or adjust your filters and search settings."}
+              </p>
+            </div>
+          )}
 
           {/* Pagination */}
           {totalPages > 1 && (
