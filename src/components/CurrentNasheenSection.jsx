@@ -17,7 +17,8 @@ const CurrentNasheenSection = () => {
   <img
     src="/images/masnad-nasheen.jpg"
     alt="Current Sajjada Nasheen"
-    className="w-full h-auto object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+    className="w-[24rem] h-[24rem] object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+
   />
 
   {/* Subtle Gradient Overlay for Depth */}
