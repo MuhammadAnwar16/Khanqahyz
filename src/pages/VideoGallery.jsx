@@ -143,7 +143,7 @@ const MediaGallery = () => {
               placeholder={isUrdu ? "تلاش کریں..." : "Search..."}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full md:w-1/3 px-5 py-2.5 border border-[#D1D1D1] rounded-full text-sm focus:outline-none bg-[#FAFAFA]"
+              className="w-full md:w-1/3 px-5 py-2.5 border border-[#D1D1D1] rounded-full text-sm focus:outline-none bg-[#FAFAFA] focus:ring-2 focus:ring-[#E0E0E0]"
             />
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
@@ -282,19 +282,91 @@ const MediaGallery = () => {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex justify-center mt-12 space-x-2">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i + 1}
-                  onClick={() => handlePageChange(i + 1)}
-                  className={`px-4 py-2 relative group rounded-md text-sm border font-medium ${
-                    currentPage === i + 1
-                      ? "bg-black text-white border-black"
-                      : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
+              {/* Previous Button */}
+              <button
+                onClick={() =>
+                  currentPage > 1 && handlePageChange(currentPage - 1)
+                }
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                  currentPage === 1
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                }`}
+              >
+                {language === "urdu" ? "▶" : "◀"}{" "}
+                {language === "urdu" ? "پچھلا" : "Previous"}
+              </button>
+
+              {/* Dynamic Page Numbers */}
+              {(() => {
+                const pages = [];
+                const visibleRange = 2;
+
+                pages.push(1);
+
+                if (currentPage - visibleRange > 2) {
+                  pages.push("left-ellipsis");
+                }
+
+                for (
+                  let i = Math.max(2, currentPage - visibleRange);
+                  i <= Math.min(totalPages - 1, currentPage + visibleRange);
+                  i++
+                ) {
+                  pages.push(i);
+                }
+
+                if (currentPage + visibleRange < totalPages - 1) {
+                  pages.push("right-ellipsis");
+                }
+
+                if (totalPages > 1) {
+                  pages.push(totalPages);
+                }
+
+                return pages.map((p, idx) => {
+                  if (p === "left-ellipsis" || p === "right-ellipsis") {
+                    return (
+                      <span
+                        key={p + idx}
+                        className="px-3 py-2 text-gray-500 select-none"
+                      >
+                        ...
+                      </span>
+                    );
+                  }
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => handlePageChange(p)}
+                      className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                        currentPage === p
+                          ? "bg-black text-white border-black"
+                          : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  );
+                });
+              })()}
+
+              {/* Next Button */}
+              <button
+                onClick={() =>
+                  currentPage < totalPages && handlePageChange(currentPage + 1)
+                }
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                  currentPage === totalPages
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                }`}
+              >
+                {language === "urdu" ? "اگلا" : "Next"}{" "}
+                {language === "urdu" ? "◀" : "▶"}
+              </button>
             </div>
           )}
         </div>

@@ -1,15 +1,18 @@
 "use client";
 import { FiX } from "react-icons/fi";
+import { FiBookOpen } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { HiEye, HiDownload } from "react-icons/hi";
 import { useLanguage } from "../context/LanguageContext";
-import { FiBookOpen } from "react-icons/fi";
 
 const Publications = () => {
   const { language } = useLanguage();
   const [previewFile, setPreviewFile] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 6;
 
   useEffect(() => {
     if (previewFile) {
@@ -49,6 +52,7 @@ const Publications = () => {
           : "A detailed book on the lineage and spiritual heritage of Yaseen Zai Syeds",
       category: "book",
     },
+    // Add more items if needed
   ];
 
   const categories = [
@@ -66,6 +70,17 @@ const Publications = () => {
       pub.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+  const paginatedPublications = filteredPublications.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div dir={language === "urdu" ? "rtl" : "ltr"}>
@@ -101,7 +116,10 @@ const Publications = () => {
                 language === "urdu" ? "تلاش کریں..." : "Search publications..."
               }
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1);
+              }}
               className="w-full md:w-1/3 px-4 py-2 border border-[#D1D1D1] rounded-full focus:outline-none focus:ring-2 focus:ring-[#E0E0E0]"
             />
 
@@ -110,7 +128,10 @@ const Publications = () => {
               {categories.map((cat) => (
                 <button
                   key={cat.key}
-                  onClick={() => setSelectedCategory(cat.key)}
+                  onClick={() => {
+                    setSelectedCategory(cat.key);
+                    setCurrentPage(1);
+                  }}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium border border-[#D1D1D1] transition ${
                     selectedCategory === cat.key
                       ? "bg-black text-white"
@@ -125,8 +146,8 @@ const Publications = () => {
 
           {/* Publications List */}
           <div className="grid md:grid-cols-2 gap-12 mt-10">
-            {filteredPublications.length > 0 ? (
-              filteredPublications.map((pub, index) => (
+            {paginatedPublications.length > 0 ? (
+              paginatedPublications.map((pub, index) => (
                 <div
                   key={index}
                   className="relative group bg-[#F5F5F5] rounded-3xl border border-[#D1D1D1] p-6 shadow-[0_6px_24px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
@@ -176,23 +197,111 @@ const Publications = () => {
               ))
             ) : (
               <div className="col-span-full flex flex-col items-center justify-center py-16 px-6 bg-[#F5F5F5] rounded-2xl border border-[#D1D1D1] shadow-sm">
-  <FiBookOpen className="w-12 h-12 text-[#6B6B6B] mb-4 opacity-70" />
-  
-  <p className="text-lg text-[#6B6B6B] font-medium text-center">
-    {language === "urdu"
-      ? "معذرت! کوئی اشاعت دستیاب نہیں۔"
-      : "Sorry! No publications available."}
-  </p>
-  
-  <p className="text-sm text-[#999] mt-2 text-center max-w-md">
-    {language === "urdu"
-      ? "براہ کرم دوبارہ کوشش کریں یا فلٹر اور تلاش کی ترتیبات تبدیل کریں۔"
-      : "Please try again or adjust your filters and search settings."}
-  </p>
-</div>
-
+                <FiBookOpen className="w-12 h-12 text-[#6B6B6B] mb-4 opacity-70" />
+                <p className="text-lg text-[#6B6B6B] font-medium text-center">
+                  {language === "urdu"
+                    ? "معذرت! کوئی اشاعت دستیاب نہیں۔"
+                    : "Sorry! No publications available."}
+                </p>
+                <p className="text-sm text-[#999] mt-2 text-center max-w-md">
+                  {language === "urdu"
+                    ? "براہ کرم دوبارہ کوشش کریں یا فلٹر اور تلاش کی ترتیبات تبدیل کریں۔"
+                    : "Please try again or adjust your filters and search settings."}
+                </p>
+              </div>
             )}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-12 space-x-2">
+              {/* Previous Button */}
+              <button
+                onClick={() =>
+                  currentPage > 1 && handlePageChange(currentPage - 1)
+                }
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                  currentPage === 1
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                }`}
+              >
+                {language === "urdu" ? "▶" : "◀"}{" "}
+                {language === "urdu" ? "پچھلا" : "Previous"}
+              </button>
+
+              {/* Dynamic Page Numbers */}
+              {(() => {
+                const pages = [];
+                const visibleRange = 2;
+
+                pages.push(1);
+
+                if (currentPage - visibleRange > 2) {
+                  pages.push("left-ellipsis");
+                }
+
+                for (
+                  let i = Math.max(2, currentPage - visibleRange);
+                  i <= Math.min(totalPages - 1, currentPage + visibleRange);
+                  i++
+                ) {
+                  pages.push(i);
+                }
+
+                if (currentPage + visibleRange < totalPages - 1) {
+                  pages.push("right-ellipsis");
+                }
+
+                if (totalPages > 1) {
+                  pages.push(totalPages);
+                }
+
+                return pages.map((p, idx) => {
+                  if (p === "left-ellipsis" || p === "right-ellipsis") {
+                    return (
+                      <span
+                        key={p + idx}
+                        className="px-3 py-2 text-gray-500 select-none"
+                      >
+                        ...
+                      </span>
+                    );
+                  }
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => handlePageChange(p)}
+                      className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                        currentPage === p
+                          ? "bg-black text-white border-black"
+                          : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  );
+                });
+              })()}
+
+              {/* Next Button */}
+              <button
+                onClick={() =>
+                  currentPage < totalPages && handlePageChange(currentPage + 1)
+                }
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
+                  currentPage === totalPages
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-white text-black border-[#D1D1D1] hover:bg-[#EDEDED]"
+                }`}
+              >
+                {language === "urdu" ? "اگلا" : "Next"}{" "}
+                {language === "urdu" ? "◀" : "▶"}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* PDF Modal */}

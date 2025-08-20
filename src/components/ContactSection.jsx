@@ -110,7 +110,7 @@ const ContactSection = () => {
           >
             <form method="POST" noValidate className="space-y-5">
               <p
-                className={`text-xl  md:text-2xl font-semibold text-subtext mb-4 ${
+                className={`text-xl md:text-2xl font-semibold text-subtext mb-4 ${
                   language === "urdu" ? "text-right" : "text-left"
                 }`}
               >
@@ -122,23 +122,40 @@ const ContactSection = () => {
                   id: "name",
                   label: isUrdu ? "نام:" : "Name:",
                   type: "text",
+                  placeholder: isUrdu
+                    ? "مثال: محمد انور"
+                    : "e.g. Muhammad Anwar",
                 },
                 {
                   id: "email",
                   label: isUrdu ? "ای میل:" : "Email:",
                   type: "email",
+                  placeholder: isUrdu
+                    ? "مثال: name@example.com"
+                    : "e.g. name@example.com",
                 },
                 {
                   id: "phone_number",
                   label: isUrdu ? "فون نمبر:" : "Phone Number:",
                   type: "text",
+                  placeholder: isUrdu
+                    ? "مثال: +92 300 1234567"
+                    : "e.g. +92 300 1234567",
+                  extraClass: isUrdu ? "text-right" : "text-left", // label alignment changes
+                  inputProps: {
+                    dir: "ltr", // keep number entry left-to-right
+                  },
                 },
+
                 {
                   id: "subject",
                   label: isUrdu ? "موضوع:" : "Subject:",
                   type: "text",
+                  placeholder: isUrdu
+                    ? "مثال: قرآن کلاس کے بارے میں"
+                    : "e.g. About Quran Class",
                 },
-              ].map(({ id, label, type }) => (
+              ].map(({ id, label, type, placeholder }) => (
                 <div key={id}>
                   <label
                     htmlFor={`id_${id}`}
@@ -151,6 +168,7 @@ const ContactSection = () => {
                     name={id}
                     required
                     type={type}
+                    placeholder={placeholder}
                     className="w-full border border-border rounded px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 transition"
                   />
                 </div>
@@ -168,6 +186,11 @@ const ContactSection = () => {
                   name="message"
                   rows="5"
                   required
+                  placeholder={
+                    isUrdu
+                      ? "مثال: میں ماہانہ ذکر کی محفل میں شامل ہونا چاہتا ہوں۔"
+                      : "e.g. I would like to join the monthly Dhikr gathering."
+                  }
                   className="w-full border border-border rounded px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 transition resize-none"
                 ></textarea>
               </div>
