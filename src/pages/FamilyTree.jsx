@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "../context/LanguageContext";
 import { FaArrowRight, FaArrowLeft, FaArrowDown } from "react-icons/fa";
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";//eslint-disable-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion"; //eslint-disable-line no-unused-vars
 
 // ---- DATA ----
@@ -391,6 +391,116 @@ const data = [
     ],
   },
 ];
+
+/* -------------------------
+   Mobile warning modal
+   ------------------------- */
+function MobileWarningModal({ onClose, persistKey = "hideMobileTreeWarning" }) {
+  const { language } = useLanguage();
+  const isUrdu = language === "urdu";
+
+  const [dontShowAgain, setDontShowAgain] = React.useState(false);
+
+  const handleClose = (keepHidden = false) => {
+    if (keepHidden) {
+      localStorage.setItem(persistKey, "1");
+    }
+    onClose && onClose();
+  };
+
+  // 🚫 Disable body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 
+                   bg-black/30 backdrop-blur-sm" // 🌟 Blur background
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 30 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="relative w-full max-w-lg rounded-2xl bg-white shadow-xl border border-border p-6 md:p-8"
+        >
+          {/* Close button */}
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => handleClose(dontShowAgain)}
+            className="absolute top-3 right-3 rounded-full p-2 hover:bg-hover transition"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <h2 className="text-xl md:text-2xl font-semibold mb-3 text-center text-black">
+            {isUrdu ? "📱 موبائل انتباہ" : "📱 Mobile Warning"}
+          </h2>
+
+          {/* Message */}
+          <p className="text-sm md:text-base text-subtext text-center leading-relaxed mb-6">
+            {isUrdu
+              ? "یہ صفحہ ڈیسک ٹاپ کے لیے بہتر ڈیزائن کیا گیا ہے۔ موبائل پر جاری رکھ سکتے ہیں، مگر ڈیسک ٹاپ پر زیادہ بہتر نظر آئے گا۔"
+              : "This page is optimized for desktop and looks best on a larger screen. You can continue on mobile, but desktop will provide the best experience."}
+          </p>
+
+          {/* Highlighted Note */}
+          <div
+            className={`rounded-xl p-4 border border-dashed border-border bg-mist shadow-inner mb-6 ${
+              isUrdu ? "text-right" : "text-left"
+            }`}
+          >
+            <p className="text-sm text-subtext leading-relaxed">
+              {isUrdu
+                ? "نوٹ: انٹرایکٹیو شجرہ نسب کے لیے ڈیسک ٹاپ بہترین ہے۔ موبائل پر کچھ فیچرز محدود ہو سکتے ہیں۔"
+                : "Note: For interactive Lineage of Nasab , desktop is recommended. Mobile works but some features may be limited."}
+            </p>
+          </div>
+
+          {/* Footer actions */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <label className="inline-flex items-center gap-2 cursor-pointer select-none text-sm text-subtext">
+              <input
+                type="checkbox"
+                checked={dontShowAgain}
+                onChange={(e) => setDontShowAgain(e.target.checked)}
+                className="accent-black"
+              />
+              {isUrdu ? "پھر یہ پیغام نہ دکھائیں" : "Don't show again"}
+            </label>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => handleClose(false)}
+                className="px-4 py-2 rounded-lg border border-border text-sm font-medium text-black hover:bg-hover transition shadow-sm"
+              >
+                {isUrdu ? "📱 موبائل پر جاری رکھیں" : "📱 Continue on mobile"}
+              </button>
+
+              <button
+                onClick={() => handleClose(dontShowAgain)}
+                className="px-5 py-2 rounded-lg text-sm font-semibold bg-black text-white shadow-md hover:shadow-lg transition"
+              >
+                {isUrdu ? "💻 ڈیسک ٹاپ استعمال کریں" : "💻 Use Desktop (recommended)"}
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
 
 // ---------------------------------------------------------------
 // Expandable Node (edge-aware child anchoring under parent)
@@ -905,17 +1015,18 @@ function ExpandableNode({
   );
 }
 
-// -----------------
-// FAMILY TREE ROOT
-// -----------------
+/* -------------------------
+   FAMILY TREE ROOT (updated)
+   ------------------------- */
 const FamilyTree = () => {
   const { language } = useLanguage();
   const isUrdu = language === "urdu";
 
   const [itemsPerRow, setItemsPerRow] = useState(4);
-
-  // NEW: last active path (used for blinking border on last-clicked/expanded node)
   const [lastActivePath, setLastActivePath] = useState(null);
+
+  // mobile modal visibility
+  const [showMobileModal, setShowMobileModal] = useState(false);
 
   useEffect(() => {
     const updateItemsPerRow = () => {
@@ -932,11 +1043,19 @@ const FamilyTree = () => {
     return () => window.removeEventListener("resize", updateItemsPerRow);
   }, []);
 
+  // show modal on small screens unless user opted out
+  useEffect(() => {
+    const hideKey = localStorage.getItem("hideMobileTreeWarning");
+    if (window.innerWidth < 640 && !hideKey) {
+      setShowMobileModal(true);
+    }
+  }, []);
+
   // ⚡️All data except last one stays in snake layout
   const lastNode = data[data.length - 1];
   const snakeData = data.slice(0, -1);
 
-  // Break into rows
+  // Break into rows (same as your logic)
   const rows = [];
   for (let i = 0; i < snakeData.length; i += itemsPerRow) {
     rows.push(snakeData.slice(i, i + itemsPerRow));
@@ -958,15 +1077,16 @@ const FamilyTree = () => {
           const rowData = isLTR ? row : [...row].reverse();
 
           return (
-            <div key={rowIndex} className="flex flex-col items-center">
-              <div className="flex items-center gap-4">
+            <div key={rowIndex} className="flex flex-col items-center w-full">
+              {/* horizontal scroll on narrow screens */}
+              <div className="flex items-center gap-4 overflow-x-auto w-full md:justify-center md:overflow-visible px-2">
                 {rowData.map((entry, idx) => (
                   <React.Fragment key={idx}>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="bg-[#F5F5F5] border border-border shadow-md px-6 py-4 rounded-lg w-48 text-center hover:scale-105 transition duration-300"
+                      className="bg-[#F5F5F5] border border-border shadow-md px-6 py-4 rounded-lg w-40 md:w-48 text-center hover:scale-105 transition duration-300 flex-shrink-0"
                     >
                       <p
                         className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}
@@ -977,26 +1097,26 @@ const FamilyTree = () => {
 
                     {idx < rowData.length - 1 &&
                       (isLTR ? (
-                        <FaArrowRight className="text-[#6B6B6B]" />
+                        <FaArrowRight className="text-[#6B6B6B] flex-shrink-0" />
                       ) : (
-                        <FaArrowLeft className="text-[#6B6B6B]" />
+                        <FaArrowLeft className="text-[#6B6B6B] flex-shrink-0" />
                       ))}
                   </React.Fragment>
                 ))}
               </div>
 
               {rowIndex < rows.length - 1 && (
-                <div className="flex w-full mt-2">
+                <div className="flex w-full mt-2 px-2">
                   {itemsPerRow === 1 ? (
                     <div className="flex justify-center w-full">
                       <FaArrowDown className="text-[#6B6B6B] text-2xl" />
                     </div>
                   ) : isLTR ? (
-                    <div className="flex justify-end w-full">
+                    <div className="flex justify-end w-full pr-4">
                       <FaArrowDown className="text-[#6B6B6B] text-2xl" />
                     </div>
                   ) : (
-                    <div className="flex justify-start w-full">
+                    <div className="flex justify-start w-full pl-4">
                       <FaArrowDown className="text-[#6B6B6B] text-2xl" />
                     </div>
                   )}
@@ -1007,6 +1127,7 @@ const FamilyTree = () => {
         })}
 
         {/* Expandable part from last node */}
+        {/* ensure the child nodes inside ExpandableNode use `w-40 md:w-56` to keep mobile sizes smaller */}
         <ExpandableNode
           node={lastNode}
           isUrdu={isUrdu}
@@ -1015,6 +1136,15 @@ const FamilyTree = () => {
           setLastActivePath={setLastActivePath}
         />
       </div>
+
+      {/* Mobile-only modal */}
+      {showMobileModal && (
+        <MobileWarningModal
+          defaultIsUrdu={isUrdu}
+          onClose={() => setShowMobileModal(false)}
+          persistKey="hideMobileTreeWarning"
+        />
+      )}
     </section>
   );
 };
