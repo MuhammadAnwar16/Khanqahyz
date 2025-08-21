@@ -1,13 +1,16 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";// eslint-disable-line no-unused-vars
 import { FaArrowRight, FaArrowLeft, FaArrowDown } from "react-icons/fa";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion"; //eslint-disable-line no-unused-vars
 
 // ---- DATA ----
 const data = [
   { english: "Syed Imam Hussain (R.A)", urdu: "سید امام حسین رضی اللہ عنہ" },
-  { english: "Syed Imam Ali Zain-ul-Abidin", urdu: "سید امام علی زین العابدین" },
+  {
+    english: "Syed Imam Ali Zain-ul-Abidin",
+    urdu: "سید امام علی زین العابدین",
+  },
   { english: "Syed Imam Baqir", urdu: "سید امام باقر" },
   { english: "Syed Imam Jafar Sadiq", urdu: "سید امام جعفر صادق" },
   { english: "Syed Imam Musa Kazim", urdu: "سید امام موسیٰ کاظم" },
@@ -16,7 +19,10 @@ const data = [
   { english: "Syed Imam Ali Naqi", urdu: "سید امام علی نقی" },
   { english: "Syed Jafar Thani", urdu: "سید جعفر ثانی" },
   { english: "Ali Asghar Ashtar", urdu: "علی اصغر اشتر" },
-  { english: "Syed Abu Ahmad Shahab-ud-Din Abdullah", urdu: "سید ابو احمد شہاب الدین عبداللہ" },
+  {
+    english: "Syed Abu Ahmad Shahab-ud-Din Abdullah",
+    urdu: "سید ابو احمد شہاب الدین عبداللہ",
+  },
   { english: "Abu Yusuf Ahmad Keetal", urdu: "ابو یوسف احمد کیتال" },
   { english: "Syed Abu Bakr", urdu: "سید ابو بکر" },
   { english: "Syed Muhammad", urdu: "سید محمد" },
@@ -37,78 +43,590 @@ const data = [
   { english: "Syed Zafar", urdu: "سید زَفَر" },
   { english: "Syed Ghulam Muhammad", urdu: "سید غلام محمد" },
   { english: "Syed Lal Muhammad", urdu: "سید لال محمد" },
-  { english: "Syed Mehtar Musa Faqeer Aba", urdu: "سید مہتر مُوسٰی فقیر ابا" },
+  {
+    english: "Syed Mehtar Musa (Faqeer Aba)",
+    urdu: "(سید مہتر مُوسٰی (فقیر ابا",
+  },
   { english: "Syed Ahmad Gul", urdu: "سید احمد گل" },
   {
     english: "Syed Abdul Haleem",
     urdu: "سید عبد الحلیم",
     children: [
-      { english: "Sahibzada Syed Ahmad", urdu: "صاحبزادہ سید احمد" },
+      {
+        english: "Sahibzada Syed Ahmad",
+        urdu: "صاحبزادہ سید احمد",
+        children: [
+          {
+            english: "Syed Muhammad Mohsin Shah",
+            urdu: "سید محمد محسن شاہ",
+            children: [
+              {
+                english: "Syed Abdul Hayy",
+                urdu: "سید عبد الحیٔ",
+                children: [
+                  { english: "Syed Zaid Ali", urdu: "سید زید علی" },
+                  { english: "Syed Haris Ali", urdu: "سید حارث علی" },
+                  { english: "Syed Yasir Ali", urdu: "سید یاسر علی" },
+                ],
+              },
+              {
+                english: "Syed Abdul Ghani",
+                urdu: "سید عبد الغنی",
+                children: [
+                  { english: "Syed Mahmood-ul-Hasan", urdu: "سید محمود الحسن" },
+                  { english: "Syed Hameed-ul-Hasan", urdu: "سید حمید الحسن" },
+                  {
+                    english: "Syed Muhammad Ibrahim",
+                    urdu: "سید محمد ابراہیم",
+                  },
+                ],
+              },
+              {
+                english: "Syed Muhammad Ishaq",
+                urdu: "سید محمد اسحاق",
+                children: [
+                  { english: "Syed Muhammad Mohsin", urdu: "  سید محمد محسن " },
+                ],
+              },
+              {
+                english: "Syed Muhammad Ismail",
+                urdu: "سید محمد اسماعیل",
+                children: [
+                  { english: "Syed Muhammad Khalid", urdu: "سید محمد خالد" },
+                ],
+              },
+            ],
+          },
+        ],
+      },
       {
         english: "Sahibzada Syed Muhammad ",
         urdu: "صاحبزادہ سید محمد",
         children: [
-          { english: "Grandchild 1", urdu: "پوتا 1" },
-          { english: "Grandchild 2", urdu: "پوتا 2" },
+          {
+            english: "Syed Abdul Shakoor",
+            urdu: "سید عبد الشکور",
+            children: [
+              { english: "Syed Muhammad Ahmad", urdu: "سید محمد احمد" },
+            ],
+          },
+          {
+            english: "Syed Abdul Wahab",
+            urdu: "سید عبد الوہاب",
+            children: [
+              {
+                english: "Syed Muhammad Ammar",
+                urdu: "سید محمد عمار",
+                children: [
+                  {
+                    english: "Syed Muhammad Amir Awab",
+                    urdu: "سید محمد عامر اواب",
+                  },
+                  {
+                    english: "Syed Muhammad Umair Haddab",
+                    urdu: "سید محمد عمیر حدّاب",
+                  },
+                  { english: "Syed Muhammad Hunaid", urdu: "سید محمد حناد" },
+                ],
+              },
+            ],
+          },
+          {
+            english: "Syed Abdul Quddus",
+            urdu: "سید عبد القدوس",
+            children: [
+              {
+                english: "Syed Muhammad Yahya",
+                urdu: "سید محمد یحییٰ",
+                children: [{ english: "Syed Muhammad", urdu: "سید محمد" }],
+              },
+              { english: "Syed Muhammad Yousuf", urdu: "سید محمد یوسف" },
+              { english: "Syed Abdul Haleem", urdu: "سید عبد الحلیم" },
+            ],
+          },
+          {
+            english: "Syed Abdul Raoof",
+            urdu: "سید عبد الرؤف",
+            children: [
+              {
+                english: "Syed Abdul Wadood",
+                urdu: "سید عبد الودود",
+                children: [{ english: "Syed Abdullah", urdu: "سید عبداللہ" }],
+              },
+              { english: "Syed Fakhr-ud-Din", urdu: "سید فخر الدین" },
+              { english: "Syed Muin-ud-Din", urdu: "سید معیّن الدین" },
+              { english: "Syed Jalal-ud-Din", urdu: "سید جلال الدین" },
+            ],
+          },
+          {
+            english: "Syed Abdullah",
+            urdu: "سید عبداللہ",
+            children: [
+              {
+                english: "Syed Fazl-ur-Rehman",
+                urdu: "سید فضل الرحمٰن",
+                children: [
+                  { english: "Syed Muhammad Uzair", urdu: "سید محمد عُزیر" },
+                  { english: "Syed Muhammad Zubair", urdu: "سید محمد زبیر" },
+                  { english: "Syed Muhammad Umair", urdu: "سید محمد عمیر" },
+                ],
+              },
+              {
+                english: "Syed Fazl-ur-Raheem",
+                urdu: "سید فضل الرحیم",
+                children: [
+                  { english: "Syed Muhammad Owais", urdu: "سید محمد اویس" },
+                  { english: "Syed Muhammad Waleed", urdu: "سید محمد ولید" },
+                ],
+              },
+              {
+                english: "Syed Fazl Kareem",
+                urdu: "سید فضل کریم",
+                children: [
+                  { english: "Syed Muhammad Maaz", urdu: "سید محمد معاذ" },
+                  { english: "Syed Muhammad Jawad", urdu: "سید محمد جواد" },
+                  { english: "Syed Muhammad Junaid", urdu: "سید محمد جنید" },
+                ],
+              },
+              { english: "Syed Fazlullah", urdu: "سید فضل اللہ" },
+            ],
+          },
         ],
       },
-      { english: "Sahibzada Syed Abdul Hameed", urdu: "صاحبزادہ سید عبد الحمید " },
-      { english: "Sahibzada Syed Mahmood Shah", urdu: "صاحبزادہ سید محمود شاہ" },
-
+      {
+        english: "Sahibzada Syed Abdul Hameed",
+        urdu: "صاحبزادہ سید عبد الحمید ",
+        children: [
+          {
+            english: "Syed Attaullah Shah",
+            urdu: "سید عطا اللہ شاہ",
+            children: [
+              {
+                english: "Syed Muhammad Anwar Shah",
+                urdu: "سید محمد انور شاہ",
+                children: [
+                  { english: "Syed Ali", urdu: "سید علی" },
+                  { english: "Syed Hamid", urdu: "سید حامد" },
+                ],
+              },
+              {
+                english: "Syed Muhammad Usman Shah",
+                urdu: "سید محمد عثمان شاہ",
+                children: [
+                  { english: "Syed Mahmood Shah", urdu: "سید محمود شاہ" },
+                ],
+              },
+              {
+                english: "Syed Muhammad Anzar Shah",
+                urdu: "سید محمد انزر شاہ",
+              },
+              {
+                english: "Syed Muhammad Salman Shah",
+                urdu: "سید محمد سلمان شاہ",
+              },
+              {
+                english: "Syed Muhammad Suleman Shah",
+                urdu: "سید محمد سلیمان شاہ",
+              },
+              { english: "Syed Muhammad Shah", urdu: "سید محمد شاہ" },
+            ],
+          },
+          {
+            english: "Syed Atta-ur-Rehman Shah",
+            urdu: "سید عطاء الرحمٰن شاہ",
+            children: [
+              {
+                english: "Syed Ubaid-ur-Rahman Shah",
+                urdu: "سید عبید الرحمٰن شاہ",
+                children: [
+                  { english: "Syed Muhammad ", urdu: "سید محمد  " },
+                  { english: "Syed Ahmad", urdu: "سید احمد" },
+                ],
+              },
+              {
+                english: "Syed Syed-ur-Rahman Shah",
+                urdu: "سید سید الرحمٰن شاہ",
+              },
+              {
+                english: "Syed Hameed-ur-Rahman Shah",
+                urdu: "سید حمید الرحمٰن شاہ",
+              },
+            ],
+          },
+          {
+            english: "Syed Habibur Rehman Shah",
+            urdu: "سید حبیب الرحمٰن شاہ",
+            children: [
+              { english: "Syed Muhammad Ayub Shah", urdu: "سید محمد ایوب شاہ" },
+              { english: "Syed Muhammad Isa Shah", urdu: "سید محمد عیسیٰ شاہ" },
+              {
+                english: "Syed Muhammad Dawood Shah",
+                urdu: "سید محمد داؤد شاہ",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        english: "Sahibzada Syed Mahmood Shah",
+        urdu: "صاحبزادہ سید محمود شاہ",
+        children: [
+          {
+            english: "Syed Rasheed Ahmad",
+            urdu: "سید رشید احمد",
+            children: [
+              { english: "Syed Muhammad Ibrahim", urdu: "سید محمد ابراہیم" },
+              { english: "Syed Muhammad Ismail", urdu: "سید محمد اسماعیل" },
+              { english: "Syed Muhammad Ishaq", urdu: "سید محمد اسحاق" },
+              { english: "Syed Muhammad Yousuf", urdu: "سید محمد یوسف" },
+              { english: "Syed Muhammad Hammad", urdu: "سید محمد حماد" },
+              { english: "Syed Shams-ul-Arifeen", urdu: "سید شمس العارفین" },
+            ],
+          },
+          {
+            english: "Syed Khaleel Ahmad",
+            urdu: "سید خلیل احمد",
+            children: [
+              { english: "Syed Hifz-ur-Rahman", urdu: "سید حفظ الرحمن" },
+              { english: "Syed Muhammad Luqman", urdu: "سید محمد لقمان" },
+            ],
+          },
+          {
+            english: "Syed Hussain Ahmad",
+            urdu: "سید حسین احمد",
+            children: [
+              { english: "Syed Waliullah", urdu: "سید ولی اللہ" },
+              { english: "Syed Abdul Aziz", urdu: "سید عبد العزیز" },
+              { english: "Syed Mehtar Musa", urdu: "سید مہتر موسیٰ" },
+            ],
+          },
+          {
+            english: "Syed Muhammad Qasim",
+            urdu: "سید محمد قاسم",
+            children: [
+              { english: "Syed Muhammad Sohaib", urdu: "سید محمد صہیب" },
+              { english: "Syed Muhammad Huzaifa", urdu: "سید محمد حذیفہ" },
+              { english: "Syed Muhammad Rawaha", urdu: "سید محمد رواحہ" },
+            ],
+          },
+          {
+            english: "Syed Muhammad Yaqoob",
+            urdu: "سید محمد یعقوب",
+            children: [
+              { english: "Syed Muhammad Tayyab", urdu: "سید محمد طیب" },
+              { english: "Syed Ahmad Gul", urdu: "سید احمد گل" },
+              { english: "Syed Noor-ul-Islam", urdu: "سید نور الاسلام" },
+            ],
+          },
+          {
+            english: "Syed Imdadullah",
+            urdu: "سید امداد اللہ",
+            children: [
+              { english: "Syed Muhammad Anwar", urdu: "سید محمد انور" },
+              { english: "Syed Muhammad Shees", urdu: "سید محمد شیث" },
+            ],
+          },
+          {
+            english: "Syed Ashraf Ali",
+            urdu: "سید اشرف علی",
+            children: [{ english: "Syed Badr-ud-Din", urdu: "سید بدر الدین" }],
+          },
+          {
+            english: "Syed Ahmad Ali",
+            urdu: "سید احمد علی",
+            children: [
+              { english: "Syed Masood Ahmad", urdu: "سید مسعود احمد" },
+              { english: "Syed Arshad Mahmood", urdu: "سید ارشد محمود" },
+            ],
+          },
+          {
+            english: "Syed Kifayatullah",
+            urdu: "سید کفایت اللہ",
+            children: [
+              { english: "Syed Hassan Mahmood", urdu: "سید حسان محمود" },
+              { english: "Syed Hisham", urdu: "سید ہشام" },
+            ],
+          },
+          {
+            english: "Syed Ubaidullah",
+            urdu: "سید عبید اللہ",
+            children: [
+              { english: "Syed Abdul Rahim", urdu: "سید عبدالرحیم" },
+              { english: "Syed Abdul Qadir", urdu: "سید عبدالقادر" },
+              { english: "Syed Saeed Ahmad", urdu: "سید سعید احمد" },
+            ],
+          },
+          {
+            english: "Syed Muhammad Ilyas",
+            urdu: "سید محمد الیاس",
+            children: [
+              { english: "Syed Safwan", urdu: "سید صفوان" },
+              { english: "Syed Sufyan", urdu: "سید سفیان" },
+            ],
+          },
+          {
+            english: "Syed Muhammad Zakariya",
+            urdu: "سید محمد زکریا",
+            children: [
+              { english: "Syed Zahid Mahmood", urdu: "سید زاہد محمود" },
+            ],
+          },
+          {
+            english: "Syed Abdul Rahman",
+            urdu: "سید عبد الرحمن",
+            children: [
+              { english: "Syed Hayan Mahmood", urdu: "سید حیان محمود" },
+            ],
+          },
+          {
+            english: "Syed Shabbir Ahmad",
+            urdu: "سید شبیر احمد",
+            children: [
+              { english: "Syed Muhammad Sumamah", urdu: "سید محمد ثمامہ" },
+              { english: "Syed Muhammad Zaid", urdu: "سید محمد زید" },
+            ],
+          },
+        ],
+      },
     ],
   },
 ];
 
-const ExpandableNode = ({ node, isUrdu }) => {
-  const [open, setOpen] = useState(false);
-  const [lineBounds, setLineBounds] = useState({ left: 0, right: 0 });
-  const containerRef = useRef(null);
+// ---------------------------------------------------------------
+// Expandable Node (edge-aware child anchoring under parent)
+// - Leftmost parent => leftmost child centered under parent; others to RIGHT
+// - Rightmost parent => rightmost child centered under parent; others to LEFT
+// - Applies only when children.length > 3 (as per your note)
+// - Does NOT push parent's siblings; only reorders/aligns THIS parent's children
+// ---------------------------------------------------------------
+function ExpandableNode({
+  node,
+  isUrdu,
+  controlledOpen,
+  onToggle,
+  selfIndex = null, // <-- NEW: my index among my parent’s children
+  selfCount = null, // <-- NEW: total siblings at my level
+  path = "root",
+  lastActivePath,
+  setLastActivePath,
+  parentActive = false, // <-- NEW: whether my parent was active (used to inherit glow)
+}) {
+  const hasChildren = Array.isArray(node.children) && node.children.length > 0;
 
-  // Dynamically recalc line bounds using ResizeObserver
-  useEffect(() => {
-    if (!containerRef.current) return;
+  // controlled vs internal state
+  const isControlled = typeof controlledOpen === "boolean";
+  const [internalOpen, setInternalOpen] = React.useState(false);
+  const open = isControlled ? controlledOpen : internalOpen;
 
-    const observer = new ResizeObserver(() => {
-      const children = containerRef.current.querySelectorAll(".child-node");
-      if (children.length > 1) {
-        const first = children[0].getBoundingClientRect();
-        const last = children[children.length - 1].getBoundingClientRect();
+  // accordion: only one open child per parent
+  const [openChildIndex, setOpenChildIndex] = React.useState(null);
+
+  // width lock + line bounds (same as before)
+  const containerRef = React.useRef(null);
+  const [lockedWidth, setLockedWidth] = React.useState(null);
+  const [lineBounds, setLineBounds] = React.useState({ left: 0, right: 0 });
+
+  // NEW: measure blocks to center the anchored child exactly
+  const leftBlockRef = React.useRef(null);
+  const rightBlockRef = React.useRef(null);
+  const [leftSpacerW, setLeftSpacerW] = React.useState(0);
+  const [rightSpacerW, setRightSpacerW] = React.useState(0);
+
+  // Toggle
+  const handleToggle = () => {
+    if (!hasChildren) return;
+    // mark this node as the last active on any toggle/click
+    setLastActivePath && setLastActivePath(path);
+    if (isControlled) onToggle && onToggle(!open);
+    else setInternalOpen((v) => !v);
+  };
+
+  // close children when closing self
+  React.useEffect(() => {
+    if (!open) setOpenChildIndex(null);
+  }, [open]);
+
+  // lock width while open to avoid jitter
+  React.useLayoutEffect(() => {
+    if (open && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setLockedWidth(rect.width);
+    } else if (!open) {
+      setLockedWidth(null);
+    }
+  }, [open]);
+
+  // Am I edge (leftmost/rightmost) among my siblings?
+  const isEdgeLeft = selfCount != null && selfIndex === 0;
+  const isEdgeRight = selfCount != null && selfIndex === selfCount - 1;
+  const manyChildren = hasChildren && node.children.length > 1;
+
+  // If edge + many children => pick anchor child index (original logic)
+  const anchorIndex =
+    open && manyChildren
+      ? isEdgeLeft
+        ? 0
+        : isEdgeRight
+        ? node.children.length - 1
+        : null
+      : null;
+
+  // Partition children according to the anchor rule
+  const children = node.children || [];
+  const lastIdx = Math.max(0, children.length - 1);
+
+  let anchored = null;
+  let leftBlock = [];
+  let rightBlock = [];
+
+  // ------------------ NEW: chunking logic (4-per-row) ------------------
+  const CHUNK_SIZE = 5;
+  const useMultiRow = children.length > CHUNK_SIZE;
+  // helper: children with original idx
+  const childrenWithIdx = children.map((c, i) => ({ child: c, idx: i }));
+  const chunk = (arr, size) => {
+    const out = [];
+    for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+    return out;
+  };
+  const rows = useMultiRow ? chunk(childrenWithIdx, CHUNK_SIZE) : null;
+
+  // when using multi-row we disable anchored single-row behavior
+  const effectiveAnchorIndex = useMultiRow ? null : anchorIndex;
+  // ----------------------------------------------------------------------
+
+  if (effectiveAnchorIndex != null) {
+    anchored = {
+      child: children[effectiveAnchorIndex],
+      idx: effectiveAnchorIndex,
+    };
+    leftBlock = children.slice(0, effectiveAnchorIndex).map((c, i) => ({
+      child: c,
+      idx: i, // original index
+    }));
+    rightBlock = children.slice(effectiveAnchorIndex + 1).map((c, i) => ({
+      child: c,
+      idx: effectiveAnchorIndex + 1 + i, // original index
+    }));
+  }
+
+  // Measure block widths (include padding that represents the gap next to anchor)
+  React.useLayoutEffect(() => {
+    if (!open) return;
+
+    const measure = () => {
+      const lb = leftBlockRef.current?.getBoundingClientRect?.().width ?? 0;
+      const rb = rightBlockRef.current?.getBoundingClientRect?.().width ?? 0;
+
+      // Balance spacers so anchored child’s CENTER aligns with parent center:
+      // leftSpacer = rightBlockWidth, rightSpacer = leftBlockWidth
+      if (effectiveAnchorIndex != null) {
+        if (isEdgeLeft) {
+          setLeftSpacerW(rb); // others are on the RIGHT
+          setRightSpacerW(0);
+        } else if (isEdgeRight) {
+          setLeftSpacerW(0);
+          setRightSpacerW(lb); // others are on the LEFT
+        }
+      } else {
+        setLeftSpacerW(0);
+        setRightSpacerW(0);
+      }
+    };
+
+    measure();
+    // also on resize
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    open,
+    effectiveAnchorIndex,
+    isEdgeLeft,
+    isEdgeRight,
+    node.children?.length,
+  ]);
+
+  // Compute connector line bounds (only first row if multi-row)
+  React.useLayoutEffect(() => {
+    if (!open || !containerRef.current) return;
+
+    let nodes;
+    if (useMultiRow) {
+      // صرف پہلی row پکڑو
+      nodes = containerRef.current.querySelectorAll(".multi-row-0 .child-node");
+    } else {
+      nodes = containerRef.current.querySelectorAll(".child-node");
+    }
+
+    if (nodes && nodes.length > 1) {
+      const first = nodes[0].getBoundingClientRect();
+      const last = nodes[nodes.length - 1].getBoundingClientRect();
+      const parentBox = containerRef.current.getBoundingClientRect();
+      setLineBounds({
+        left: first.left - parentBox.left + first.width / 2,
+        right: last.left - parentBox.left + last.width / 2,
+      });
+    } else {
+      setLineBounds({ left: 0, right: 0 });
+    }
+  }, [
+    open,
+    lockedWidth,
+    node.children?.length,
+    leftSpacerW,
+    rightSpacerW,
+    useMultiRow,
+  ]);
+
+  // Also recompute width/line on resize while open
+  React.useEffect(() => {
+    if (!open) return;
+    const onResize = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      setLockedWidth(rect.width);
+
+      const nodes = containerRef.current.querySelectorAll(".child-node");
+      if (nodes.length > 1) {
+        const first = nodes[0].getBoundingClientRect();
+        const last = nodes[nodes.length - 1].getBoundingClientRect();
         const parentBox = containerRef.current.getBoundingClientRect();
-
         setLineBounds({
           left: first.left - parentBox.left + first.width / 2,
           right: last.left - parentBox.left + last.width / 2,
         });
-      } else {
-        setLineBounds({ left: 0, right: 0 });
       }
-    });
-
-    observer.observe(containerRef.current);
-
-    return () => observer.disconnect();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, [open]);
 
-  const hasChildren = node.children && node.children.length > 0;
+  // Active state for this node (last-clicked) and the blink rule
+  const selfActive = lastActivePath === path; // exact node match
+  const shouldBlink = selfActive || parentActive; // blink this node and its immediate children
 
   return (
     <div className="flex flex-col items-center relative">
       {/* Parent Node */}
       <div
-        onClick={() => hasChildren && setOpen(!open)}
-        className={`
-          bg-[#F5F5F5] border shadow-md px-6 py-4 rounded-lg w-48 text-center 
-          transition relative z-10 
-          ${hasChildren ? "cursor-pointer hover:scale-105 hover:border-black hover:shadow-lg" : "cursor-default"}
-        `}
+        onClick={hasChildren ? handleToggle : () => setLastActivePath && setLastActivePath(path)}
+        className={`bg-[#F5F5F5] border shadow-md px-3 py-2 rounded-lg w-40 text-center transition relative z-10 ${
+          hasChildren
+            ? "cursor-pointer hover:scale-105 hover:border-black hover:shadow-lg"
+            : "cursor-default"
+        } ${selfActive ? "p-0.5 rounded-md border-2 border-blue-500 animate-pulse" : ""}`}
       >
         <p className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}>
           {isUrdu ? node.urdu : node.english}
         </p>
-
-        {/* Expand indicator */}
+        {/* show overlay when this node is last-clicked OR when its parent is last-clicked (so immediate children also blink) */}
+        {shouldBlink && (
+          <span className="absolute -inset-1 rounded-md border-2 border-blue-400 opacity-90 animate-pulse pointer-events-none" aria-hidden />
+        )}
         {hasChildren && (
-          <span className="absolute top-2 right-2 text-xs text-gray-600">
+          <span className="absolute top-1 right-1 text-xs text-gray-600">
             {open ? "➖" : "➕"}
           </span>
         )}
@@ -121,69 +639,283 @@ const ExpandableNode = ({ node, isUrdu }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mt-8 relative flex flex-col items-center"
+            transition={{ duration: 0.3 }}
+            className="mt-2 relative flex flex-col items-center"
           >
             {/* vertical line from parent */}
             <motion.div
               initial={{ height: 0 }}
               animate={{ height: 24 }}
               exit={{ height: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3 }}
               className="w-0.5 bg-gray-500"
-            ></motion.div>
+            />
 
             {/* Children container */}
             <div
               ref={containerRef}
-              className="relative flex items-start justify-center gap-12"
+              className="relative flex items-start justify-center"
+              style={{ width: lockedWidth ?? "auto" }}
             >
               {/* horizontal line only if 2+ children */}
-              {node.children.length > 1 && lineBounds.right > lineBounds.left && (
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: lineBounds.right - lineBounds.left }}
-                  exit={{ width: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute top-0 h-0.5 bg-gray-500"
-                  style={{ left: lineBounds.left }}
-                ></motion.div>
-              )}
-
-              {node.children.map((child, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center relative child-node"
-                >
-                  {/* vertical line to child */}
+              {node.children.length > 1 &&
+                lineBounds.right > lineBounds.left && (
                   <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: 24 }}
-                    exit={{ height: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                    className="w-0.5 bg-gray-500"
-                  ></motion.div>
+                    initial={{ width: 0 }}
+                    animate={{ width: lineBounds.right - lineBounds.left }}
+                    exit={{ width: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute top-0 h-0.5 bg-gray-500"
+                    style={{ left: lineBounds.left }}
+                  />
+                )}
 
-                  {/* Child node */}
-                  <ExpandableNode node={child} isUrdu={isUrdu} />
-                </div>
-              ))}
+              {/* ---- ANCHORED LAYOUT (edge parents with many children) ---- */}
+              {effectiveAnchorIndex != null ? (
+                <>
+                  {/* Balance spacers so anchor is exactly centered */}
+                  <div
+                    className="flex-none"
+                    style={{ width: leftSpacerW }}
+                    aria-hidden
+                  />
+
+                  {/* LEFT block (siblings on the left of anchored when parent is rightmost) */}
+                  <div
+                    ref={leftBlockRef}
+                    className={`flex items-start gap-1 ${
+                      leftBlock.length ? "pr-1" : ""
+                    }`}
+                  >
+                    {leftBlock.map(({ child, idx }) => {
+                      const childPath = `${path}-${idx}`;
+                      return (
+                        <div
+                          key={idx}
+                          className={`child-node flex-none w-56 flex flex-col items-center relative `}
+                        >
+                          <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: 24 }}
+                            exit={{ height: 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                            className="w-0.5 bg-gray-500"
+                          />
+                          <div className="mt-6">
+                            <ExpandableNode
+                              node={child}
+                              isUrdu={isUrdu}
+                              controlledOpen={openChildIndex === idx}
+                              onToggle={() =>
+                                setOpenChildIndex((prev) =>
+                                  prev === idx ? null : idx
+                                )
+                              }
+                              selfIndex={idx}
+                              selfCount={node.children.length}
+                              path={childPath}
+                              lastActivePath={lastActivePath}
+                              setLastActivePath={setLastActivePath}
+                              parentActive={selfActive} // <-- pass parent active state so child can inherit glow
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* ANCHORED child exactly under parent */}
+                  <div className={`child-node flex-none w-56 flex flex-col items-center relative `}>
+                    <motion.div
+                      initial={{ height: 0 }}
+                      animate={{ height: 24 }}
+                      exit={{ height: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="w-0.5 bg-gray-500"
+                    />
+                    <div className="mt-6">
+                      <ExpandableNode
+                        node={anchored.child}
+                        isUrdu={isUrdu}
+                        controlledOpen={openChildIndex === anchored.idx}
+                        onToggle={() =>
+                          setOpenChildIndex((prev) =>
+                            prev === anchored.idx ? null : anchored.idx
+                          )
+                        }
+                        selfIndex={anchored.idx}
+                        selfCount={node.children.length}
+                        path={`${path}-${anchored.idx}`}
+                        lastActivePath={lastActivePath}
+                        setLastActivePath={setLastActivePath}
+                        parentActive={selfActive}
+                      />
+                    </div>
+                  </div>
+
+                  {/* RIGHT block (siblings on the right of anchored when parent is leftmost) */}
+                  <div
+                    ref={rightBlockRef}
+                    className={`flex items-start gap-1 ${
+                      rightBlock.length ? "pl-1" : ""
+                    }`}
+                  >
+                    {rightBlock.map(({ child, idx }) => {
+                      const childPath = `${path}-${idx}`;
+                      return (
+                        <div
+                          key={idx}
+                          className={`child-node flex-none w-56 flex flex-col items-center relative `}
+                        >
+                          <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: 24 }}
+                            exit={{ height: 0 }}
+                            transition={{ duration: 0.3, delay: 0.1 }}
+                            className="w-0.5 bg-gray-500"
+                          />
+                          <div className="mt-6">
+                            <ExpandableNode
+                              node={child}
+                              isUrdu={isUrdu}
+                              controlledOpen={openChildIndex === idx}
+                              onToggle={() =>
+                                setOpenChildIndex((prev) =>
+                                  prev === idx ? null : idx
+                                )
+                              }
+                              selfIndex={idx}
+                              selfCount={node.children.length}
+                              path={childPath}
+                              lastActivePath={lastActivePath}
+                              setLastActivePath={setLastActivePath}
+                              parentActive={selfActive}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div
+                    className="flex-none"
+                    style={{ width: rightSpacerW }}
+                    aria-hidden
+                  />
+                </>
+              ) : (
+                /* ---- DEFAULT LAYOUT (non-edge parents OR multi-row when >5) ---- */
+                <>
+                  {useMultiRow ? (
+                    /* render rows of up to CHUNK_SIZE (5) children each */
+                    <div className="flex flex-col items-center gap-8">
+                      {rows.map((row, ridx) => (
+                        <div
+                          key={ridx}
+                          className={`multi-row-${ridx} relative flex items-start gap-1 justify-center`}
+                        >
+                          {row.map(({ child, idx }) => {
+                            const childPath = `${path}-${idx}`;
+                            return (
+                              <div
+                                key={idx}
+                                className={`child-node flex-none w-56 flex flex-col items-center relative `}
+                              >
+                                {/* ✅ vertical line صرف پہلی row میں */}
+                                {(!useMultiRow || ridx === 0) && (
+                                  <motion.div
+                                    initial={{ height: 0 }}
+                                    animate={{ height: 24 }}
+                                    exit={{ height: 0 }}
+                                    transition={{ duration: 0.3, delay: 0.1 }}
+                                    className="w-0.5 bg-gray-500"
+                                  />
+                                )}
+
+                                <div className="mt-2">
+                                  <ExpandableNode
+                                    node={child}
+                                    isUrdu={isUrdu}
+                                    controlledOpen={openChildIndex === idx}
+                                    onToggle={() =>
+                                      setOpenChildIndex((prev) =>
+                                        prev === idx ? null : idx
+                                      )
+                                    }
+                                    selfIndex={idx}
+                                    selfCount={node.children.length}
+                                    path={childPath}
+                                    lastActivePath={lastActivePath}
+                                    setLastActivePath={setLastActivePath}
+                                    parentActive={selfActive}
+                                  />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="relative flex items-start gap-2 justify-center">
+                      {node.children.map((child, idx) => {
+                        const childPath = `${path}-${idx}`;
+                        return (
+                          <div
+                            key={idx}
+                            className={`child-node flex-none w-56 flex flex-col items-center relative `}
+                          >
+                            <motion.div
+                              initial={{ height: 0 }}
+                              animate={{ height: 8 }}
+                              exit={{ height: 0 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              className="w-0.5 bg-gray-500"
+                            />
+                            <div className="mt-2">
+                              <ExpandableNode
+                                node={child}
+                                isUrdu={isUrdu}
+                                controlledOpen={openChildIndex === idx}
+                                onToggle={() =>
+                                  setOpenChildIndex((prev) =>
+                                    prev === idx ? null : idx
+                                  )
+                                }
+                                selfIndex={idx}
+                                selfCount={node.children.length}
+                                path={childPath}
+                                lastActivePath={lastActivePath}
+                                setLastActivePath={setLastActivePath}
+                                parentActive={selfActive}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-};
+}
 
-
-
-// ---- FAMILY TREE ----
+// -----------------
+// FAMILY TREE ROOT
+// -----------------
 const FamilyTree = () => {
   const { language } = useLanguage();
   const isUrdu = language === "urdu";
 
   const [itemsPerRow, setItemsPerRow] = useState(4);
+
+  // NEW: last active path (used for blinking border on last-clicked/expanded node)
+  const [lastActivePath, setLastActivePath] = useState(null);
 
   useEffect(() => {
     const updateItemsPerRow = () => {
@@ -236,7 +968,9 @@ const FamilyTree = () => {
                       transition={{ duration: 0.5 }}
                       className="bg-[#F5F5F5] border border-border shadow-md px-6 py-4 rounded-lg w-48 text-center hover:scale-105 transition duration-300"
                     >
-                      <p className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}>
+                      <p
+                        className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}
+                      >
                         {isUrdu ? entry.urdu : entry.english}
                       </p>
                     </motion.div>
@@ -273,7 +1007,13 @@ const FamilyTree = () => {
         })}
 
         {/* Expandable part from last node */}
-        <ExpandableNode node={lastNode} isUrdu={isUrdu} />
+        <ExpandableNode
+          node={lastNode}
+          isUrdu={isUrdu}
+          path={`last`}
+          lastActivePath={lastActivePath}
+          setLastActivePath={setLastActivePath}
+        />
       </div>
     </section>
   );
