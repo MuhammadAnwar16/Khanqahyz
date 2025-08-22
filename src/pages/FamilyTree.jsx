@@ -1100,8 +1100,8 @@ const FamilyTree = () => {
 
           return (
             <div key={rowIndex} className="flex flex-col items-center w-full">
-              {/* horizontal scroll on narrow screens */}
-              <div className="flex items-center gap-4 overflow-x-auto w-full md:justify-center md:overflow-visible px-2">
+              <div className="flex items-center gap-4 w-full justify-center overflow-visible md:overflow-visible px-2">
+
                 {rowData.map((entry, idx) => (
                   <React.Fragment key={idx}>
                     <motion.div
