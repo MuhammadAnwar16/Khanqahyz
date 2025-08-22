@@ -1,16 +1,15 @@
 "use client";
 import { useLanguage } from "../context/LanguageContext";
 import { FaArrowRight, FaArrowLeft, FaArrowDown } from "react-icons/fa";
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";//eslint-disable-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion"; //eslint-disable-line no-unused-vars
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react"; //eslint-disable-line no-unused-vars
 
 // ---- DATA ----
 const data = [
   {
-  english: "Hazrat Ali (R.A)  —  Hazrat Fatimah (R.A)",
-  urdu: "حضرت علی رضی اللہ عنہ —  حضرت فاطمہ رضی اللہ عنہا"
-}
-,
+    english: "Hazrat Ali (R.A)  —  Hazrat Fatimah (R.A)",
+    urdu: "حضرت علی رضی اللہ عنہ —  حضرت فاطمہ رضی اللہ عنہا",
+  },
   { english: "Syed Imam Hussain (R.A)", urdu: "سید امام حسین رضی اللہ عنہ" },
   {
     english: "Syed Imam Ali Zain-ul-Abidin",
@@ -28,7 +27,7 @@ const data = [
     english: "Syed Abu Ahmad Shahab-ud-Din Abdullah",
     urdu: "سید ابو احمد شہاب الدین عبداللہ",
   },
-  { english: "Abu Yusuf Ahmad Keetal", urdu: "ابو یوسف احمد کیتال" },
+  { english: "Abu Yusuf Ahmad Keetal", urdu: "ابو یوسف احمد قتال" },
   { english: "Syed Abu Bakr", urdu: "سید ابو بکر" },
   { english: "Syed Muhammad", urdu: "سید محمد" },
   { english: "Syed Jafar", urdu: "سید جعفر" },
@@ -52,7 +51,7 @@ const data = [
     english: "Syed Mehtar Musa (Faqeer Aba)",
     urdu: "(سید مہتر مُوسٰی (فقیر ابا",
   },
-  { english: "Syed Ahmad Gul", urdu: "سید احمد گل" }, 
+  { english: "Syed Ahmad Gul", urdu: "سید احمد گل" },
   {
     english: "Syed Abdul Haleem",
     urdu: "سید عبد الحلیم",
@@ -249,8 +248,8 @@ const data = [
                 ],
               },
               {
-                english: "Syed Syed-ur-Rahman Shah",
-                urdu: "سید سید الرحمٰن شاہ",
+                english: "Syed Saeed-ur-Rahman Shah",
+                urdu: "سید سعيد الرحمٰن شاہ",
               },
               {
                 english: "Syed Hameed-ur-Rahman Shah",
@@ -497,7 +496,9 @@ function MobileWarningModal({ onClose, persistKey = "hideMobileTreeWarning" }) {
                 onClick={() => handleClose(dontShowAgain)}
                 className="px-5 py-2 rounded-lg text-sm font-semibold bg-black text-white shadow-md hover:shadow-lg transition"
               >
-                {isUrdu ? "💻 ڈیسک ٹاپ استعمال کریں" : "💻 Use Desktop (recommended)"}
+                {isUrdu
+                  ? "💻 ڈیسک ٹاپ استعمال کریں"
+                  : "💻 Use Desktop (recommended)"}
               </button>
             </div>
           </div>
@@ -726,19 +727,30 @@ function ExpandableNode({
     <div className="flex flex-col items-center relative">
       {/* Parent Node */}
       <div
-        onClick={hasChildren ? handleToggle : () => setLastActivePath && setLastActivePath(path)}
+        onClick={
+          hasChildren
+            ? handleToggle
+            : () => setLastActivePath && setLastActivePath(path)
+        }
         className={`bg-[#F5F5F5] border shadow-md px-3 py-2 rounded-lg w-40 text-center transition relative z-10 ${
           hasChildren
             ? "cursor-pointer hover:scale-105 hover:border-black hover:shadow-lg"
             : "cursor-default"
-        } ${selfActive ? "p-0.5 rounded-md border-2 border-blue-500 animate-pulse" : ""}`}
+        } ${
+          selfActive
+            ? "p-0.5 rounded-md border-2 border-blue-500 animate-pulse"
+            : ""
+        }`}
       >
         <p className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}>
           {isUrdu ? node.urdu : node.english}
         </p>
         {/* show overlay when this node is last-clicked OR when its parent is last-clicked (so immediate children also blink) */}
         {shouldBlink && (
-          <span className="absolute -inset-1 rounded-md border-2 border-blue-400 opacity-90 animate-pulse pointer-events-none" aria-hidden />
+          <span
+            className="absolute -inset-1 rounded-md border-2 border-blue-400 opacity-90 animate-pulse pointer-events-none"
+            aria-hidden
+          />
         )}
         {hasChildren && (
           <span className="absolute top-1 right-1 text-xs text-gray-600">
@@ -840,7 +852,9 @@ function ExpandableNode({
                   </div>
 
                   {/* ANCHORED child exactly under parent */}
-                  <div className={`child-node flex-none w-56 flex flex-col items-center relative `}>
+                  <div
+                    className={`child-node flex-none w-56 flex flex-col items-center relative `}
+                  >
                     <motion.div
                       initial={{ height: 0 }}
                       animate={{ height: 24 }}
@@ -1072,13 +1086,13 @@ const FamilyTree = () => {
         <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-[#D1D1D1] inline-block </div>pb-3">
           {isUrdu ? "شجرہ نسب" : "Lineage of Nasab"}
         </h2>
-       <p
+        <p
           className={`mt-3 text-sm font-urdu  tracking-wider text-subtext mb-14 ${
             isUrdu ? "font-urdu leading-loose" : ""
           }`}
         >
           {isUrdu
-           ? "یہ مقدس سلسلہ نسب ہمارے خاندان کی نسبت اور خانقاہی وراثت کو ظاہر کرتا ہے۔"
+            ? "یہ مقدس سلسلہ نسب ہمارے خاندان کی نسبت اور خانقاہی وراثت کو ظاہر کرتا ہے۔"
             : "This sacred lineage reflects our family’s ancestry and the spiritual heritage of the Khanqah."}
         </p>
       </div>
@@ -1101,26 +1115,26 @@ const FamilyTree = () => {
           return (
             <div key={rowIndex} className="flex flex-col items-center w-full">
               <div className="flex items-center gap-4 w-full justify-center overflow-visible md:overflow-visible px-2">
-
                 {rowData.map((entry, idx) => (
                   <React.Fragment key={idx}>
                     <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5 }}
-  className="bg-[#F5F5F5] border border-border shadow-md 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="bg-[#F5F5F5] border border-border shadow-md 
              px-4 py-3 rounded-lg 
              w-36 sm:w-32 md:w-40 lg:w-48 
              text-center hover:scale-105 transition duration-300 
              flex-shrink-0"
->
-  <p
-    className={`${isUrdu ? "font-urdu" : "font-medium"} text-xs sm:text-sm`}
-  >
-    {isUrdu ? entry.urdu : entry.english}
-  </p>
-</motion.div>
-
+                    >
+                      <p
+                        className={`${
+                          isUrdu ? "font-urdu" : "font-medium"
+                        } text-xs sm:text-sm`}
+                      >
+                        {isUrdu ? entry.urdu : entry.english}
+                      </p>
+                    </motion.div>
 
                     {idx < rowData.length - 1 &&
                       (isLTR ? (
