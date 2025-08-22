@@ -1115,7 +1115,7 @@ const FamilyTree = () => {
              flex-shrink-0"
 >
   <p
-    className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}
+    className={`${isUrdu ? "font-urdu" : "font-medium"} text-xs sm:text-sm`}
   >
     {isUrdu ? entry.urdu : entry.english}
   </p>
