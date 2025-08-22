@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from "framer-motion"; //eslint-disable-line n
 
 // ---- DATA ----
 const data = [
+  {
+  english: "Hazrat Ali (R.A)  —  Hazrat Fatimah (R.A)",
+  urdu: "حضرت علی رضی اللہ عنہ —  حضرت فاطمہ رضی اللہ عنہا"
+}
+,
   { english: "Syed Imam Hussain (R.A)", urdu: "سید امام حسین رضی اللہ عنہ" },
   {
     english: "Syed Imam Ali Zain-ul-Abidin",
@@ -47,7 +52,7 @@ const data = [
     english: "Syed Mehtar Musa (Faqeer Aba)",
     urdu: "(سید مہتر مُوسٰی (فقیر ابا",
   },
-  { english: "Syed Ahmad Gul", urdu: "سید احمد گل" },
+  { english: "Syed Ahmad Gul", urdu: "سید احمد گل" }, 
   {
     english: "Syed Abdul Haleem",
     urdu: "سید عبد الحلیم",
@@ -1031,7 +1036,7 @@ const FamilyTree = () => {
   useEffect(() => {
     const updateItemsPerRow = () => {
       if (window.innerWidth < 640) {
-        setItemsPerRow(1);
+        setItemsPerRow(2);
       } else if (window.innerWidth < 1024) {
         setItemsPerRow(3);
       } else {
@@ -1064,9 +1069,26 @@ const FamilyTree = () => {
   return (
     <section className="bg-white text-black py-24 px-6 md:px-24 font-body border-t border-[#D1D1D1]">
       <div className="relative z-10 text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-[#D1D1D1] inline-block pb-3">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 border-b-2 border-[#D1D1D1] inline-block </div>pb-3">
           {isUrdu ? "شجرہ نسب" : "Lineage of Nasab"}
         </h2>
+       <p
+          className={`mt-3 text-sm font-urdu  tracking-wider text-subtext mb-14 ${
+            isUrdu ? "font-urdu leading-loose" : ""
+          }`}
+        >
+          {isUrdu
+           ? "یہ مقدس سلسلہ نسب ہمارے خاندان کی نسبت اور خانقاہی وراثت کو ظاہر کرتا ہے۔"
+            : "This sacred lineage reflects our family’s ancestry and the spiritual heritage of the Khanqah."}
+        </p>
+      </div>
+      {/* Watermark */}
+      <div className="fixed top-1/2 left-1/2 z-0 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
+        <img
+          src="/images/khanqah logo.png"
+          alt="Watermark Logo"
+          className="w-full max-w-5xl opacity-10 grayscale filter transform-gpu will-change-transform translate-y-12"
+        />
       </div>
 
       <div className="relative z-10 flex flex-col items-center gap-12">
@@ -1083,17 +1105,22 @@ const FamilyTree = () => {
                 {rowData.map((entry, idx) => (
                   <React.Fragment key={idx}>
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="bg-[#F5F5F5] border border-border shadow-md px-6 py-4 rounded-lg w-40 md:w-48 text-center hover:scale-105 transition duration-300 flex-shrink-0"
-                    >
-                      <p
-                        className={`${isUrdu ? "font-urdu" : "font-medium"} text-sm`}
-                      >
-                        {isUrdu ? entry.urdu : entry.english}
-                      </p>
-                    </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  className="bg-[#F5F5F5] border border-border shadow-md 
+             px-4 py-3 rounded-lg 
+             w-36 sm:w-32 md:w-40 lg:w-48 
+             text-center hover:scale-105 transition duration-300 
+             flex-shrink-0"
+>
+  <p
+    className={`${isUrdu ? "font-urdu" : "font-medium"} text-xs sm:text-sm`}
+  >
+    {isUrdu ? entry.urdu : entry.english}
+  </p>
+</motion.div>
+
 
                     {idx < rowData.length - 1 &&
                       (isLTR ? (
