@@ -1110,7 +1110,7 @@ const FamilyTree = () => {
   transition={{ duration: 0.5 }}
   className="bg-[#F5F5F5] border border-border shadow-md 
              px-4 py-3 rounded-lg 
-             w-34 sm:w-32 md:w-40 lg:w-48 
+             w-35 sm:w-32 md:w-40 lg:w-48 
              text-center hover:scale-105 transition duration-300 
              flex-shrink-0"
 >
