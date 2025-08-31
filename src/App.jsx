@@ -16,6 +16,7 @@ import Publications from './pages/Publications';
 import CurrentNasheenSection from './components/CurrentNasheenSection';
 import ShajrahRoadmap from './pages/ShajrahTasawuf';
 import VideoGallery from './pages/VideoGallery';
+import Gallery from './pages/Gallery';
 /*import DuasAndSayings from './pages/DuasAndSayings';*/
 
 const HomePage = () => (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/shajra" element={<FamilyTree />} />
         <Route path="/shajrahTasawuf" element={<ShajrahRoadmap />} />
         <Route path="/publications" element={<Publications />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/VideoGallery" element={<VideoGallery />} />
         <Route path="/contact" element={<ContactSection />} />
       </Routes>

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import {
   PhoneIcon,
@@ -57,7 +58,7 @@ const ContactSection = () => {
                 </p>
 
                 <p className="flex items-center gap-2">
-                  <ChatBubbleLeftRightIcon className="w-5 h-5 text-black" />
+                  <FaWhatsapp className="w-5 h-5 text-black" />
                   <strong>{isUrdu ? "واٹس ایپ:" : "WhatsApp:"}</strong>{" "}
                   <a
                     dir="ltr"

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import {
   PhoneIcon,
   ChatBubbleLeftRightIcon,
@@ -140,7 +140,7 @@ const Footer = () => {
                 <span className="text-white font-medium" dir="ltr">+92 300 1234567</span>
               </li>
               <li className="flex items-start gap-2">
-                <ChatBubbleLeftRightIcon className="h-5 w-5 text-gray-400" />
+                <FaWhatsapp className="h-5 w-5 text-gray-400" />
                 
                 {language === "urdu" ? "واٹس ایپ:" : "WhatsApp:"}{" "}
                 <a
@@ -232,6 +232,15 @@ const Footer = () => {
                 >
                   <FaWhatsapp className="h-5 w-5" />
                 </a>
+                  <a
+                    href="https://wa.me/923001234567"
+                    target="_blank"
+                    rel="noreferrer"
+                    className=" relative group bg-white text-black hover:text-red-700 transition p-2 rounded-full shadow"
+                    aria-label="WhatsApp"
+                  >
+                    <FaYoutube className="h-5 w-5" />
+                  </a>
               </div>
             </div>
           </div>

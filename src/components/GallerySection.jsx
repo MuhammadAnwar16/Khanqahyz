@@ -14,28 +14,13 @@ const GallerySection = () => {
     },
     {
       id: 2,
-      name: language === "urdu" ? "عرس" : "Urs Gathering",
+      name: language === "urdu" ? "مسجد" : " Mosque",
       images: ["/images/gallery2.jpg"],
     },
     {
       id: 3,
       name: language === "urdu" ? "ذکر" : "Zikr Circle",
       images: ["/images/gallery3.jpg"],
-    },
-    {
-      id: 4,
-      name: language === "urdu" ? "کلاس" : "Quran Session",
-      images: ["/images/gallery4.jpg"],
-    },
-    {
-      id: 5,
-      name: language === "urdu" ? "پیر" : "Spiritual Leader",
-      images: ["/images/gallery5.jpg"],
-    },
-    {
-      id: 6,
-      name: language === "urdu" ? "زیارت" : "Evening Ziyarat",
-      images: ["/images/gallery6.jpg"],
     },
   ];
 
