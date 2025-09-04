@@ -73,12 +73,16 @@ const ScrollToTopButton = ({ modalOpen = false }) => {
       `}
     >
       <button
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-        className="p-3 rounded-full bg-black text-white hover:bg-[grey] transition-all duration-300 shadow-lg hover:shadow-2xl ring-1 ring-border"
-      >
-        <FiArrowUp className="text-xl" />
-      </button>
+  onClick={scrollToTop}
+  aria-label="Scroll to top"
+  className="p-3 rounded-full bg-black text-white 
+             border border-transparent shadow-lg ring-1 ring-border
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-black hover:border-black hover:shadow-2xl"
+>
+  <FiArrowUp className="text-xl" />
+</button>
+
     </div>
   );
 };

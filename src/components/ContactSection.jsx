@@ -197,11 +197,15 @@ const ContactSection = () => {
               </div>
 
               <button
-                type="submit"
-                className="bg-black text-white px-6 py-2 rounded hover:bg-opacity-90 transition duration-200 font-semibold"
-              >
-                {isUrdu ? "ارسال کریں" : "Submit"}
-              </button>
+  type="submit"
+  className="px-6 py-2 rounded font-semibold 
+             bg-black text-white border border-transparent 
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-black hover:border-black"
+>
+  {isUrdu ? "ارسال کریں" : "Submit"}
+</button>
+
             </form>
           </div>
         </div>

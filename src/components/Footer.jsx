@@ -137,20 +137,21 @@ const Footer = () => {
             <ul className="text-sm space-y-3 text-gray-400">
               <li className="flex items-start gap-2">
                 <PhoneIcon className="h-5 w-5 text-gray-400" />
-                <span className="text-white font-medium" dir="ltr">+92 300 1234567</span>
+                <span className="text-white font-medium" dir="ltr">
+                  +92 300 1234567
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <FaWhatsapp className="h-5 w-5 text-gray-400" />
-                
                 {language === "urdu" ? "واٹس ایپ:" : "WhatsApp:"}{" "}
                 <a
-                dir="ltr"
+                  dir="ltr"
                   href="https://wa.me/923001234567"
                   className="hover:text-white font-medium"
                   target="_blank"
                   rel="noreferrer"
                 >
-                   +92 300 1234567
+                  +92 300 1234567
                 </a>
               </li>
               <li className="flex items-start gap-2">
@@ -174,7 +175,6 @@ const Footer = () => {
 
           {/* Donation Info */}
           <div>
-
             <ul
               className={`text-sm space-y-2 text-gray-400 mb-4 ${
                 language === "urdu" ? "text-right" : "text-left"
@@ -208,7 +208,10 @@ const Footer = () => {
             <div className="mt-6 flex flex-wrap gap-4 items-center">
               <button
                 onClick={toggleLanguage}
-                className=" relative group bg-white text-black px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition"
+                className="relative group px-3 py-2 rounded-full text-sm font-semibold
+             bg-black text-white border border-white 
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-black"
               >
                 {language === "urdu" ? "ENGLISH" : "اردو"}
               </button>
@@ -218,29 +221,37 @@ const Footer = () => {
                   href="https://www.facebook.com/people/Khanqah-Yasin-Zai-Panyala-DIKhan-Offical/61579090561505/"
                   target="_blank"
                   rel="noreferrer"
-                  className=" relative group bg-white text-black hover:text-blue-600 transition p-2 rounded-full shadow"
+                  className="relative group p-2 rounded-full bg-black text-white shadow
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-blue-600 hover:shadow-md border border-white"
                   aria-label="Facebook"
                 >
                   <FaFacebookF className="h-5 w-5" />
                 </a>
+
                 <a
                   href="https://whatsapp.com/channel/0029VbBTJSUE50UaJtR4Y300"
                   target="_blank"
                   rel="noreferrer"
-                  className=" relative group bg-white text-black hover:text-green-700 transition p-2 rounded-full shadow"
+                  className="relative group p-2 rounded-full bg-black text-white shadow
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-green-600 hover:shadow-md border border-white"
                   aria-label="WhatsApp"
                 >
                   <FaWhatsapp className="h-5 w-5" />
                 </a>
-                  <a
-                    href="https://wa.me/923001234567"
-                    target="_blank"
-                    rel="noreferrer"
-                    className=" relative group bg-white text-black hover:text-red-700 transition p-2 rounded-full shadow"
-                    aria-label="WhatsApp"
-                  >
-                    <FaYoutube className="h-5 w-5" />
-                  </a>
+
+                <a
+                  href="https://wa.me/923001234567"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="relative group p-2 rounded-full bg-black text-white shadow
+             transition-all duration-300 ease-out
+             hover:bg-white hover:text-red-600 hover:shadow-md border border-white"
+                  aria-label="YouTube"
+                >
+                  <FaYoutube className="h-5 w-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -260,7 +271,6 @@ const Footer = () => {
         </div>
       </footer>
     </div>
-    
   );
 };
 
