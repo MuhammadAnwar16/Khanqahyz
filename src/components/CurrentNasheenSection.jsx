@@ -210,25 +210,29 @@ const CurrentNasheenSection = () => {
         {/* Modal */}
         {isOpen && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl shadow-2xl w-[95%] md:w-[70%] max-h-[80%] overflow-y-auto relative p-10">
-              {/* Close */}
+            <div className="bg-white rounded-2xl shadow-2xl w-[95%] md:w-[70%] max-h-[80%] relative flex flex-col">
+              {/* Close button (fixed at top, outside scroll) */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-black"
+                className="absolute top-4 right-4 text-gray-600 hover:text-black z-10"
               >
                 <FiX size={24} />
               </button>
-              <h3 className="text-2xl md:text-3xl font-heading font-bold mb-12 text-center">
-                {language === "urdu"
-                  ? "سابقہ مسند نشین"
-                  : "Previous Masnad-e-Nasheen"}
-              </h3>
-              {/* Snake Tree */}
-              <div className="flex justify-center">
-                <SnakeModalTree
-                  data={nasheenTree}
-                  isUrdu={language === "urdu"}
-                />
+
+              {/* Scrollable content */}
+              <div className="overflow-y-auto p-10">
+                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-12 text-center">
+                  {language === "urdu"
+                    ? "سابقہ مسند نشین"
+                    : "Previous Masnad-e-Nasheen"}
+                </h3>
+
+                <div className="flex justify-center">
+                  <SnakeModalTree
+                    data={nasheenTree}
+                    isUrdu={language === "urdu"}
+                  />
+                </div>
               </div>
             </div>
           </div>
